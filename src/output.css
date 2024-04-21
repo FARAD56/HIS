@@ -633,6 +633,14 @@ video {
   margin: 0.5rem;
 }
 
+.m-20 {
+  margin: 5rem;
+}
+
+.m-8 {
+  margin: 2rem;
+}
+
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -975,6 +983,26 @@ video {
   width: 100%;
 }
 
+.w-\[\] {
+  width: ;
+}
+
+.w-\[80\] {
+  width: 80;
+}
+
+.w-\[80\%\] {
+  width: 80%;
+}
+
+.w-\[90\%\] {
+  width: 90%;
+}
+
+.w-36 {
+  width: 9rem;
+}
+
 .origin-top-right {
   transform-origin: top right;
 }
@@ -1043,8 +1071,18 @@ video {
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 
+.space-x-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(2rem * var(--tw-space-x-reverse));
+  margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
 .overflow-hidden {
   overflow: hidden;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
 }
 
 .overflow-y-auto {
@@ -1102,6 +1140,11 @@ video {
 .rounded-t-lg {
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
+}
+
+.rounded-b-lg {
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 }
 
 .rounded-bl-2xl {
@@ -1190,6 +1233,11 @@ video {
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
 .bg-green-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(22 163 74 / var(--tw-bg-opacity));
@@ -1266,6 +1314,10 @@ video {
 
 .p-\[6px\] {
   padding: 6px;
+}
+
+.p-8 {
+  padding: 2rem;
 }
 
 .px-0 {
@@ -1661,6 +1713,10 @@ video {
     height: 80%;
   }
 
+  .sm\:h-40 {
+    height: 10rem;
+  }
+
   .sm\:min-h-screen {
     min-height: 100vh;
   }
@@ -1707,6 +1763,10 @@ video {
 
   .sm\:w-\[70\%\] {
     width: 70%;
+  }
+
+  .sm\:w-40 {
+    width: 10rem;
   }
 
   .sm\:flex-row {
@@ -1814,6 +1874,11 @@ video {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
+
+  .sm\:text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1829,6 +1894,10 @@ video {
 
   .md\:mb-4 {
     margin-bottom: 1rem;
+  }
+
+  .md\:mb-0 {
+    margin-bottom: 0px;
   }
 
   .md\:block {
