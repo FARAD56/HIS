@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Center Modal with Tailwind CSS</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="flex justify-center items-center min-h-screen bg-gray-100">
+    <!-- Modal Trigger -->
+    <button id="openModal" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Open Modal
+    </button>
+
+    <!-- Modal -->
+    <div id="patientListCommentModal" class="flex hidden fixed inset-0 items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 shadow-lg comment_modal">
+            <h2 class="text-2xl font-bold mb-4">Modal Content</h2>
+            <p>This is a simple centered modal created with Tailwind CSS.</p>
+            <button id="closeModal" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Close Modal
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var patientListCommentModal = document.getElementById("patientListCommentModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("openModal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("closeModal");
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            patientListCommentModal.classList.remove("hidden");
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            patientListCommentModal.classList.add("hidden");
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == patientListCommentModal) {
+                patientListCommentModal.classList.add("hidden");
+            }
+        }
+    </script>
+</body>
+
+</html>

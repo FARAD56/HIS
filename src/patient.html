@@ -177,10 +177,10 @@
 
 
     <!-- RIGHT SIDE -->
-    <div class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto h-auto bg-slate-200">
+    <div class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto bg-slate-200">
       
       <!-- Header -->
-      <div class="bg-slate-400 h-auto sm:min-h-screen pb-10 sm:pb-0">
+      <div class="bg-slate-400 h-auto sm:h-auto pb-20 lg:pb-2">
 
         <div class="py-4 ml-10">
           <h1 class="font-bold text-md sm:text-xl text-slate-900">Patient</h1>
@@ -188,7 +188,7 @@
         </div>
 
         <!-- Header Profile -->
-        <div class="h-[20%] bg-gray-100 mb-8 flex justify-center mx-4 sm:mx-8 md:mx-10 lg:mx-16  rounded-lg">
+        <div class="h-[20%] bg-gray-100 mb-4 flex justify-center mx-4 sm:mx-8 md:mx-10 lg:mx-16  rounded-lg">
           <div class="flex text-sm sm:text-lg p-5 text-slate-900 font-bold">
             <div class="flex justify-center" >
               <img src="../images/profile.jpg" alt="" class="rounded-[100%] w-[80px] h-[80px] ">
@@ -205,19 +205,57 @@
         </div>
         <!-- End Header Profile -->
 
+        <!-- Header Profile -->
+        <div class="hover:shadow-2xl text-[11px] sm:text-sm my-4 px-4 py-[10px] sm:px-6 mx-4 sm:mx-8 md:mx-10 lg:mx-16 bg-white shadow-lg rounded-lg">
+
+          <div class="flex items-center justify-between my-2">
+            <div>
+              <h1 class="uppercase font-bold text-center">Date</h1>
+              <p class="text-center">24/02/2024</p>
+            </div>
+  
+            <div class="hidden xxs:block">
+              <h1 class="uppercase font-bold text-center">Temperature</h1>
+              <p class="text-center">33 degrees</p>
+            </div>
+  
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold text-center">Blood Pressure</h1>
+              <p class="text-center">120/80 bpm</p>
+            </div>
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold text-center">Status</h1>
+              <p class="text-yellow-500 font-bold text-center">awaiting</p>
+            </div>
+  
+            <a href="patient.html">
+              <button class="rounded bg-blue-700 px-1 sm:px-4 py-1 text-xs uppercase text-white">
+                Attend
+              </button>
+            </a>
+
+          </div>
+
+          <div class="mt-4">
+            <h1 class="uppercase font-bold mb-2">Comments</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus pariatur totam numquam! Aliquam voluptatem vero cumque amet deserunt minus quis. Cum ratione mollitia error sapiente!</p>
+          </div>
+
+        </div>
+        <!-- End Header Profile -->
+
         <div class="sm:flex space-y-10 sm:space-y-0 px-1 sm:px-4 md:px-8">
 
-          <div class="space-y-1 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
+          <div class="block space-y-1 mx-auto text-center w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
             <a href="patient_profile.html">
-              <div>
+              <div class="flex flex-col items-center justify-center">
                 <h5
                   class="text-lg font-bold leading-tight text-neutral-800">
                   Profile
                 </h5>
   
-                <h1 class="text-xl">
-                  10
-                </h1>
+                <img src="../images/profile.png" alt="" class="h-10 w-10 rounded-lg">
   
                 <p class="text-base font-semibold text-neutral-600">
                   Last Updated
@@ -230,7 +268,7 @@
             </a>
           </div>
 
-          <div class="space-y-1 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
+          <div class="space-y-4 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
             <a href="medical_records.html">
               <div>
                 <h5
@@ -238,7 +276,7 @@
                   Medical Records
                 </h5>
   
-                <h1 class="text-xl">
+                <h1 class="text-3xl">
                   10
                 </h1>
   
@@ -253,89 +291,16 @@
             </a>
           </div>
 
-          <div class="space-y-1 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
+          <div class="space-y-4 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
             <a href="diagnosis.html">
               <div>
                 <h5
                   class="text-lg font-bold leading-tight text-neutral-800">
-                  Diagnosis
+                  Medication
                 </h5>
   
-                <h1 class="text-xl">
-                  10
-                </h1>
-  
-                <p class="text-base font-semibold text-neutral-600">
-                  Last Updated
-                </p>
-  
-                <p class="text-base font-medium text-neutral-600">
-                  A min ago
-                </p>
-              </div>
-            </a>
-          </div>
-
-        </div>
-
-        <div class="sm:flex space-y-10 sm:space-y-0 px-1 sm:px-4 md:px-8 pt-10">
-
-          <div class="space-y-1 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
-            <a href="prescription.html">
-              <div>
-                <h5
-                  class="text-lg font-bold leading-tight text-neutral-800">
-                  Prescriptions
-                </h5>
-  
-                <h1 class="text-xl">
-                  10
-                </h1>
-  
-                <p class="text-base font-semibold text-neutral-600">
-                  Last Updated
-                </p>
-  
-                <p class="text-base font-medium text-neutral-600">
-                  A min ago
-                </p>
-              </div>
-            </a>
-          </div>
-
-          <div class="space-y-1 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
-            <a href="medical_records.html">
-              <div>
-                <h5
-                  class="text-lg font-bold leading-tight text-neutral-800">
-                  Requests
-                </h5>
-  
-                <h1 class="text-xl">
-                  10
-                </h1>
-  
-                <p class="text-base font-semibold text-neutral-600">
-                  Last Updated
-                </p>
-  
-                <p class="text-base font-medium text-neutral-600">
-                  A min ago
-                </p>
-              </div>
-            </a>
-          </div>
-
-          <div class="space-y-1 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
-            <a href="diagnosis.html">
-              <div>
-                <h5
-                  class="text-lg font-bold leading-tight text-neutral-800">
-                  Insurance
-                </h5>
-  
-                <h1 class="text-xl">
-                  10
+                <h1 class="text-3xl">
+                  15
                 </h1>
   
                 <p class="text-base font-semibold text-neutral-600">

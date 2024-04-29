@@ -36,8 +36,6 @@ openButton.addEventListener('click', () => {
 
 chat_btn.addEventListener('click', ()=>{
   chat_names.classList.toggle('chat_names_toggle')
-  console.log('Farad')
 })
-
 
 
