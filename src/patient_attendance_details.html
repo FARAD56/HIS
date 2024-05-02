@@ -1,0 +1,563 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <link href="./css/patient_list.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200">
+  <div>
+    <!-- Navbar -->
+    <nav class="fixed bg-white w-full flex px-3 sm:px-5 md:px-10 py-2 h-14 shadow-xl z-50">
+      <div class="w-1/2 flex justify-between items-center ">
+
+        <div class="flex items-center text-center py-2">
+          <img src="../images/nav_logo.png" class="w-[32px] mr-2" alt="">
+          <p class="text-xl sm:text-2xl md:text-3xl font-bold">HIS</p>
+        </div>
+
+        <div class="flex w-1/2">
+          <img src="../images/menu_squared.png" alt="" class=" mr-2 toggle_btn h-10 w-10 hidden md:block">
+          <input type="text" placeholder="Patient's name/ ID" class="hidden sm:block border px-3 py-1 w-60 font-semibold text-lg rounded-xl">
+        </div>
+
+      </div>
+      <div class="flex w-1/2 justify-end items-center px-3 sm:px-5 md:px-10">
+
+        <!-- Trigger button -->
+        <img src="../images/icons8-search-50.png" class="search block sm:hidden w-6 h-6 mx-6">
+
+
+        <!-- Modal container -->
+        <div class="fixed top-0 z-10 inset-x-0 overflow-y-auto hidden" id="myModal">
+        <div class="flex items-end justify-center pt-14 px-4 text-center sm:block sm:p-0">
+          <!-- Background overlay -->
+          <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0" id="modalOverlay"></div>
+          </div>
+
+          <!-- Modal content -->
+          <div class="bg-gray-50 overflow-hidden shadow-2xl w-full">
+                  <div class="flex justify-between items-center px-4">
+                    <input type="text" placeholder="Patient's name/ ID" class="w-48 sm:w-96 border px-3 py-1 font-semibold text-lg rounded-xl">
+                    <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                      <img src="../images/icons8-close-50.png" alt="" class="cb w-6 h-6">
+                    </div>
+                  </div>
+          </div>
+        </div>
+        </div>
+
+        <div x-data="{ open: false }" class="inline-block text-left">
+          <!-- Trigger button -->
+          <div @click="open = !open" class="flex items-center">
+            <img src="../images/profile1.jpg" alt="" class="rounded-full w-10 h-10 mr-2">
+            <h1 class="hidden md:block font-semibold text-lg">A. Al-Waasiu</h1>
+            <img  src="../images/profilearrow.png" alt="" class="mx-1 w-3 h-3">
+          </div>
+          <!-- Dropdown content -->
+          <div x-show="open" @click.away="open = false" class="absolute right-[5%] text-black pt-2">
+
+            <div class="bg-white border border-black rounded-lg w-48 px-2">
+              
+              <div class="flex justify-center text-center">
+                <div class="font-semibold">
+                  <h1 class="text-sm mt-1">Abubakari Al-Waasiu</h1>
+                  <p class="text-xs mb-2">Web Developer</p>
+                </div>
+              </div>
+
+              <hr>
+
+              <ul class="space-y-1 my-2">
+                <div class="flex">
+                  <img src="../images/icons8-test-account-48.png" alt="" class="w-5 h-5 mx-2">
+                  <li><a href="doctor_profile.html" class="block text-sm">My Profile</a></li>
+                </div>
+                <hr>
+                <div class="flex">
+                  <img src="../images/icons8-settings-50.png" alt="" class="w-5 h-5 mx-2">
+                  <li><a href="#" class="block text-sm">Account Settings</a></li>
+                </div>
+                <hr>
+                <div class="flex">
+                  <img src="../images/icons8-help-50.png" alt="" class="w-5 h-5 mx-2">
+                  <li><a href="#" class="block text-sm">Help</a></li>
+                </div>
+                <hr>
+                <div class="flex">
+                  <img src="../images/icons8-logout-50.png" alt="" class="w-4 h-4 mx-2">
+                  <li><a href="#" class="block text-sm">Sign out</a></li>
+                </div>
+              </ul>
+
+            </div>
+          </div>
+        </div>        
+        
+      </div>
+    </nav>
+    <!-- End nav -->
+
+    <!-- LEFT SIDE -->
+
+    <!-- Sidebar -->
+    <div class="flex pt-[3.5rem]"></div>
+    <!-- Toggle Sidebar -->
+    <div class="sidebar transition-all duration-200 space-y-10 fixed w-1/5 h-[100vh] hidden md:block bg-slate-900">
+
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl mt-10 px-4 items-center "> 
+        <a href="dashboard.html" class="flex items-center">
+        <img src="../images/home.png" class="w-10 h-10" alt="" > 
+        <p class="text-white  font-bold ml-4 transition-all duration-200" id="side_text">Home</p>
+        </a>           
+      </div>
+
+      
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 "> 
+        <a href="patient_list.html" class="flex items-center">
+          <img src="../images/patient_list.png" alt="" class="w-10 h-10 "> 
+          <p class="text-white font-bold ml-4 transition-all duration-200"id="side_text" >Patients</p> 
+        </a>  
+      </div>
+
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
+        <a href="session_dashboard.html" class="flex items-center">
+          <img src="../images/icons8-appointment-48.png" alt="" class="w-10 h-10"> 
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Sessions</p>   
+        </a>
+      </div>
+
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
+        <a href="chats.html" class="flex items-center">
+          <img src="../images/chats.png" class="w-10 h-10" alt="" > 
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text" >Chats</p> 
+        </a>  
+      </div>
+
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
+        <a href="settings.html" class="flex items-center">
+          <img src="../images/settings.png" class="w-10 h-10" alt="" > 
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Settings</p>  
+        </a> 
+      </div>
+
+    </div>
+    <!-- end Sidebar -->
+
+    <!-- bottom bar -->
+    <div class="fixed flex justify-between items-center px-4 md:hidden bottom-0 w-full h-[50px] z-50 bg-slate-900 py-8 text-white bg-opacity-90">
+      <a href="dashboard.html">
+        <img src="../images/home.png" class="w-8 h-8" alt="" >
+        <p class="text-[12px] font-bold">Home</p>
+      </a>
+      <a href="patient_list.html">
+        <img src="../images/patient_list.png" alt="" class="w-8 h-8 ">
+        <p class="text-[12px] font-bold">Patient</p>
+      </a>
+      <a href="session_dashboard.html">
+        <img src="../images/icons8-appointment-48.png" alt="" class="w-8 h-8">
+        <p class="text-[12px] font-bold">Sessions</p>
+      </a>
+      <a href="chats.html">
+        <img src="../images/chats.png" class="w-8 h-8" alt="" >
+        <p class="text-[12px] font-bold">Chats</p>
+      </a>
+      <a href="settings.html">
+        <img src="../images/settings.png" class="w-8 h-8" alt="" >
+        <p class="text-[12px] font-bold">Settings</p>
+      </a> 
+      
+    </div>
+    <!-- End bottom bar -->
+    
+    <!-- END LEFT SIDE -->
+
+
+
+    <!-- RIGHT SIDE -->
+    <div class="main_body transition-all duration-500 pb-8 md:w-4/5 w-full sm:ml-auto min-h-screen bg-slate-400">
+
+        <div class="py-4 ml-10">
+          <h1 class="font-bold text-md sm:text-xl text-slate-900">Add patient</h1>
+          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="patient_list.html">Home</a> | <span><a href="#">Attendance</a></span></h2>
+        </div>
+
+        <div class="text-xs sm:text-sm mb-16 md:mb-4 mt-4 mx-2 sm:mx-8 h-full pb-4 bg-white shadow-lg rounded-lg">
+
+          <!-- Form Title -->
+          <div class="bg-slate-700 w-full py-2 px-8 rounded-t-lg">
+            <h1 class="text-white font-bold text-lg">Medical Record</h1>
+          </div>
+          <!-- End Form Title -->
+  
+          <!-- Temperature and blood pressure -->
+          <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 px-4 sm:px-8 my-4 justify-between">
+
+            <div class="w-full sm:w-1/2 text-xs md:text-sm lg:text-md flex items-center px-0 sm:pr-4 font-bold">
+              <div class="w-[40%] sm:w-[30%]">
+                <h1>
+                  Temperature :
+                </h1>
+              </div>
+              <div class="w-[60%] sm:w-[70%]">
+                <h1>33 degrees</h1>
+              </div>
+            </div>
+
+            <div class="w-full sm:w-1/2 text-xs md:text-sm lg:text-md flex items-center px-0 sm:pr-4 font-bold">
+              <div class="w-[40%] sm:w-[30%]">
+                <h1>
+                  Blood Pressure :
+                </h1>
+              </div>
+              <div class="w-[60%] sm:w-[70%]">
+                <h1>120/80 bpm</h1>
+              </div>
+            </div>
+
+          </div>
+          <!-- End Temperature and blood pressure -->
+  
+          <!-- comment -->
+          <div class="px-4 sm:px-8 my-4">
+            <h1 class="font-bold">Comments</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dolore voluptates nesciunt voluptatem beatae officia culpa, inventore eius vitae molestiae at incidunt eos earum optio.</p>
+          </div>
+          <!-- End comment -->
+
+          <!-- Diagnosis -->
+          <div class="px-4 sm:px-8 my-4">
+            
+            <div class="bg-slate-700 flex items-center justify-between w-full py-2 px-2 sm:px-4 lg:px-8 rounded-t-lg">
+              <h1 class="text-white font-bold text-[16px]">Diagnosis</h1>
+              <img src="../images/icons8-add-48.png" alt="" class="w-8 h-8">
+            </div>
+
+            <div class="w-full p-2 sm:px-4 lg:px-8 shadow-lg bg-slate-200">
+
+              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Diagnosis : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">Headache</option>
+                      <option value="option3">Seizures</option>
+                      <option value="option3">Diabetes</option>
+                      <option value="option3">Hypertension</option>
+                      <option value="option3">Depression</option>
+                      <option value="option3">Pneumonia</option>
+                      <option value="option3">Arthritis</option>
+                      <option value="option3">Dermatitis</option>
+                      <option value="option3">Back pain</option>
+                      <option value="option3">Upper respiratory tract infection</option>
+                    </select>          
+                  </div>
+                </div>
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Type : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">Chronic</option>
+                      <option value="option3">Acute</option>
+                    </select>          
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="flex justify-center">
+                <button class="bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Add</button>
+              </div>
+
+
+            </div>
+
+          </div>
+          <!-- End Diagnosis -->
+
+          <!-- Prescription -->
+          <div class="px-4 sm:px-8 mt-8 mb-4">
+            
+            <div class="bg-slate-700 flex items-center justify-between w-full py-2 px-2 sm:px-4 lg:px-8 rounded-t-lg">
+              <h1 class="text-white font-bold text-[16px]">Prescription</h1>
+              <img src="../images/icons8-add-48.png" alt="" class="w-8 h-8">
+            </div>
+
+            <div class="w-full p-2 sm:px-4 lg:px-8 shadow-lg bg-slate-200">
+
+              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Medicine : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">Paracetamol</option>
+                      <option value="option3">Lacosamide</option>
+                      <option value="option3">Metformin</option>
+                      <option value="option3">ACE inhibitors</option>
+                      <option value="option3">SSR inhibitors</option>
+                      <option value="option3">Amoxicillin</option>
+                      <option value="option3">Azathioprines</option>
+                      <option value="option3">Hydrocortisones</option>
+                      <option value="option3">Ibuprofen</option>
+                      <option value="option3">Doxycycline</option>
+                    </select>          
+                  </div>
+                </div>
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Strength : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">50mg</option>
+                      <option value="option2">100mg</option>
+                      <option value="option3">200mg</option>
+                      <option value="option3">500mg</option>
+                    </select>          
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Dose : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">OD</option>
+                      <option value="option3">BID</option>
+                      <option value="option3">TID</option>
+                      <option value="option3">QID</option>
+                    </select>          
+                  </div>
+                </div>
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Quantity : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">1</option>
+                      <option value="option3">2</option>
+                      <option value="option3">3</option>
+                      <option value="option3">4</option>
+                      <option value="option3">5</option>
+                      <option value="option3">6</option>
+                      <option value="option3">7</option>
+                      <option value="option3">8</option>
+                      <option value="option3">9</option>
+                      <option value="option3">10</option>
+                    </select>          
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Duration : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">1 week</option>
+                      <option value="option2">2 weeks</option>
+                      <option value="option2">3 weeks</option>
+                      <option value="option2">1 month</option>
+                      <option value="option2">2 months</option>
+                      <option value="option2">3 months</option>
+                    </select>          
+                  </div>
+                </div>
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Frequency : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">Chronic</option>
+                      <option value="option3">Acute</option>
+                    </select>          
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="mt-8 mb-4">
+                <h1 class="font-bold uppercase">Instructions</h1>
+                <input type="text" class="my-2 bg-slate-200 p-2 border border-black w-[90%] sm:w-[80%] rounded-lg" placeholder="Add Instructions">
+              </div>
+
+              <div class="flex justify-center">
+                <button class="bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Add</button>
+              </div>
+
+
+            </div>
+
+          </div>
+          <!-- End Prescription -->
+
+          <!-- Investigation -->
+          <div class="px-4 sm:px-8 my-8">
+            
+            <div class="bg-slate-700 flex items-center justify-between w-full py-2 px-2 sm:px-4 lg:px-8 rounded-t-lg">
+              <h1 class="text-white font-bold text-[16px]">Investigation</h1>
+              <img src="../images/icons8-add-48.png" alt="" class="w-8 h-8">
+            </div>
+
+            <div class="w-full py-2 px-1 sm:px-4 lg:px-8 shadow-lg bg-slate-200">
+
+              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Referral Facility : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">Korle Bu Main hospital</option>
+                      <option value="option3">Legon Hospital</option>
+                      <option value="option3">University of Ghana Medical center</option>
+                      <option value="option3">Accra Medical center</option>
+                      <option value="option3">Noguchie Health center</option>
+                    </select>          
+                  </div>
+                </div>
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Unit : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">Pathology</option>
+                      <option value="option2">Cardiology</option>
+                      <option value="option3">Cardithoracy</option>
+                      <option value="option3">Gynaecology</option>
+                      <option value="option3">Pediatric</option>
+                      <option value="option3">Opthometry</option>
+                    </select>          
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Investigation: </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">Blood tests</option>
+                      <option value="option3">Urinalysis</option>
+                      <option value="option3">Biopsy</option>
+                      <option value="option3">Amniocentesis</option>
+                      <option value="option3">Thyroid function tests</option>
+                    </select>          
+                  </div>
+                </div>
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Date : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <input type="text" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">       
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="mt-8 mb-4">
+                <h1 class="font-bold uppercase">Reason</h1>
+                <input type="text" class="my-2 bg-slate-200 p-2 border border-black w-[90%] sm:w-[80%] rounded-lg" placeholder="Add Instructions">
+              </div>
+
+              <div class="my-4">
+                <div class="flex">
+                  <h1 class="font-bold ">Lab Test returned</h1>
+                  <img src="../images/icons8-correct-50.png" alt="" class=" w-4 h-4 mx-4">
+                  <img src="../images/icons8-wrong-50.png" alt="" class="hidden w-4 h-4 mx-4">
+                </div>
+                <div class="flex items-center space-x-4">
+                  <img src="../images/pdf.png" alt="" class="w-6 h-6 my-2 rounded-lg">
+                  <h1 class="underline underline-offset-2 text-blue-600 font-semibold">Blood test.pdf</h1>
+                </div>
+              </div>
+
+
+              <div class="flex justify-center">
+                <button class="bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Add</button>
+              </div>
+
+
+            </div>
+
+          </div>
+          <!-- End Investigation -->
+
+          <!-- Final Diagnosis -->
+          <div class="px-4 sm:px-8 my-8">
+            <h1 class="font-bold uppercase">Final Diagnosis</h1>
+            <input type="text" class="my-2 bg-slate-200 p-2 border border-black w-[90%] sm:w-[80%] rounded-lg" placeholder="Final Diagnosis">
+          </div>
+          <!-- End Final Diagnosis -->
+
+          <!-- Final Diagnosis -->
+          <div class="flex justify-center space-x-4">
+            <button class="bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Submit</button>
+            <button class="bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Generate pdf</button>
+          </div>
+          <!-- End Final Diagnosis -->
+
+
+
+        </div>
+          
+        </div>
+    </div>
+    <!-- END RIGHT SIDE -->
+
+  </div>
+    
+
+
+  
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
+<script src="./js/script.js"></script>
+</html>
