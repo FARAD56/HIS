@@ -4,8 +4,8 @@ const side_text = document.querySelectorAll('#side_text')
 const main_body = document.querySelector('.main_body')
 const modal = document.getElementById('myModal');
 const openButton = document.querySelector('.search');
-const closeButton = document.querySelector('.cb'); // Updated selector
-const overlay = document.getElementById('modalOverlay'); // Updated overlay selector
+const closeButton = document.querySelector('.cb');
+const overlay = document.getElementById('modalOverlay');
 const chat_names = document.querySelector('.chat_names');
 const chat_btn = document.querySelector('.chat_btn')
 
@@ -22,13 +22,11 @@ openButton.addEventListener('click', () => {
     modal.classList.remove('hidden');
   });
 
-  // Close modal when clicking the close button
-  closeButton.addEventListener('click', () => {
+closeButton.addEventListener('click', () => {
     modal.classList.add('hidden');
   });
 
-  // Close modal when clicking the overlay
-  overlay.addEventListener('click', (event) => {
+overlay.addEventListener('click', (event) => {
     if (event.target === overlay) {
       modal.classList.add('hidden');
     }
@@ -37,5 +35,4 @@ openButton.addEventListener('click', () => {
 chat_btn.addEventListener('click', ()=>{
   chat_names.classList.toggle('chat_names_toggle')
 })
-
 

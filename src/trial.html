@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <link href="./css/patient_list.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200">
+    <div class="flex">
+        <button class="tab tab-active">Tab 1</button>
+        <button class="tab">Tab 2</button>
+        <button class="tab">Tab 3</button>
+    </div>
+      
+
+        <div class="tab-content w-[90%] m-4 relative">
+            <canvas id="diagnosisChart" class="bg-white absolute w-full h-full rounded-xl"></canvas>
+        </div>
+
+
+        <div class="tab-content w-[90%] m-4 relative hidden">
+            <canvas id="vitalsChart" class="bg-white absolute w-full rounded-xl"></canvas>
+        </div>
+
+
+        <div class="tab-content w-[90%] m-4 relative">
+            <canvas id="diagnosisChart" class="bg-white absolute w-full h-full rounded-xl"></canvas>
+        </div>
+
+      <style>
+        .tab {
+          padding: 8px 16px;
+          background-color: #ddd;
+          border: 1px solid #aaa;
+          border-bottom: none;
+          cursor: pointer;
+        }
+      
+        .tab-active {
+          background-color: #fff;
+        }
+      
+        .tab-content {
+          border: 1px solid #aaa;
+          padding: 16px;
+          margin-top: -1px;
+        }
+      
+        .hidden {
+          display: none;
+        }
+      </style>
+
+
+<script>
+
+  </script>
+  
+      
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./js/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
+<script src="./js/script.js"></script>
+</html>
