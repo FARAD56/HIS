@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <link href="./css/patient_list.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200">
+  <div>
+
+    <!-- RIGHT SIDE -->
+    <div class="main_body transition-all duration-500 pb-8 min-h-screen bg-slate-300">
+
+      <div class="flex items-center justify-center pb-4 pt-12">
+        <img src="../images/nav_logo.png" alt="" class="w-16 h-16">
+        <h1 class="font-bold text-5xl text-slate-900">HIS</h1>
+      </div>
+
+      <div class="flex justify-center">
+        <div class="text-xs sm:text-sm mb-16 md:mb-4 mx-2 sm:mx-8 h-full w-[90%] sm:w-3/5 lg:w-[35%] pb-4 bg-white shadow-lg rounded-lg">
+
+          <!-- Form Title -->
+            <h1 class="text-slate-700 text-center font-bold text-3xl mt-12">Register Patient</h1>
+            <h1 class="text-slate-700 text-center font-semibold mt-2 mb-6">Enter patient details to create account</h1>
+          <!-- End Form Title -->
+  
+          <!-- First Name and Last Name -->
+
+            <div class="text-xs md:text-sm lg:text-md flex items-center px-4 sm:px-6 justify-between my-4">
+                <label for="" class="text-slate-900 font-bold">First Name:</label>
+                <input type="text" placeholder="First Name" class=" bg-slate-200 p-2 border border-black rounded-lg w-[73%]">
+            </div>
+
+            <div class="text-xs md:text-sm lg:text-md flex items-center px-4 sm:px-6 justify-between my-4">
+                <label for="" class="text-slate-900 font-bold">Last Name:</label>
+                <input type="text" placeholder="Last Name" class=" bg-slate-200 p-2 border border-black rounded-lg w-[73%]">
+            </div>
+
+          <!-- End First Name and Last Name -->
+
+          <!-- DOB and Age -->
+          <div class="text-xs md:text-sm lg:text-md flex items-center px-4 sm:px-6 justify-between my-4">
+              <label for="" class="text-slate-900 font-bold">Contact:</label>
+              <input type="text" placeholder="Contact" class=" bg-slate-200 p-2 border border-black rounded-lg w-[73%]">
+          </div>
+
+          <div class="text-xs md:text-sm lg:text-md flex items-center px-4 sm:px-6 justify-between my-4">
+              <label for="" class="text-slate-900 font-bold">DOB:</label>
+              <input type="text" placeholder="Date of Birth" class=" bg-slate-200 p-2 border border-black rounded-lg w-[73%]">
+          </div>
+            
+          <!-- End DOB and Age -->
+
+          <!--Contact and Email-->
+
+            <div class="text-xs md:text-sm lg:text-md flex items-center px-4 sm:px-8 justify-between my-4">
+                <label for="" class="text-slate-900 font-bold">Sex: </label>
+                <select class="border bg-slate-200 rounded-lg p-2 w-[73%] border-black">
+                  <option value="option1">Select One </option>
+                  <option value="option2">Male</option>
+                  <option value="option3">Female</option>
+                </select>          
+            </div>
+
+            <div class="text-xs md:text-sm lg:text-md flex items-center px-4 sm:px-6 justify-between my-4">
+              <label for="" class="text-slate-900 font-bold">Email:</label>
+              <input type="text" placeholder="Email" class=" bg-slate-200 p-2 border border-black rounded-lg w-[73%]">
+            </div>
+
+
+          <!-- End Contact and Email -->
+
+          <!-- Save and Continue -->
+          <div class="flex items-center justify-center px-4 sm:px-8">
+            <a href="book_patient_medical_record.html">
+              <button class=" text-base bg-blue-600 px-8 py-3 my-4 rounded-lg text-white font-semibold">
+                Register
+              </button>
+            </a>
+          </div>
+          <!--End Save and Continue -->
+
+
+
+        </div>
+      </div>
+          
+        </div>
+    </div>
+    <!-- END RIGHT SIDE -->
+
+  </div>
+    
+
+
+  
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
+</html>
