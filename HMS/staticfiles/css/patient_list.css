@@ -1,0 +1,42 @@
+@media(max-width:639px){
+    
+}
+
+.toggle_sidebar{
+    width: 8vw;
+    transition: all ease-in-out 200ms;
+}
+.toggle_text{
+    display: none;
+    transition: all ease-in-out 200ms;
+}
+.toggle_main_body{
+    width: 92vw;
+    transition: all ease-in-out 200ms;
+}
+.toggling{
+    width: 0;
+    transition: all ease-in-out 200ms;
+}
+.chat_names_toggle{
+    left: 1rem!important;
+    transition: all ease-in-out 200ms;
+}
+
+@media (max-width:638px){
+    .chat_gpt{
+        position: relative;
+    }
+    .chat_names{
+        position: absolute;
+        top: 10%;
+        left: -99rem;
+        z-index: 2;
+        width: 60%;
+        height: 80%;
+        background-color: #fff;
+        transition: all ease-in-out 200ms;
+    }
+
+
+}

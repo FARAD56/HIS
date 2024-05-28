@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Doctor Profile
+{% endblock title %}
+{% block content %}
+  
+<!-- RIGHT SIDE -->
+<div class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto h-auto bg-slate-200">
+  
+  <!-- Header -->
+  <div class="bg-slate-400 h-auto sm:min-h-screen pb-10 sm:pb-0">
+
+    <div class="py-4 ml-10">
+      <h1 class="font-bold text-md sm:text-xl text-slate-900">Profile</h1>
+      <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="dashboard.html">Home</a> | <span><a href="doctor_profile.html">My Profile</a></span></h2>
+    </div>
+
+    <div class="flex flex-col sm:flex-row text-xs sm:text-sm md:text-md">
+      <div class="sm:w-2/5">
+        <div class="mx-4 sm:mx-8 my-4 p-4 bg-white items-center ">
+          <div class="flex justify-center">
+            <img src="../images/profile1.jpg" alt="" class="w-40 h-40 rounded-full">
+          </div>
+
+          <div class="flex flex-col text-center justify-center">
+            <h1 class="mt-2 font-bold text-lg text-slate-900">DR 48902</h1>
+            <h1 class="mt-2 font-semibold text-slate-900">Gender: Female</h1>
+            <h1 class="mt-2 font-semibold text-slate-900">Age: 18yrs</h1>
+            <h1 class="mt-2 font-semibold text-slate-900">Speciality: Optician</h1>
+            <h1 class="mt-2 font-semibold text-slate-900">Member Type: Doctor</h1>
+            <h1 class="mt-2 font-semibold text-slate-900">Member Status: Active</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="sm:w-3/5">
+        <div class="mx-2 my-4 pt-4 pb-12 px-2 md:p-4 bg-white items-center ">
+
+          <div x-data="{ openTab: 1 }">
+            <!-- Tab Buttons -->
+            <div class="flex text-xs:text-sm space-x-4 sm:space-x-8 px-4">
+                <p @click="openTab = 1" :class="{ 'text-blue-700': openTab === 1, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===1, 'text-gray-600': openTab !== 1 }" class="hover:text-blue-700 cursor-pointer font-bold">Overview</p>
+                <p @click="openTab = 2" :class="{ 'text-blue-700': openTab === 2, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===2, 'text-gray-600': openTab !== 2 }" class="hover:text-blue-700 cursor-pointer font-bold">Account Settings</p>
+                <p @click="openTab = 3" :class="{ 'text-blue-700': openTab === 3, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===3, 'text-gray-600': openTab !== 3 }" class="hover:text-blue-700 cursor-pointer font-bold">Help</p>
+                <p @click="openTab = 4" :class="{ 'text-blue-700': openTab === 4, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===4, 'text-gray-600': openTab !== 4 }" class="hover:text-blue-700 cursor-pointer font-bold">Reports</p>
+            </div>
+
+            <hr class="h-[3px] mt-4">
+    
+            <!-- Tab Content -->
+            <div x-show="openTab === 1" class="mt-4">
+                <div class="space-y-4 ">
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Full Name:</div>
+                    <div class="w-[65%]">Abdul-Moomin Delimwine Muyassar</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Date of Birth:</div>
+                    <div class="w-[65%]">12/04/2006</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Place of Birth:</div>
+                    <div class="w-[65%]">Wa</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Religion:</div>
+                    <div class="w-[65%]">Islam</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">City:</div>
+                    <div class="w-[65%]">Wa</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Locality:</div>
+                    <div class="w-[65%]">Sawaba</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Nationality:</div>
+                    <div class="w-[65%]">Ghanaian</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Contact:</div>
+                    <div class="w-[65%]">0505776665</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Residential Address:</div>
+                    <div class="w-[65%]">XW-0039-4373</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Marital Status:</div>
+                    <div class="w-[65%]">Single</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Occupation:</div>
+                    <div class="w-[65%]">Doctor</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Education Status:</div>
+                    <div class="w-[65%]">Tertiary</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Other Address:</div>
+                    <div class="w-[65%]">Wa Dobile 267 Blk B</div>
+                  </div>
+
+                </div>
+            </div>
+
+            <div x-show="openTab === 2" class="mt-4">
+              <div class="space-y-4 ">
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Name:</div>
+                  <div class="w-[65%]">Nathan Lournor</div>
+                </div>
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Relationship:</div>
+                  <div class="w-[65%]">Uncle</div>
+                </div>
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Residential Address:</div>
+                  <div class="w-[65%]">GA-0089-2345</div>
+                </div>
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Contact:</div>
+                  <div class="w-[65%]">0556783467</div>
+                </div>
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Email:</div>
+                  <div class="w-[65%]">nathanlournor@gmail.com</div>
+                </div>
+
+              </div>
+            </div>
+
+            <div x-show="openTab === 3" class="mt-4">
+              <div class="space-y-4 ">
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Patient Type:</div>
+                  <div class="w-[65%]">Non-staff</div>
+                </div>
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Patient ID:</div>
+                  <div class="w-[65%]">ID 48902</div>
+                </div>
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Panel:</div>
+                  <div class="w-[65%]">No panel found</div>
+                </div>
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Credit Limit:</div>
+                  <div class="w-[65%]">Amount</div>
+                </div>
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Rate:</div>
+                  <div class="w-[65%]">Ghc</div>
+                </div>
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Expiry Date:</div>
+                  <div class="w-[65%]">23/11/2030</div>
+                </div>
+
+              </div>
+            </div>
+
+            <div x-show="openTab === 4" class="mt-4">
+              <h1>No reports found</h1>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </div> 
+  <!-- End Header -->
+
+</div>
+<!-- END RIGHT SIDE -->
+
+{% endblock content %}

@@ -1,0 +1,79 @@
+{% load compress %}
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% compress css  %}
+  <link href="{% static 'src/output.css' %}" rel="stylesheet">
+  {% endcompress %}
+
+  <link href="{% static 'css/patient_list.css' %}" rel="stylesheet">
+</head>
+<body class="bg-gray-200">
+  <div>
+
+    <!-- RIGHT SIDE -->
+    <div class="main_body transition-all duration-500 pb-8 min-h-screen bg-slate-300">
+
+      <div class="flex items-center justify-center pb-4 pt-12">
+        <img src="{% static 'images/nav_logo.png' %}" alt="" class="w-16 h-16">
+        <h1 class="font-bold text-5xl text-slate-900">HIS</h1>
+      </div>
+
+      <div class="flex justify-center">
+        <div class="text-xs sm:text-sm mb-16 md:mb-4 mx-2 sm:mx-8 h-full w-[90%] sm:w-3/5 lg:w-[35%] pb-4 bg-white shadow-lg rounded-lg">
+
+          <!-- Form Title -->
+            <h1 class="text-slate-700 text-center font-bold text-3xl mt-12">Create Account</h1>
+            <h1 class="text-slate-700 text-center font-semibold mt-2 mb-6">Enter your personal details to create account</h1>
+          <!-- End Form Title -->
+         
+          <form method="POST">
+            {% csrf_token %}
+            {% for field in form  %}
+            <!-- <div class="text-xs md:text-sm lg:text-md flex items-center px-4 sm:px-6 justify-between my-4">
+              <label class="text-slate-900 font-bold px-10" for="{{ field.id_for_label }}"> {{field.label}} </label>
+            </div> -->
+            <div class="md:text-sm lg:text-md flex items-center px-4 sm:px-6 justify-between my-4">
+              {{ field }}
+            </div>
+
+            <div class="flex items-center px-4 sm:px-6 justify-between">
+              {% if field.help_text %}
+            <p class="text-xs text-gray-500 ">{{ field.help_text }}</p>
+            {% endif %}
+            {% for error in field.errors %}
+            <p class="text-red-500 text-xs italic">{{ error }}</p>
+            {% endfor %}
+            </div>
+            
+          
+          {% endfor %}
+          <h1 class="font-semibold text-center">Already have an account? <span class="text-blue-700"><a href="{% url 'login' %}">Login</a></span></h1>
+
+        <!-- Save and Continue -->
+        <div class="flex items-center justify-center px-4 sm:px-8">
+          <a href="login.html">
+            <button type="submit" class=" text-base bg-blue-600 px-8 py-3 my-4 rounded-lg text-white font-semibold">
+              Register
+            </button>
+          </a>
+        </div>
+        </form>
+            
+          <!--End Save and Continue -->
+
+        </div>
+      </div>
+          
+        </div>
+    </div>
+    <!-- END RIGHT SIDE -->
+
+  </div>
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
+</html>
