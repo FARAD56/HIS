@@ -1,10 +1,14 @@
+{% load compress %}
+{% load static %}
 <!doctype html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./output.css" rel="stylesheet">
-  <link href="./css/patient_list.css" rel="stylesheet">
+  {% compress css  %}
+  <link href="{% static 'src/output.css' %}" rel="stylesheet">
+  <link href="{% static 'css/patient_list.css' %}" rel="stylesheet">
+  {% endcompress %}
 </head>
 <body class="bg-gray-200">
  <div class="pb-12 bg-gray-200 items-center ">

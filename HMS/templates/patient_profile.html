@@ -1,368 +1,184 @@
-{% load compress %}
+{% extends "base.html" %}
 {% load static %}
-<!doctype html>
-<html>
-<head>
-  <meta charset="UTF-8">
+
+{% block title %}
+  Patient Profile
+{% endblock title %}
+
+{% block content %}
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% compress css  %}
-  <link href="{% static 'src/output.css' %}" rel="stylesheet">
-  <link href="{% static 'css/patient_list.css' %}" rel="stylesheet">
-  {% endcompress %}
-</head>
-<body class="bg-gray-200"> 
-  <div>
- <!-- Navbar -->
- <nav class="fixed bg-white w-full flex px-3 sm:px-5 md:px-10 py-2 h-14 shadow-xl z-50">
-  <div class="w-1/2 flex justify-between items-center ">
+<!-- RIGHT SIDE -->
+<div class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto h-auto bg-slate-200">
+  
+  <!-- Header -->
+  <div class="bg-slate-400 h-auto sm:min-h-screen pb-10 sm:pb-0">
 
-    <div class="flex items-center text-center py-2">
-      <img src="{% static 'images/nav_logo.png' %}" class="w-[32px] mr-2" alt="">
-      <p class="text-xl sm:text-2xl md:text-3xl font-bold">HIS</p>
+    <div class="py-4 ml-10">
+      <h1 class="font-bold text-md sm:text-xl text-slate-900">Profile</h1>
+      <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a href="{% url 'patient_profile' patient.profile_id %}">Patient</a></span> | <span><a href="#">{{patient.first_name}}</a></span></h2>
     </div>
 
-    <div class="flex w-1/2">
-      <img src="{% static 'images/menu_squared.png' %}" alt="" class=" mr-2 toggle_btn h-10 w-10 hidden md:block">
-      <input type="text" placeholder="Patient's name/ ID" class="hidden sm:block border px-3 py-1 w-60 font-semibold text-lg rounded-xl">
-    </div>
-
-  </div>
-  <div class="flex w-1/2 justify-end items-center px-3 sm:px-5 md:px-10">
-
-    <!-- Trigger button -->
-    <img src=" {% static 'images/icons8-search-50.png' %} " class="search block sm:hidden w-6 h-6 mx-6">
-
-
-    <!-- Modal container -->
-    <div class="fixed top-0 z-10 inset-x-0 overflow-y-auto hidden" id="myModal">
-    <div class="flex items-end justify-center pt-14 px-4 text-center sm:block sm:p-0">
-      <!-- Background overlay -->
-      <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-        <div class="absolute inset-0" id="modalOverlay"></div>
-      </div>
-
-      <!-- Modal content -->
-      <div class="bg-gray-50 overflow-hidden shadow-2xl w-full">
-              <div class="flex justify-between items-center px-4">
-                <input type="text" placeholder="Patient's name/ ID" class="w-48 sm:w-96 border px-3 py-1 font-semibold text-lg rounded-xl">
-                <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                  <img src="{% static 'images/icons8-close-50.png' %}" alt="" class="cb w-6 h-6">
-                </div>
-              </div>
-      </div>
-    </div>
-    </div>
-
-    <div x-data="{ open: false }" class="inline-block text-left">
-      <!-- Trigger button -->
-      <div @click="open = !open" class="flex items-center">
-        <img src="{% static 'images/profile1.jpg' %}" alt="" class="rounded-full w-10 h-10 mr-2">
-        <h1 class="hidden md:block font-semibold text-lg">A. Al-Waasiu</h1>
-        <img  src="{% static 'images/profilearrow.png' %}" alt="" class="mx-1 w-3 h-3">
-      </div>
-      <!-- Dropdown content -->
-      <div x-show="open" @click.away="open = false" class="absolute right-[5%] text-black pt-2">
-
-        <div class="bg-white border border-black rounded-lg w-48 px-2">
-          
-          <div class="flex justify-center text-center">
-            <div class="font-semibold">
-              <h1 class="text-sm mt-1">Abubakari Al-Waasiu</h1>
-              <p class="text-xs mb-2">Web Developer</p>
-            </div>
+    <div class="flex flex-col sm:flex-row text-xs sm:text-sm md:text-md">
+      <div class="sm:w-2/5">
+        <div class="mx-4 sm:mx-8 my-4 p-4 bg-white items-center ">
+          <div class="flex justify-center">
+            <img src="{{patient.profilemodel.profile_picture.url}}" alt="" class="w-40 h-40 rounded-full">
           </div>
 
-          <hr>
-
-          <ul class="">
-            <div class="flex hover:bg-gray-200 py-1">
-              <img src="{% static 'images/icons8-test-account-48.png' %}" alt="" class="w-5 h-5 mx-2">
-              <li><a href="doctor_profile.html" class="block text-sm">My Profile</a></li>
-            </div>
-            <hr>
-            <div class="flex hover:bg-gray-200 py-1">
-              <img src="{% static 'images/icons8-settings-50.png' %}" alt="" class="w-5 h-5 mx-2">
-              <li><a href="settings.html" class="block text-sm">Account Settings</a></li>
-            </div>
-            <hr>
-            <div class="flex hover:bg-gray-200 py-1">
-              <img src="{% static 'images/icons8-help-50.png' %}" alt="" class="w-5 h-5 mx-2">
-              <li><a href="trial.html" class="block text-sm">Help</a></li>
-            </div>
-            <hr>
-            <div class="flex hover:bg-gray-200 py-1">
-              <img src="{% static 'images/icons8-logout-50.png' %}" alt="" class="w-4 h-4 mx-2">
-              <li><a href="{% static 'login' %}" class="block text-sm">Logout</a></li>
-            </div>
-          </ul>
-        </div>
-      </div>
-    </div>        
-    
-  </div>
-</nav>
-<!-- End nav -->
-
-    <!-- LEFT SIDE -->
-
-    <!-- Sidebar -->
-    <div class="flex pt-[3.5rem]"></div>
-    <!-- Toggle Sidebar -->
-    <div class="sidebar transition-all duration-200 space-y-10 fixed w-1/5 h-[100vh] hidden md:block bg-slate-900">
-
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl mt-10 px-4 items-center "> 
-        <a href="{% url 'dashboard' %}" class="flex items-center">
-        <img src="{% static 'images/home.png' %}" class="w-10 h-10" alt="" > 
-        <p class="text-white  font-bold ml-4 transition-all duration-200" id="side_text">Home</p>
-        </a>           
-      </div>
-
-      
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 "> 
-        <a href="{% url 'patient_list' %}" class="flex items-center">
-          <img src="{% static 'images/patient_list.png' %}" alt="" class="w-10 h-10 "> 
-          <p class="text-white font-bold ml-4 transition-all duration-200"id="side_text" >Patients</p> 
-        </a>  
-      </div>
-
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <a href="session_dashboard.html" class="flex items-center">
-          <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-10 h-10"> 
-          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Sessions</p>   
-        </a>
-      </div>
-
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <a href="chats.html" class="flex items-center">
-          <img src="{% static 'images/chats.png' %}" class="w-10 h-10" alt="" > 
-          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text" >Chats</p> 
-        </a>  
-      </div>
-
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <a href="settings.html" class="flex items-center">
-          <img src="{% static 'images/settings.png' %}" class="w-10 h-10" alt="" > 
-          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Settings</p>  
-        </a> 
-      </div>
-
-    </div>
-    <!-- end Sidebar -->
-
-    <!-- bottom bar -->
-    <div class="fixed flex justify-between items-center px-4 md:hidden bottom-0 w-full h-[50px] z-[999] bg-slate-900 py-8 text-white bg-opacity-90">
-      <a href="dashboard.html">
-        <img src="{% static 'images/home.png' %}" class="w-8 h-8" alt="" >
-        <p class="text-[12px] font-bold">Home</p>
-      </a>
-      <a href="patient_list.html">
-        <img src="{% static 'images/patient_list.png' %}" alt="" class="w-8 h-8 ">
-        <p class="text-[12px] font-bold">Patient</p>
-      </a>
-      <a href="session_dashboard.html">
-        <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-8 h-8">
-        <p class="text-[12px] font-bold">Sessions</p>
-      </a>
-      <a href="chats.html">
-        <img src="{% static 'images/chats.png' %}" class="w-8 h-8" alt="" >
-        <p class="text-[12px] font-bold">Chats</p>
-      </a>
-      <a href="settings.html">
-        <img src="{% static 'images/settings.png' %}" class="w-8 h-8" alt="" >
-        <p class="text-[12px] font-bold">Settings</p>
-      </a> 
-      
-    </div>
-    <!-- End bottom bar -->
-    
-    <!-- END LEFT SIDE -->
-
-
-
-    <!-- RIGHT SIDE -->
-    <div class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto h-auto bg-slate-200">
-      
-      <!-- Header -->
-      <div class="bg-slate-400 h-auto sm:min-h-screen pb-10 sm:pb-0">
-
-        <div class="py-4 ml-10">
-          <h1 class="font-bold text-md sm:text-xl text-slate-900">Profile</h1>
-          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a href="{% url 'patient_profile' patient.profile_id %}">Patient</a></span> | <span><a href="#">{{patient.first_name}}</a></span></h2>
-        </div>
-
-        <div class="flex flex-col sm:flex-row text-xs sm:text-sm md:text-md">
-          <div class="sm:w-2/5">
-            <div class="mx-4 sm:mx-8 my-4 p-4 bg-white items-center ">
-              <div class="flex justify-center">
-                <img src="{{patient.profilemodel.profile_picture.url}}" alt="" class="w-40 h-40 rounded-full">
-              </div>
-
-              <div class="flex flex-col text-center justify-center">
-                <h1 class="mt-2 font-bold text-lg text-slate-900">ID {{patient.profile_id}}</h1>
-                <h1 class="mt-2 font-semibold text-slate-900">Sex: {{patient.sex}}</h1>
-                <h1 class="mt-2 font-semibold text-slate-900">Age: {{patient.age}}</h1>
-                <!-- <h1 class="mt-2 font-semibold text-slate-900">Deceased: No</h1> -->
-              </div>
-            </div>
+          <div class="flex flex-col text-center justify-center">
+            <h1 class="mt-2 font-bold text-lg text-slate-900">ID {{patient.profile_id}}</h1>
+            <h1 class="mt-2 font-semibold text-slate-900">Sex: {{patient.sex}}</h1>
+            <h1 class="mt-2 font-semibold text-slate-900">Age: {{patient.age}}</h1>
+            <!-- <h1 class="mt-2 font-semibold text-slate-900">Deceased: No</h1> -->
           </div>
-  
-          <div class="sm:w-3/5">
-            <div class="mx-2 my-4 pt-4 pb-12 px-2 md:p-4 bg-white items-center ">
+        </div>
+      </div>
 
-              <div x-data="{ openTab: 1 }">
-                <!-- Tab Buttons -->
-                <div class="flex space-x-6 sm:space-x-8 px-4">
-                    <p @click="openTab = 1" :class="{ 'text-blue-700': openTab === 1, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===1, 'text-gray-600': openTab !== 1 }" class="hover:text-blue-700 cursor-pointer font-semibold">Personal</p>
-                    <p @click="openTab = 2" :class="{ 'text-blue-700': openTab === 2, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===2, 'text-gray-600': openTab !== 2 }" class="hover:text-blue-700 cursor-pointer font-semibold">Kin</p>
-                    <p @click="openTab = 3" :class="{ 'text-blue-700': openTab === 3, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===3, 'text-gray-600': openTab !== 3 }" class="hover:text-blue-700 cursor-pointer font-semibold">Edit Profile</p>
-                    <p @click="openTab = 4" :class="{ 'text-blue-700': openTab === 4, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===4, 'text-gray-600': openTab !== 4 }" class="hover:text-blue-700 cursor-pointer font-semibold">Reports</p>
-                </div>
+      <div class="sm:w-3/5">
+        <div class="mx-2 my-4 pt-4 pb-12 px-2 md:p-4 bg-white items-center ">
 
-                <hr class="h-[3px] mt-4">
-        
-                <!-- Tab Content -->
-                <div x-show="openTab === 1" class="mt-6">
-                    <div class="space-y-4 ">
+          <div x-data="{ openTab: 1 }">
+            <!-- Tab Buttons -->
+            <div class="flex space-x-6 sm:space-x-8 px-4">
+                <p @click="openTab = 1" :class="{ 'text-blue-700': openTab === 1, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===1, 'text-gray-600': openTab !== 1 }" class="hover:text-blue-700 cursor-pointer font-semibold">Personal</p>
+                <p @click="openTab = 2" :class="{ 'text-blue-700': openTab === 2, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===2, 'text-gray-600': openTab !== 2 }" class="hover:text-blue-700 cursor-pointer font-semibold">Kin</p>
+                <p @click="openTab = 3" :class="{ 'text-blue-700': openTab === 3, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===3, 'text-gray-600': openTab !== 3 }" class="hover:text-blue-700 cursor-pointer font-semibold">Edit Profile</p>
+                <p @click="openTab = 4" :class="{ 'text-blue-700': openTab === 4, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===4, 'text-gray-600': openTab !== 4 }" class="hover:text-blue-700 cursor-pointer font-semibold">Reports</p>
+            </div>
 
-                      <div class="flex px-2 md:px-4">
-                        <div class="w-[35%] font-semibold">Full Name:</div>
-                        <div class="w-[65%]">{{patient.first_name}} {{patient.last_name}}</div>
-                      </div>
+            <hr class="h-[3px] mt-4">
+    
+            <!-- Tab Content -->
+            <div x-show="openTab === 1" class="mt-6">
+                <div class="space-y-4 ">
 
-                      <div class="flex px-2 md:px-4">
-                        <div class="w-[35%] font-semibold">Date of Birth:</div>
-                        <div class="w-[65%]">{{patient.dob}}</div>
-                      </div>
-
-                      <div class="flex px-2 md:px-4">
-                        <div class="w-[35%] font-semibold">Place of Birth:</div>
-                        <div class="w-[65%]">{{patient.profilemodel.place_of_birth}}</div>
-                      </div>
-
-                      <div class="flex px-2 md:px-4">
-                        <div class="w-[35%] font-semibold">Religion:</div>
-                        <div class="w-[65%]">{{patient.profilemodel.religion}}</div>
-                      </div>
-                      <div class="flex px-2 md:px-4">
-                        <div class="w-[35%] font-semibold">Nationality:</div>
-                        <div class="w-[65%]">{{patient.profilemodel.nationality}}</div>
-                      </div>
-
-                      <div class="flex px-2 md:px-4">
-                        <div class="w-[35%] font-semibold">Contact:</div>
-                        <div class="w-[65%]">{{patient.contact}}</div>
-                      </div>
-
-                      <div class="flex px-2 md:px-4">
-                        <div class="w-[35%] font-semibold">Residential Address:</div>
-                        <div class="w-[65%]">{{patient.profilemodel.address}}</div>
-                      </div>
-
-                      <div class="flex px-2 md:px-4">
-                        <div class="w-[35%] font-semibold">Marital Status:</div>
-                        <div class="w-[65%]">{{patient.profilemodel.marital_status}}</div>
-                      </div>
-
-                      <div class="flex px-2 md:px-4">
-                        <div class="w-[35%] font-semibold">Occupation:</div>
-                        <div class="w-[65%]">{{patient.profilemodel.occupation}}</div>
-                      </div>
-
-                      <div class="flex px-2 md:px-4">
-                        <div class="w-[35%] font-semibold">Region:</div>
-                        <div class="w-[65%]">{{patient.profilemodel.region}}</div>
-                      </div>
-
-                    </div>
-                </div>
-
-                <div x-show="openTab === 2" class="mt-4">
-                  <div class="space-y-4 ">
-
-                    <div class="flex px-2 md:px-4">
-                      <div class="w-[35%] font-semibold">Name:</div>
-                      <div class="w-[65%]">{{patient.profilemodel.kin_name}}</div>
-                    </div>
-
-                    <div class="flex px-2 md:px-4">
-                      <div class="w-[35%] font-semibold">Relationship:</div>
-                      <div class="w-[65%]">{{patient.profilemodel.relationship}}</div>
-                    </div>
-
-                    <div class="flex px-2 md:px-4">
-                      <div class="w-[35%] font-semibold">Residential Address:</div>
-                      <div class="w-[65%]">{{patient.profilemodel.kin_address}}</div>
-                    </div>
-
-                    <div class="flex px-2 md:px-4">
-                      <div class="w-[35%] font-semibold">Contact:</div>
-                      <div class="w-[65%]">{{patient.profilemodel.kin_contact}}</div>
-                    </div>
-
-                    <div class="flex px-2 md:px-4">
-                      <div class="w-[35%] font-semibold">Email:</div>
-                      <div class="w-[65%]">{{patient.profilemodel.kin_email}}</div>
-                    </div>
-
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Full Name:</div>
+                    <div class="w-[65%]">{{patient.first_name}} {{patient.last_name}}</div>
                   </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Date of Birth:</div>
+                    <div class="w-[65%]">{{patient.dob}}</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Place of Birth:</div>
+                    <div class="w-[65%]">{{patient.profilemodel.place_of_birth}}</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Religion:</div>
+                    <div class="w-[65%]">{{patient.profilemodel.religion}}</div>
+                  </div>
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Nationality:</div>
+                    <div class="w-[65%]">{{patient.profilemodel.nationality}}</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Contact:</div>
+                    <div class="w-[65%]">{{patient.contact}}</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Residential Address:</div>
+                    <div class="w-[65%]">{{patient.profilemodel.address}}</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Marital Status:</div>
+                    <div class="w-[65%]">{{patient.profilemodel.marital_status}}</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Occupation:</div>
+                    <div class="w-[65%]">{{patient.profilemodel.occupation}}</div>
+                  </div>
+
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold">Region:</div>
+                    <div class="w-[65%]">{{patient.profilemodel.region}}</div>
+                  </div>
+
+                </div>
+            </div>
+
+            <div x-show="openTab === 2" class="mt-4">
+              <div class="space-y-4 ">
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Name:</div>
+                  <div class="w-[65%]">{{patient.profilemodel.kin_name}}</div>
                 </div>
 
-                <div x-show="openTab === 3" class="mt-4">
-                  <div class="space-y-4 ">
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Relationship:</div>
+                  <div class="w-[65%]">{{patient.profilemodel.relationship}}</div>
+                </div>
 
-                    <!-- <div class="flex px-2 md:px-4">
-                      <div class="w-[35%] font-semibold">Patient Type:</div>
-                      <div class="w-[65%]">Non-staff</div>
-                    </div> -->
-                    <form method="POST" enctype="multipart/form-data">
-                      {% csrf_token %}
-                      {{u_form}}
-                      {{p_form}}
-                      <!-- {% for field in form  %}
-                        
-                      <div class="flex px-2 md:px-4">
-                        <div class="w-[35%] font-semibold"></div>
-                        <div class="w-[65%]">{{field}}</div>
-                      </div>
-                      {% endfor %} -->
-                      <div class="flex items-center justify-center px-4 sm:px-8">
-                        <a href="{% url 'patient_profile' patient.profile_id %}">
-                          <button type="submit" class=" text-base bg-blue-600 px-8 py-3 my-4 rounded-lg text-white font-semibold">
-                            Save
-                          </button>
-                        </a>
-                      </div>
-                    </form>
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Residential Address:</div>
+                  <div class="w-[65%]">{{patient.profilemodel.kin_address}}</div>
+                </div>
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Contact:</div>
+                  <div class="w-[65%]">{{patient.profilemodel.kin_contact}}</div>
+                </div>
+
+                <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Email:</div>
+                  <div class="w-[65%]">{{patient.profilemodel.kin_email}}</div>
+                </div>
+
+              </div>
+            </div>
+
+            <div x-show="openTab === 3" class="mt-4">
+              <div class="space-y-4 ">
+
+                <!-- <div class="flex px-2 md:px-4">
+                  <div class="w-[35%] font-semibold">Patient Type:</div>
+                  <div class="w-[65%]">Non-staff</div>
+                </div> -->
+                <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{u_form}}
+                  {{p_form}}
+                  <!-- {% for field in form  %}
                     
-
+                  <div class="flex px-2 md:px-4">
+                    <div class="w-[35%] font-semibold"></div>
+                    <div class="w-[65%]">{{field}}</div>
                   </div>
-                </div>
+                  {% endfor %} -->
+                  <div class="flex items-center justify-center px-4 sm:px-8">
+                    <a href="{% url 'patient_profile' patient.profile_id %}">
+                      <button type="submit" class=" text-base bg-blue-600 px-8 py-3 my-4 rounded-lg text-white font-semibold">
+                        Save
+                      </button>
+                    </a>
+                  </div>
+                </form>
+                
 
-                <div x-show="openTab === 4" class="mt-4">
-                  <h1>No reports found</h1>
-                </div>
+              </div>
             </div>
-              
 
+            <div x-show="openTab === 4" class="mt-4">
+              <h1>No reports found</h1>
             </div>
-          </div>
         </div>
+          
 
-      </div> 
-      <!-- End Header -->
-
+        </div>
+      </div>
     </div>
-    <!-- END RIGHT SIDE -->
 
-  </div>
-    
+  </div> 
+  <!-- End Header -->
 
-
-  
-
-
-</body>
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
-<script src="./js/script.js"></script>
-</html>
+</div>
+<!-- END RIGHT SIDE -->
+{% endblock content %}
