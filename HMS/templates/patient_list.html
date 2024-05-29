@@ -1,665 +1,481 @@
-{% load compress %}
+{% extends "base.html" %}
 {% load static %}
-<!doctype html>
-<html>
-<head>
-  <meta charset="UTF-8">
+
+{% block title %}
+  Dashboard
+{% endblock title %}
+
+{% block content %}
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% compress css  %}
-  <link href="{% static 'src/output.css' %}" rel="stylesheet">
-  <link href="{% static 'css/patient_list.css' %}" rel="stylesheet">
-  {% endcompress %}
-</head>
-<body class="bg-gray-200"> 
-  <div>
- <!-- Navbar -->
- <nav class="fixed bg-white w-full flex px-3 sm:px-5 md:px-10 py-2 h-14 shadow-xl z-50">
-  <div class="w-1/2 flex justify-between items-center ">
-
-    <div class="flex items-center text-center py-2">
-      <img src="{% static 'images/nav_logo.png' %}" class="w-[32px] mr-2" alt="">
-      <p class="text-xl sm:text-2xl md:text-3xl font-bold">HIS</p>
-    </div>
-
-    <div class="flex w-1/2">
-      <img src="{% static 'images/menu_squared.png' %}" alt="" class=" mr-2 toggle_btn h-10 w-10 hidden md:block">
-      <input type="text" placeholder="Patient's name/ ID" class="hidden sm:block border px-3 py-1 w-60 font-semibold text-lg rounded-xl">
-    </div>
-
-  </div>
-  <div class="flex w-1/2 justify-end items-center px-3 sm:px-5 md:px-10">
-
-    <!-- Trigger button -->
-    <img src=" {% static 'images/icons8-search-50.png' %} " class="search block sm:hidden w-6 h-6 mx-6">
-
-
-    <!-- Modal container -->
-    <div class="fixed top-0 z-10 inset-x-0 overflow-y-auto hidden" id="myModal">
-    <div class="flex items-end justify-center pt-14 px-4 text-center sm:block sm:p-0">
-      <!-- Background overlay -->
-      <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-        <div class="absolute inset-0" id="modalOverlay"></div>
+<!-- RIGHT SIDE -->
+<div class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto h-auto bg-slate-200">
+  
+  <div x-data="{ openTab: 1 }">
+    <!-- Tab Buttons -->
+    <div class="bg-slate-400">
+      <div class="py-4 ml-10">
+        <h1 class="font-bold text-md sm:text-xl text-slate-900">Patient List</h1>
+        <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a href="{% url 'patient_list' %}">Patient List</a></span></h2>
       </div>
 
-      <!-- Modal content -->
-      <div class="bg-gray-50 overflow-hidden shadow-2xl w-full">
-              <div class="flex justify-between items-center px-4">
-                <input type="text" placeholder="Patient's name/ ID" class="w-48 sm:w-96 border px-3 py-1 font-semibold text-lg rounded-xl">
-                <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                  <img src="{% static 'images/icons8-close-50.png' %}" alt="" class="cb w-6 h-6">
-                </div>
-              </div>
-      </div>
-    </div>
-    </div>
-
-    <div x-data="{ open: false }" class="inline-block text-left">
-      <!-- Trigger button -->
-      <div @click="open = !open" class="flex items-center">
-        <img src="{% static 'images/profile1.jpg' %}" alt="" class="rounded-full w-10 h-10 mr-2">
-        <h1 class="hidden md:block font-semibold text-lg">A. Al-Waasiu</h1>
-        <img  src="{% static 'images/profilearrow.png' %}" alt="" class="mx-1 w-3 h-3">
-      </div>
-      <!-- Dropdown content -->
-      <div x-show="open" @click.away="open = false" class="absolute right-[5%] text-black pt-2">
-
-        <div class="bg-white border border-black rounded-lg w-48 px-2">
-          
-          <div class="flex justify-center text-center">
-            <div class="font-semibold">
-              <h1 class="text-sm mt-1">Abubakari Al-Waasiu</h1>
-              <p class="text-xs mb-2">Web Developer</p>
+      <div class="flex space-x-2 sm:space-x-4 justify-center py-2 px-4 md:px-8 ">
+  
+          <div @click="openTab = 1" :class="{ 'text-blue-700': openTab === 1, 'opacity-50': openTab !== 1 }" class="hover:text-blue-700 cursor-pointer">
+            <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
+  
+              <h5
+                class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">
+                Critical
+              </h5>
             </div>
           </div>
-
-          <hr>
-
-          <ul class="">
-            <div class="flex hover:bg-gray-200 py-1">
-              <img src="{% static 'images/icons8-test-account-48.png' %}" alt="" class="w-5 h-5 mx-2">
-              <li><a href="doctor_profile.html" class="block text-sm">My Profile</a></li>
+  
+          <div @click="openTab = 2" :class="{ 'text-blue-700': openTab === 2, 'opacity-50': openTab !== 2 }" class="hover:text-blue-700 cursor-pointer">
+            <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
+  
+              <h5
+                class=" text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">
+                Severe
+              </h5>
+  
             </div>
-            <hr>
-            <div class="flex hover:bg-gray-200 py-1">
-              <img src="{% static 'images/icons8-settings-50.png' %}" alt="" class="w-5 h-5 mx-2">
-              <li><a href="settings.html" class="block text-sm">Account Settings</a></li>
+          </div>
+  
+          <div @click="openTab = 3" :class="{ 'text-blue-700': openTab === 3, 'opacity-50': openTab !== 3 }" class="hover:text-blue-700 cursor-pointer">
+            <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
+  
+              <h5
+                class=" text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">
+                Normal
+              </h5>
+  
             </div>
-            <hr>
-            <div class="flex hover:bg-gray-200 py-1">
-              <img src="{% static 'images/icons8-help-50.png' %}" alt="" class="w-5 h-5 mx-2">
-              <li><a href="trial.html" class="block text-sm">Help</a></li>
+          </div>
+  
+          <div @click="openTab = 4" :class="{ 'text-blue-700': openTab === 4, 'opacity-50': openTab !== 4 }" class="hover:text-blue-700 cursor-pointer">
+            <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 px-4 sm:px-8 sm:py-4 sm:mx-6 items-center">
+  
+              <h5
+                class=" text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">
+                All
+              </h5>
+  
             </div>
-            <hr>
-            <div class="flex hover:bg-gray-200 py-1">
-              <img src="{% static 'images/icons8-logout-50.png' %}" alt="" class="w-4 h-4 mx-2">
-              <li><a href="{% static 'login' %}" class="block text-sm">Logout</a></li>
-            </div>
-          </ul>
-        </div>
+          </div>
+  
       </div>
-    </div>        
-    
-  </div>
-</nav>
-<!-- End nav -->
+    </div>
 
-    <!-- LEFT SIDE -->
 
-    <!-- Sidebar -->
-    <div class="flex pt-[3.5rem]"></div>
-    <!-- Toggle Sidebar -->
-    <div class="sidebar transition-all duration-200 space-y-10 fixed w-1/5 h-[100vh] hidden md:block bg-slate-900">
-
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl mt-10 px-4 items-center "> 
-        <a href="{% url 'dashboard' %}" class="flex items-center">
-        <img src="{% static 'images/home.png' %}" class="w-10 h-10" alt="" > 
-        <p class="text-white  font-bold ml-4 transition-all duration-200" id="side_text">Home</p>
-        </a>           
-      </div>
-
-      
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 "> 
-        <a href="{% url 'patient_list' %}" class="flex items-center">
-          <img src="{% static 'images/patient_list.png' %}" alt="" class="w-10 h-10 "> 
-          <p class="text-white font-bold ml-4 transition-all duration-200"id="side_text" >Patients</p> 
-        </a>  
-      </div>
-
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <a href="session_dashboard.html" class="flex items-center">
-          <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-10 h-10"> 
-          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Sessions</p>   
+    <div class="bg-gray-200 mx-4 sm:mx-8 md:mx-10 lg:mx-16 pb-10">
+      <div class="flex justify-between my-6 ">
+        <a href="{% url 'book_patient' %}">
+          <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">
+            Book Patient
+          </button>
+        </a>
+        <a href="{% url 'register' %}">
+          <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">
+            New Patient
+          </button>
         </a>
       </div>
 
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <a href="chats.html" class="flex items-center">
-          <img src="{% static 'images/chats.png' %}" class="w-10 h-10" alt="" > 
-          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text" >Chats</p> 
-        </a>  
-      </div>
+      <div x-show="openTab === 1" class="mt-4">
+        <div class=" bg-gray-200">
+          {% for patient in patients %}
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold"> {{patient.profile_id}} </h1>
+              <p >{{ patient.date_created|date:"F j, Y, g:i a" }}</p>
+            </div>
 
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <a href="settings.html" class="flex items-center">
-          <img src="{% static 'images/settings.png' %}" class="w-10 h-10" alt="" > 
-          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Settings</p>  
-        </a> 
-      </div>
-
-    </div>
-    <!-- end Sidebar -->
-
-    <!-- bottom bar -->
-    <div class="fixed flex justify-between items-center px-4 md:hidden bottom-0 w-full h-[50px] z-[999] bg-slate-900 py-8 text-white bg-opacity-90">
-      <a href="dashboard.html">
-        <img src="{% static 'images/home.png' %}" class="w-8 h-8" alt="" >
-        <p class="text-[12px] font-bold">Home</p>
-      </a>
-      <a href="patient_list.html">
-        <img src="{% static 'images/patient_list.png' %}" alt="" class="w-8 h-8 ">
-        <p class="text-[12px] font-bold">Patient</p>
-      </a>
-      <a href="session_dashboard.html">
-        <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-8 h-8">
-        <p class="text-[12px] font-bold">Sessions</p>
-      </a>
-      <a href="chats.html">
-        <img src="{% static 'images/chats.png' %}" class="w-8 h-8" alt="" >
-        <p class="text-[12px] font-bold">Chats</p>
-      </a>
-      <a href="settings.html">
-        <img src="{% static 'images/settings.png' %}" class="w-8 h-8" alt="" >
-        <p class="text-[12px] font-bold">Settings</p>
-      </a> 
-      
-    </div>
-    <!-- End bottom bar -->
-    
-    <!-- END LEFT SIDE -->
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p> {{patient.first_name}}  {{patient.last_name}} </p>
+            </div>
 
 
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-red-600 text-transparent">aaaaaaa</block>
+            </div>
 
-    <!-- RIGHT SIDE -->
-    <div class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto h-auto bg-slate-200">
-      
-      <div x-data="{ openTab: 1 }">
-        <!-- Tab Buttons -->
-        <div class="bg-slate-400">
-          <div class="py-4 ml-10">
-            <h1 class="font-bold text-md sm:text-xl text-slate-900">Patient List</h1>
-            <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a href="{% url 'patient_list' %}">Patient List</a></span></h2>
-          </div>
-    
-          <div class="flex space-x-2 sm:space-x-4 justify-center py-2 px-4 md:px-8 ">
-      
-              <div @click="openTab = 1" :class="{ 'text-blue-700': openTab === 1, 'opacity-50': openTab !== 1 }" class="hover:text-blue-700 cursor-pointer">
-                <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
-      
-                  <h5
-                    class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">
-                    Critical
-                  </h5>
-                </div>
-              </div>
-      
-              <div @click="openTab = 2" :class="{ 'text-blue-700': openTab === 2, 'opacity-50': openTab !== 2 }" class="hover:text-blue-700 cursor-pointer">
-                <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
-      
-                  <h5
-                    class=" text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">
-                    Severe
-                  </h5>
-      
-                </div>
-              </div>
-      
-              <div @click="openTab = 3" :class="{ 'text-blue-700': openTab === 3, 'opacity-50': openTab !== 3 }" class="hover:text-blue-700 cursor-pointer">
-                <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
-      
-                  <h5
-                    class=" text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">
-                    Normal
-                  </h5>
-      
-                </div>
-              </div>
-      
-              <div @click="openTab = 4" :class="{ 'text-blue-700': openTab === 4, 'opacity-50': openTab !== 4 }" class="hover:text-blue-700 cursor-pointer">
-                <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 px-4 sm:px-8 sm:py-4 sm:mx-6 items-center">
-      
-                  <h5
-                    class=" text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">
-                    All
-                  </h5>
-      
-                </div>
-              </div>
-      
-          </div>
+            <div>
+              <a href="{% url 'patient_details' patient.profile_id %}">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
+          </div>  
+          {% endfor %}
+
         </div>
-    
-    
-        <div class="bg-gray-200 mx-4 sm:mx-8 md:mx-10 lg:mx-16 pb-10">
-          <div class="flex justify-between my-6 ">
-            <a href="{% url 'book_patient' %}">
-              <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">
-                Book Patient
-              </button>
-            </a>
-            <a href="{% url 'register' %}">
-              <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">
-                New Patient
-              </button>
-            </a>
-          </div>
-    
-          <div x-show="openTab === 1" class="mt-4">
-            <div class=" bg-gray-200">
-              {% for patient in patients %}
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold"> {{patient.profile_id}} </h1>
-                  <p >{{ patient.date_created|date:"F j, Y, g:i a" }}</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p> {{patient.first_name}}  {{patient.last_name}} </p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-red-600 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="{% url 'patient_details' patient.profile_id %}">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>  
-              {% endfor %}
-    
+      </div>
+
+      <div x-show="openTab === 2" class="mt-6">
+        <div class=" bg-gray-200">
+
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold">id 89276</h1>
+              <p >12 Mins ago</p>
             </div>
+
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p>Abubakari Al-Waasiu</p>
+            </div>
+
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
+            </div>
+
+            <div>
+              <a href="patient.html">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
+          </div>  
+          
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold">id 89276</h1>
+              <p >12 Mins ago</p>
+            </div>
+
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p>Abubakari Al-Waasiu</p>
+            </div>
+
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
+            </div>
+
+            <div>
+              <a href="patient.html">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
           </div>
 
-          <div x-show="openTab === 2" class="mt-6">
-            <div class=" bg-gray-200">
-    
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold">id 89276</h1>
-                  <p >12 Mins ago</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p>Abubakari Al-Waasiu</p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="patient.html">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>  
-              
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold">id 89276</h1>
-                  <p >12 Mins ago</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p>Abubakari Al-Waasiu</p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="patient.html">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>
-    
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold">id 89276</h1>
-                  <p >12 Mins ago</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p>Abubakari Al-Waasiu</p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="patient.html">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>
-    
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold">id 89276</h1>
-                  <p >12 Mins ago</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p>Abubakari Al-Waasiu</p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="patient.html">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>
-    
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold">id 89276</h1>
+              <p >12 Mins ago</p>
             </div>
-          </div>
-    
-          <div x-show="openTab === 3" class="mt-4">
-            <div class=" bg-gray-200">
-    
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold">id 89276</h1>
-                  <p >12 Mins ago</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p>Abubakari Al-Waasiu</p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-green-600 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="patient.html">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>  
-              
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold">id 89276</h1>
-                  <p >12 Mins ago</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p>Abubakari Al-Waasiu</p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-green-600 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="patient.html">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>
-    
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold">id 89276</h1>
-                  <p >12 Mins ago</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p>Abubakari Al-Waasiu</p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-green-600 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="patient.html">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>
-    
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold">id 89276</h1>
-                  <p >12 Mins ago</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p>Abubakari Al-Waasiu</p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-green-600 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="patient.html">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>
-    
+
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p>Abubakari Al-Waasiu</p>
             </div>
-          </div>
-    
-          <div x-show="openTab === 4" class="mt-4">
-            <div class=" bg-gray-200">
-    
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold">id 89276</h1>
-                  <p >12 Mins ago</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p>Abubakari Al-Waasiu</p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-red-600 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="patient.html">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>  
-              
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold">id 89276</h1>
-                  <p >12 Mins ago</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p>Abubakari Al-Waasiu</p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-green-600 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="patient.html">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>
-    
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold">id 89276</h1>
-                  <p >12 Mins ago</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p>Abubakari Al-Waasiu</p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-green-600 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="patient.html">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>
-    
-              <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                <div>
-                  <h1 class="uppercase font-bold">id 89276</h1>
-                  <p >12 Mins ago</p>
-                </div>
-    
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">patient</h1>
-                  <p>Abubakari Al-Waasiu</p>
-                </div>
-    
-    
-                <div class="items-center">
-                  <h1 class="uppercase font-bold">TRIAGE</h1>
-                  <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
-                </div>
-    
-                <div>
-                  <a href="patient.html">
-                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                      view
-                    </button>
-                  </a>
-                  
-                </div>
-    
-              </div>
-    
+
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
             </div>
+
+            <div>
+              <a href="patient.html">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
           </div>
-    
+
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold">id 89276</h1>
+              <p >12 Mins ago</p>
+            </div>
+
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p>Abubakari Al-Waasiu</p>
+            </div>
+
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
+            </div>
+
+            <div>
+              <a href="patient.html">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
+          </div>
+
         </div>
-    
-    
-    
+      </div>
+
+      <div x-show="openTab === 3" class="mt-4">
+        <div class=" bg-gray-200">
+
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold">id 89276</h1>
+              <p >12 Mins ago</p>
+            </div>
+
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p>Abubakari Al-Waasiu</p>
+            </div>
+
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-green-600 text-transparent">aaaaaaa</block>
+            </div>
+
+            <div>
+              <a href="patient.html">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
+          </div>  
+          
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold">id 89276</h1>
+              <p >12 Mins ago</p>
+            </div>
+
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p>Abubakari Al-Waasiu</p>
+            </div>
+
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-green-600 text-transparent">aaaaaaa</block>
+            </div>
+
+            <div>
+              <a href="patient.html">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
+          </div>
+
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold">id 89276</h1>
+              <p >12 Mins ago</p>
+            </div>
+
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p>Abubakari Al-Waasiu</p>
+            </div>
+
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-green-600 text-transparent">aaaaaaa</block>
+            </div>
+
+            <div>
+              <a href="patient.html">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
+          </div>
+
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold">id 89276</h1>
+              <p >12 Mins ago</p>
+            </div>
+
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p>Abubakari Al-Waasiu</p>
+            </div>
+
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-green-600 text-transparent">aaaaaaa</block>
+            </div>
+
+            <div>
+              <a href="patient.html">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div x-show="openTab === 4" class="mt-4">
+        <div class=" bg-gray-200">
+
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold">id 89276</h1>
+              <p >12 Mins ago</p>
+            </div>
+
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p>Abubakari Al-Waasiu</p>
+            </div>
+
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-red-600 text-transparent">aaaaaaa</block>
+            </div>
+
+            <div>
+              <a href="patient.html">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
+          </div>  
+          
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold">id 89276</h1>
+              <p >12 Mins ago</p>
+            </div>
+
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p>Abubakari Al-Waasiu</p>
+            </div>
+
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-green-600 text-transparent">aaaaaaa</block>
+            </div>
+
+            <div>
+              <a href="patient.html">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
+          </div>
+
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold">id 89276</h1>
+              <p >12 Mins ago</p>
+            </div>
+
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p>Abubakari Al-Waasiu</p>
+            </div>
+
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-green-600 text-transparent">aaaaaaa</block>
+            </div>
+
+            <div>
+              <a href="patient.html">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
+          </div>
+
+          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+            <div>
+              <h1 class="uppercase font-bold">id 89276</h1>
+              <p >12 Mins ago</p>
+            </div>
+
+            <div class="hidden xs:block">
+              <h1 class="uppercase font-bold">patient</h1>
+              <p>Abubakari Al-Waasiu</p>
+            </div>
+
+
+            <div class="items-center">
+              <h1 class="uppercase font-bold">TRIAGE</h1>
+              <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
+            </div>
+
+            <div>
+              <a href="patient.html">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                  view
+                </button>
+              </a>
+              
+            </div>
+
+          </div>
+
+        </div>
       </div>
 
     </div>
-    <!-- END RIGHT SIDE -->
+
+
 
   </div>
-    
 
-
-  
-
-
-</body>
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
-<script src="./js/script.js"></script>
-</html>
+</div>
+<!-- END RIGHT SIDE -->
+{% endblock content %}

@@ -152,3 +152,5 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 ]
+
+app_password = 'gdad vhsl ghvv jtgn'
