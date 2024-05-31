@@ -98,5 +98,25 @@ def patient_attendance(request,profile_id):
 
     return render(request, 'patient_attendance_details.html', context)
 
+
 def medical_record(request,profile_id):
-    return render(request,'medical_record.html')
+    patient = get_object_or_404(CustomUser, profile_id=profile_id)
+    context = {
+        'patient': patient
+    }
+
+    return render(request,'medical_records.html',context)
+
+def session_dashboard(request,profile_id):
+    patient = get_object_or_404(CustomUser, profile_id=profile_id)
+    # 
+    return render(request,'session_dashboard.html')
+
+
+def chats(request,profile_id):
+    
+    return render(request,'chats.html')
+
+
+def book_appointment(request,profile_id):
+    return render(request,'book_appointment.html')

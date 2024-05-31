@@ -1,6 +1,5 @@
-{% extends "base.html" %} {% load static %} {% block title %} Sessions {%
-endblock title %} {% block content %}
-
+{% extends "base.html" %} {% load static %} {% block title %} Sessions
+{%endblock title %} {% block content %}
 <!-- RIGHT SIDE -->
 <div
   class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto min-h-screen bg-slate-400"
@@ -10,8 +9,12 @@ endblock title %} {% block content %}
     <div class="py-4 ml-10">
       <h1 class="font-bold text-md sm:text-xl text-slate-900">Session</h1>
       <h2 class="font-bold text-sm sm:text-lg text-slate-900">
-        <a href="dashboard.html">Home</a> |
-        <span><a href="session_dashboard.html">My Sessions</a></span>
+        <a href="{% url 'dashboard' %}">Home</a> |
+        <span
+          ><a href="{% url 'session_dashboard' request.user.profile_id %}"
+            >My Sessions</a
+          ></span
+        >
       </h2>
     </div>
     <!-- End Header -->
@@ -25,7 +28,7 @@ endblock title %} {% block content %}
           >
             SCHEDULED
           </button>
-          <a href="book_appointment.html">
+          <a href="{% url 'book_appointment' request.user.profile_id %}">
             <button
               class="rounded bg-slate-900 text-xs sm:text-sm md:text-md text-white px-4 py-1 uppercase"
             >
@@ -79,7 +82,7 @@ endblock title %} {% block content %}
 
                 <a href="#">
                   <img
-                    src="../images/icons8-wrong-50.png"
+                    src="{% static 'images/icons8-wrong-50.png' %}"
                     alt=""
                     class="w-5 xs:w-6 h-5 xs:h-6"
                   />
@@ -135,7 +138,7 @@ endblock title %} {% block content %}
 
                 <a href="#">
                   <img
-                    src="../images/icons8-wrong-50.png"
+                    src="{% static 'images/icons8-wrong-50.png' %}"
                     alt=""
                     class="w-5 xs:w-6 h-5 xs:h-6"
                   />
@@ -190,7 +193,7 @@ endblock title %} {% block content %}
 
                 <a href="#">
                   <img
-                    src="../images/icons8-wrong-50.png"
+                    src="{% static 'images/icons8-wrong-50.png' %}"
                     alt=""
                     class="w-5 xs:w-6 h-5 xs:h-6"
                   />
@@ -245,4 +248,5 @@ endblock title %} {% block content %}
   <!-- End Header -->
 </div>
 <!-- END RIGHT SIDE -->
+
 {% endblock content %}

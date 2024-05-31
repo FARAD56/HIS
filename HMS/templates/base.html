@@ -130,21 +130,21 @@
       {% endif %}
 
       <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <a href="session_dashboard.html" class="flex items-center">
+        <a href="{% url 'session_dashboard' request.user.profile_id %}" class="flex items-center">
           <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-10 h-10"> 
           <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Sessions</p>   
         </a>
       </div>
 
       <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <a href="chats.html" class="flex items-center">
+        <a href="{% url 'chats' request.user.profile_id %}" class="flex items-center">
           <img src="{% static 'images/chats.png' %}" class="w-10 h-10" alt="" > 
           <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text" >Chats</p> 
         </a>  
       </div>
 
       <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <a href="settings.html" class="flex items-center">
+        <a href="#" class="flex items-center">
           <img src="{% static 'images/settings.png' %}" class="w-10 h-10" alt="" > 
           <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Settings</p>  
         </a> 
@@ -155,23 +155,26 @@
 
     <!-- bottom bar -->
     <div class="fixed flex justify-between items-center px-4 md:hidden bottom-0 w-full h-[50px] z-[999] bg-slate-900 py-8 text-white bg-opacity-90">
-      <a href="dashboard.html">
+      <a href="{% url 'dashboard' %}">
         <img src="{% static 'images/home.png' %}" class="w-8 h-8" alt="" >
         <p class="text-[12px] font-bold">Home</p>
       </a>
-      <a href="patient_list.html">
+      {% if request.user.is_staff %}
+        
+      <a href="{% url 'patient_list' %}">
         <img src="{% static 'images/patient_list.png' %}" alt="" class="w-8 h-8 ">
         <p class="text-[12px] font-bold">Patient</p>
       </a>
-      <a href="session_dashboard.html">
+      {% endif %}
+      <a href="{% url 'session_dashboard' request.user.profile_id %}">
         <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-8 h-8">
         <p class="text-[12px] font-bold">Sessions</p>
       </a>
-      <a href="chats.html">
+      <a href="{% url 'chats' request.user.profile_id %}">
         <img src="{% static 'images/chats.png' %}" class="w-8 h-8" alt="" >
         <p class="text-[12px] font-bold">Chats</p>
       </a>
-      <a href="settings.html">
+      <a href="#">
         <img src="{% static 'images/settings.png' %}" class="w-8 h-8" alt="" >
         <p class="text-[12px] font-bold">Settings</p>
       </a> 
