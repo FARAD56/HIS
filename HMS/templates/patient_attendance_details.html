@@ -13,7 +13,7 @@
 
       <div class="py-4 ml-10">
         <h1 class="font-bold text-md sm:text-xl text-slate-900">Add patient</h1>
-        <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="dashboard.html">Home</a> | <span><a href="patient_attendance_details.html">Medical Record</a></span></h2>
+        <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a href="{% url 'patient_attendance' %}">Medical Record</a></span></h2>
       </div>
 
       <div class="text-xs sm:text-sm mb-16 md:mb-4 mt-4 mx-2 sm:mx-8 h-full pb-4 bg-white shadow-lg rounded-lg">
@@ -57,7 +57,7 @@
           
           <div class="bg-slate-700 flex items-center justify-between w-full py-2 px-2 sm:px-4 lg:px-8 rounded-t-lg">
             <h1 class="text-white font-bold text-[16px]">Diagnosis</h1>
-            <img src="../images/icons8-add-48.png" alt="" class="w-8 h-8">
+            <img src="{% static 'images/icons8-add-48.png' %}" alt="" class="w-8 h-8">
           </div>
 
           <div class="w-full p-2 sm:px-4 lg:px-8 shadow-lg bg-slate-200">
@@ -115,7 +115,7 @@
           
           <div class="bg-slate-700 flex items-center justify-between w-full py-2 px-2 sm:px-4 lg:px-8 rounded-t-lg">
             <h1 class="text-white font-bold text-[16px]">Prescription</h1>
-            <img src="../images/icons8-add-48.png" alt="" class="w-8 h-8">
+            <img src="{% static 'images/icons8-add-48.png' %}" alt="" class="w-8 h-8">
           </div>
 
           <div class="w-full p-2 sm:px-4 lg:px-8 shadow-lg bg-slate-200">
@@ -254,7 +254,7 @@
           
           <div class="bg-slate-700 flex items-center justify-between w-full py-2 px-2 sm:px-4 lg:px-8 rounded-t-lg">
             <h1 class="text-white font-bold text-[16px]">Investigation</h1>
-            <img src="../images/icons8-add-48.png" alt="" class="w-8 h-8">
+            <img src="{% static 'images/icons8-add-48.png' %}" alt="" class="w-8 h-8">
           </div>
 
           <div class="w-full py-2 px-1 sm:px-4 lg:px-8 shadow-lg bg-slate-200">
@@ -333,11 +333,11 @@
             <div class="my-4">
               <div class="flex">
                 <h1 class="font-bold ">Lab Test returned</h1>
-                <img src="../images/icons8-correct-50.png" alt="" class=" w-4 h-4 mx-4">
-                <img src="../images/icons8-wrong-50.png" alt="" class="hidden w-4 h-4 mx-4">
+                <img src="{% static 'images/icons8-correct-50.png' %}" alt="" class=" w-4 h-4 mx-4">
+                <img src="{% static 'images/icons8-wrong-50.png' %}" alt="" class="hidden w-4 h-4 mx-4">
               </div>
               <div class="flex items-center space-x-4">
-                <img src="../images/pdf.png" alt="" class="w-6 h-6 my-2 rounded-lg">
+                <img src="{% static 'images/pdf.png' %}" alt="" class="w-6 h-6 my-2 rounded-lg">
                 <h1 class="underline underline-offset-2 text-blue-600 font-semibold">Blood test.pdf</h1>
               </div>
             </div>

@@ -27,7 +27,7 @@
             </div>
             <div class=" text-gray-800 mx-3 flex justify-between items-center">
               <div class="text-xs xs:text-sm sm:text-[16px]">
-                <h1>Name : {{patient.first_name}} {{patient.last_name}} </h1>
+                <h1>Name : {{patient.full_name}} </h1>
                 <h1>Sex : {{patient.sex}} </h1>
                 <h1>Age : {{patient.age}} </h1>
               </div>
@@ -84,7 +84,7 @@
               <div class="flex flex-col items-center justify-center">
                 <h5
                   class="text-lg font-bold leading-tight text-neutral-800">
-                  Profile
+                   View Profile
                 </h5>
   
                 <img src="{{patient.profilemodel.profile_picture.url}}" alt="" class="h-10 w-10 rounded-lg">

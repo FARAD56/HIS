@@ -9,11 +9,11 @@ from django.core.validators import FileExtensionValidator
 from . utils import generate_profile_id
 
 class CustomUser(AbstractUser):
-    SEX_CHOICES = (('M', 'Male'), ('F', 'Female'))
+    SEX_CHOICES = (('Male', 'Male'), ('Female', 'Female'))
 
     first_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length=100, blank=True, null=True)
-    profile_id = models.CharField(max_length=20,blank=True,default=generate_profile_id,null=True)
+    profile_id = models.CharField(max_length=20,default=generate_profile_id,blank=True,null=True)
     contact = models.CharField(max_length=20, blank=True,null=True)
     dob = models.DateField(blank=True, null=True)
     sex = models.CharField(max_length=10, choices=SEX_CHOICES, blank=True)
@@ -38,7 +38,6 @@ class CustomUser(AbstractUser):
         if self.first_name and self.last_name:
             return f'{self.first_name}' + ' ' + f'{self.last_name}'
     
-# models.py
 
 class ProfileModel(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
@@ -99,3 +98,23 @@ class ProfileModel(models.Model):
     def __str__(self):
         return self.user.username
 
+
+
+class PatientVital(models.Model):
+    class Triage(models.TextChoices):
+        CRITICAL = "CRITICAL"
+        SEVERE = "SEVERE"
+        NORMAL = 'NORMAL'
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    temperature = models.CharField(max_length=20,blank=True,null=True)
+    blood_pressure = models.CharField(max_length=20,blank=True,null=True)
+    triage = models.CharField(max_length=20, 
+                                blank=True, 
+                                null=True,
+                                choices=Triage.choices,
+                                default=Triage.NORMAL)
+    comments = models.TextField(max_length=255,blank=True,null=True)
+    date_created = models.DateTimeField(auto_now_add= True)
+
+    def __str__(self):
+        return f'Vitals for {self.user} at {self.date_created}'

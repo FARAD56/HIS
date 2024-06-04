@@ -6,7 +6,7 @@
 {% endblock title %}
 
 {% block content %}
-  
+
 <!-- RIGHT SIDE -->
 <div class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto h-auto bg-slate-200">
   
@@ -19,463 +19,162 @@
       </div>
 
       <div class="flex space-x-2 sm:space-x-4 justify-center py-2 px-4 md:px-8 ">
-  
-          <div @click="openTab = 1" :class="{ 'text-blue-700': openTab === 1, 'opacity-50': openTab !== 1 }" class="hover:text-blue-700 cursor-pointer">
-            <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
-  
-              <h5
-                class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">
-                Critical
-              </h5>
-            </div>
+        <div @click="openTab = 1" :class="{ 'text-blue-700': openTab === 1, 'opacity-50': openTab !== 1 }" class="hover:text-blue-700 cursor-pointer">
+          <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
+            <h5 class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">Critical</h5>
           </div>
-  
-          <div @click="openTab = 2" :class="{ 'text-blue-700': openTab === 2, 'opacity-50': openTab !== 2 }" class="hover:text-blue-700 cursor-pointer">
-            <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
-  
-              <h5
-                class=" text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">
-                Severe
-              </h5>
-  
-            </div>
+        </div>
+
+        <div @click="openTab = 2" :class="{ 'text-blue-700': openTab === 2, 'opacity-50': openTab !== 2 }" class="hover:text-blue-700 cursor-pointer">
+          <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
+            <h5 class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">Severe</h5>
           </div>
-  
-          <div @click="openTab = 3" :class="{ 'text-blue-700': openTab === 3, 'opacity-50': openTab !== 3 }" class="hover:text-blue-700 cursor-pointer">
-            <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
-  
-              <h5
-                class=" text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">
-                Normal
-              </h5>
-  
-            </div>
+        </div>
+
+        <div @click="openTab = 3" :class="{ 'text-blue-700': openTab === 3, 'opacity-50': openTab !== 3 }" class="hover:text-blue-700 cursor-pointer">
+          <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
+            <h5 class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">Normal</h5>
           </div>
-  
-          <div @click="openTab = 4" :class="{ 'text-blue-700': openTab === 4, 'opacity-50': openTab !== 4 }" class="hover:text-blue-700 cursor-pointer">
-            <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 px-4 sm:px-8 sm:py-4 sm:mx-6 items-center">
-  
-              <h5
-                class=" text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">
-                All
-              </h5>
-  
-            </div>
+        </div>
+
+        <div @click="openTab = 4" :class="{ 'text-blue-700': openTab === 4, 'opacity-50': openTab !== 4 }" class="hover:text-blue-700 cursor-pointer">
+          <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 px-4 sm:px-8 sm:py-4 sm:mx-6 items-center">
+            <h5 class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">All</h5>
           </div>
-  
+        </div>
       </div>
     </div>
-
 
     <div class="bg-gray-200 mx-4 sm:mx-8 md:mx-10 lg:mx-16 pb-10">
       <div class="flex justify-between my-6 ">
-        <a href="{% url 'book_patient' %}">
-          <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">
-            Book Patient
-          </button>
+        <a href="{% url 'patient_vitals' %}">
+          <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">Patient Vitals</button>
         </a>
         <a href="{% url 'register' %}">
-          <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">
-            New Patient
-          </button>
+          <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">New Patient</button>
         </a>
       </div>
 
+      <!-- Critical Patients Tab -->
       <div x-show="openTab === 1" class="mt-4">
-        <div class=" bg-gray-200">
-          {% for patient in patients %}
+        <div class="bg-gray-200">
+          {% for patient in critical_patients %}
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold"> {{patient.profile_id}} </h1>
-              <p >{{ patient.date_created|date:"F j, Y, g:i a" }}</p>
+              <h1 class="uppercase font-bold">{{ patient.user.profile_id }}</h1>
+              <p>{{ patient.date_created|date:"F j, Y, g:i a" }}</p>
             </div>
 
             <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p> {{patient.first_name}}  {{patient.last_name}} </p>
+              <h1 class="uppercase font-bold">Patient</h1>
+              <p>{{ patient.user.full_name }}</p>
             </div>
-
 
             <div class="items-center">
               <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-red-600 text-transparent">aaaaaaa</block>
+              <block class="bg-red-600 text-transparent">Critical</block>
             </div>
 
             <div>
-              <a href="{% url 'patient_details' patient.profile_id %}">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
+              <a href="{% url 'patient_details' request.user.profile_id %}">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
-              
             </div>
-
-          </div>  
+          </div>
           {% endfor %}
-
         </div>
       </div>
 
-      <div x-show="openTab === 2" class="mt-6">
-        <div class=" bg-gray-200">
-
+      <!-- Severe Patients Tab -->
+      <!-- <div x-show="openTab === 2" class="mt-4">
+        <div class="bg-gray-200">
+          {% for patient in severe_patients %}
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">id 89276</h1>
-              <p >12 Mins ago</p>
+              <h1 class="uppercase font-bold">{{ patient.user.profile_id }}</h1>
+              <p>{{ patient.date_created|date:"F j, Y, g:i a" }}</p>
             </div>
 
             <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p>Abubakari Al-Waasiu</p>
+              <h1 class="uppercase font-bold">Patient</h1>
+              <p>{{ patient.user.get_full_name }}</p>
             </div>
-
 
             <div class="items-center">
               <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
+              <block class="bg-yellow-400 text-transparent">Severe</block>
             </div>
 
             <div>
-              <a href="patient.html">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
+              <a href="{% url 'patient_details' patient.user.profile_id %}">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
-              
             </div>
-
-          </div>  
-          
-          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-            <div>
-              <h1 class="uppercase font-bold">id 89276</h1>
-              <p >12 Mins ago</p>
-            </div>
-
-            <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p>Abubakari Al-Waasiu</p>
-            </div>
-
-
-            <div class="items-center">
-              <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
-            </div>
-
-            <div>
-              <a href="patient.html">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
-              </a>
-              
-            </div>
-
           </div>
-
-          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-            <div>
-              <h1 class="uppercase font-bold">id 89276</h1>
-              <p >12 Mins ago</p>
-            </div>
-
-            <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p>Abubakari Al-Waasiu</p>
-            </div>
-
-
-            <div class="items-center">
-              <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
-            </div>
-
-            <div>
-              <a href="patient.html">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
-              </a>
-              
-            </div>
-
-          </div>
-
-          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-            <div>
-              <h1 class="uppercase font-bold">id 89276</h1>
-              <p >12 Mins ago</p>
-            </div>
-
-            <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p>Abubakari Al-Waasiu</p>
-            </div>
-
-
-            <div class="items-center">
-              <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
-            </div>
-
-            <div>
-              <a href="patient.html">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
-              </a>
-              
-            </div>
-
-          </div>
-
+          {% endfor %}
         </div>
-      </div>
+      </div> -->
 
-      <div x-show="openTab === 3" class="mt-4">
-        <div class=" bg-gray-200">
-
+      <!-- Normal Patients Tab -->
+      <!-- <div x-show="openTab === 3" class="mt-4">
+        <div class="bg-gray-200">
+          {% for patient in normal_patients %}
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">id 89276</h1>
-              <p >12 Mins ago</p>
+              <h1 class="uppercase font-bold">{{ patient.user.profile_id }}</h1>
+              <p>{{ patient.date_created|date:"F j, Y, g:i a" }}</p>
             </div>
 
             <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p>Abubakari Al-Waasiu</p>
+              <h1 class="uppercase font-bold">Patient</h1>
+              <p>{{ patient.user.full_name }}</p>
             </div>
-
 
             <div class="items-center">
               <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-green-600 text-transparent">aaaaaaa</block>
+              <block class="bg-green-500 text-transparent">Normal</block>
             </div>
 
             <div>
-              <a href="patient.html">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
+              <a href="{% url 'patient_details' patient.user.profile_id %}">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
-              
             </div>
-
-          </div>  
-          
-          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-            <div>
-              <h1 class="uppercase font-bold">id 89276</h1>
-              <p >12 Mins ago</p>
-            </div>
-
-            <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p>Abubakari Al-Waasiu</p>
-            </div>
-
-
-            <div class="items-center">
-              <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-green-600 text-transparent">aaaaaaa</block>
-            </div>
-
-            <div>
-              <a href="patient.html">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
-              </a>
-              
-            </div>
-
           </div>
-
-          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-            <div>
-              <h1 class="uppercase font-bold">id 89276</h1>
-              <p >12 Mins ago</p>
-            </div>
-
-            <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p>Abubakari Al-Waasiu</p>
-            </div>
-
-
-            <div class="items-center">
-              <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-green-600 text-transparent">aaaaaaa</block>
-            </div>
-
-            <div>
-              <a href="patient.html">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
-              </a>
-              
-            </div>
-
-          </div>
-
-          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-            <div>
-              <h1 class="uppercase font-bold">id 89276</h1>
-              <p >12 Mins ago</p>
-            </div>
-
-            <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p>Abubakari Al-Waasiu</p>
-            </div>
-
-
-            <div class="items-center">
-              <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-green-600 text-transparent">aaaaaaa</block>
-            </div>
-
-            <div>
-              <a href="patient.html">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
-              </a>
-              
-            </div>
-
-          </div>
-
+          {% endfor %}
         </div>
-      </div>
+      </div> -->
 
-      <div x-show="openTab === 4" class="mt-4">
-        <div class=" bg-gray-200">
-
+      <!-- All Patients Tab -->
+      <!-- <div x-show="openTab === 4" class="mt-4">
+        <div class="bg-gray-200">
+          {% for patient in all_patients %}
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">id 89276</h1>
-              <p >12 Mins ago</p>
+              <h1 class="uppercase font-bold">{{ patient.user.profile_id }}</h1>
+              <p>{{ patient.date_created|date:"F j, Y, g:i a" }}</p>
             </div>
 
             <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p>Abubakari Al-Waasiu</p>
+              <h1 class="uppercase font-bold">Patient</h1>
+              <p>{{ patient.user.full_name }}</p>
             </div>
-
 
             <div class="items-center">
               <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-red-600 text-transparent">aaaaaaa</block>
+              <block class="bg-blue-700 text-transparent">{{ patient.triage }}</block>
             </div>
 
             <div>
-              <a href="patient.html">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
+              <a href="{% url 'patient_details' request.user.profile_id %}">
+                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
-              
             </div>
-
-          </div>  
-          
-          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-            <div>
-              <h1 class="uppercase font-bold">id 89276</h1>
-              <p >12 Mins ago</p>
-            </div>
-
-            <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p>Abubakari Al-Waasiu</p>
-            </div>
-
-
-            <div class="items-center">
-              <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-green-600 text-transparent">aaaaaaa</block>
-            </div>
-
-            <div>
-              <a href="patient.html">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
-              </a>
-              
-            </div>
-
           </div>
-
-          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-            <div>
-              <h1 class="uppercase font-bold">id 89276</h1>
-              <p >12 Mins ago</p>
-            </div>
-
-            <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p>Abubakari Al-Waasiu</p>
-            </div>
-
-
-            <div class="items-center">
-              <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-green-600 text-transparent">aaaaaaa</block>
-            </div>
-
-            <div>
-              <a href="patient.html">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
-              </a>
-              
-            </div>
-
-          </div>
-
-          <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-            <div>
-              <h1 class="uppercase font-bold">id 89276</h1>
-              <p >12 Mins ago</p>
-            </div>
-
-            <div class="hidden xs:block">
-              <h1 class="uppercase font-bold">patient</h1>
-              <p>Abubakari Al-Waasiu</p>
-            </div>
-
-
-            <div class="items-center">
-              <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-yellow-400 text-transparent">aaaaaaa</block>
-            </div>
-
-            <div>
-              <a href="patient.html">
-                <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                  view
-                </button>
-              </a>
-              
-            </div>
-
-          </div>
-
+          {% endfor %}
         </div>
-      </div>
-
+      </div> -->
     </div>
-
-
-
   </div>
-
 </div>
-<!-- END RIGHT SIDE -->
 {% endblock content %}
