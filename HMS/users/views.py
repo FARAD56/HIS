@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from .forms import CustomSignUpForm,CustomLoginForm,UserUpdateForm,ProfileModelForm,PatientVitalsForm
+from .forms import CustomSignUpForm,CustomLoginForm,UserUpdateForm,ProfileModelForm,BookPatientForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,logout,login
-from .models import CustomUser,ProfileModel,PatientVital
+from .models import CustomUser,ProfileModel,BookPatient
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
@@ -59,34 +59,26 @@ def dashboard_view(request):
 @login_required
 @staff_member_required
 def patient_list(request):
-    # patients = CustomUser.objects.filter(is_staff=False)
-    critical_patients = PatientVital.objects.filter(triage=PatientVital.Triage.CRITICAL)
-    severe_patients = PatientVital.objects.filter(triage=PatientVital.Triage.SEVERE)
-    normal_patients = PatientVital.objects.filter(triage=PatientVital.Triage.NORMAL)
-    all_patients = PatientVital.objects.all()
+    patients = CustomUser.objects.filter(is_staff=False)
     
     context = {
-        'critical_patients': critical_patients,
-        'severe_patients': severe_patients,
-        'normal_patients': normal_patients,
-        'all_patients': all_patients,
-        # 'patients':patients,
+        'patients':patients,
     }
     return render(request, 'patient_list.html',context )
 
 @login_required
 @staff_member_required
-def patient_vitals(request):
+def book_patient(request):
     if request.method == 'POST':
-        v_form = PatientVitalsForm(request.POST)
-        if v_form.is_valid():
-            v_form.save()
+        book_form = BookPatientForm(request.POST)
+        if book_form.is_valid():
+            book_form.save()
             return redirect('patient_list')
     else:
-        v_form = PatientVitalsForm()
+        book_form = BookPatientForm()
     
     context = {
-        'v_form':v_form
+        'book_form':book_form
     }
     return render(request,'patient_vitals.html',context)
 

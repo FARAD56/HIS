@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomUser,ProfileModel,PatientVital
+from .models import CustomUser,ProfileModel,BookPatient
 from django.contrib.auth.hashers import make_password
 
 
@@ -120,9 +120,9 @@ class ProfileModelForm(forms.ModelForm):
                   'nationality','occupation','region','address','kin_name','kin_address',
                   'relationship','kin_contact','kin_email']
         
-class PatientVitalsForm(forms.ModelForm):
+class BookPatientForm(forms.ModelForm):
     class Meta:
-        model = PatientVital
+        model = BookPatient
         fields = ['user','temperature','blood_pressure','triage','comments']
         widgets = {
             'patient': forms.Select(attrs={

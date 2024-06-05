@@ -47,8 +47,8 @@
 
     <div class="bg-gray-200 mx-4 sm:mx-8 md:mx-10 lg:mx-16 pb-10">
       <div class="flex justify-between my-6 ">
-        <a href="{% url 'patient_vitals' %}">
-          <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">Patient Vitals</button>
+        <a href="{% url 'book_patient' %}">
+          <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">Book Patient</button>
         </a>
         <a href="{% url 'register' %}">
           <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">New Patient</button>
@@ -58,16 +58,16 @@
       <!-- Critical Patients Tab -->
       <div x-show="openTab === 1" class="mt-4">
         <div class="bg-gray-200">
-          {% for patient in critical_patients %}
+          {% for patient in patients %}
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">{{ patient.user.profile_id }}</h1>
+              <h1 class="uppercase font-bold">{{ patient.profile_id }}</h1>
               <p>{{ patient.date_created|date:"F j, Y, g:i a" }}</p>
             </div>
 
             <div class="hidden xs:block">
               <h1 class="uppercase font-bold">Patient</h1>
-              <p>{{ patient.user.full_name }}</p>
+              <p>{{ patient.full_name }}</p>
             </div>
 
             <div class="items-center">
@@ -76,28 +76,26 @@
             </div>
 
             <div>
-              <a href="{% url 'patient_details' request.user.profile_id %}">
+              <a href="#">
                 <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
             </div>
           </div>
-          {% endfor %}
         </div>
       </div>
 
       <!-- Severe Patients Tab -->
-      <!-- <div x-show="openTab === 2" class="mt-4">
+      <div x-show="openTab === 2" class="mt-4">
         <div class="bg-gray-200">
-          {% for patient in severe_patients %}
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">{{ patient.user.profile_id }}</h1>
-              <p>{{ patient.date_created|date:"F j, Y, g:i a" }}</p>
+              <h1 class="uppercase font-bold">30049</h1>
+              <p>may</p>
             </div>
 
             <div class="hidden xs:block">
               <h1 class="uppercase font-bold">Patient</h1>
-              <p>{{ patient.user.get_full_name }}</p>
+              <p>Awasiu</p>
             </div>
 
             <div class="items-center">
@@ -106,28 +104,26 @@
             </div>
 
             <div>
-              <a href="{% url 'patient_details' patient.user.profile_id %}">
+              <a href="#">
                 <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
             </div>
           </div>
-          {% endfor %}
         </div>
-      </div> -->
+      </div>
 
       <!-- Normal Patients Tab -->
-      <!-- <div x-show="openTab === 3" class="mt-4">
+      <div x-show="openTab === 3" class="mt-4">
         <div class="bg-gray-200">
-          {% for patient in normal_patients %}
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">{{ patient.user.profile_id }}</h1>
-              <p>{{ patient.date_created|date:"F j, Y, g:i a" }}</p>
+              <h1 class="uppercase font-bold">3454</h1>
+              <p>June</p>
             </div>
 
             <div class="hidden xs:block">
               <h1 class="uppercase font-bold">Patient</h1>
-              <p>{{ patient.user.full_name }}</p>
+              <p>Abubakari</p>
             </div>
 
             <div class="items-center">
@@ -136,44 +132,41 @@
             </div>
 
             <div>
-              <a href="{% url 'patient_details' patient.user.profile_id %}">
+              <a href="#">
                 <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
             </div>
           </div>
-          {% endfor %}
         </div>
-      </div> -->
+      </div>
 
       <!-- All Patients Tab -->
-      <!-- <div x-show="openTab === 4" class="mt-4">
+      <div x-show="openTab === 4" class="mt-4">
         <div class="bg-gray-200">
-          {% for patient in all_patients %}
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">{{ patient.user.profile_id }}</h1>
-              <p>{{ patient.date_created|date:"F j, Y, g:i a" }}</p>
+              <h1 class="uppercase font-bold">1234</h1>
+              <p>May 12</p>
             </div>
 
             <div class="hidden xs:block">
               <h1 class="uppercase font-bold">Patient</h1>
-              <p>{{ patient.user.full_name }}</p>
+              <p>Farad</p>
             </div>
 
             <div class="items-center">
               <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-blue-700 text-transparent">{{ patient.triage }}</block>
+              <block class="bg-blue-700 text-transparent">aaaaa</block>
             </div>
 
             <div>
-              <a href="{% url 'patient_details' request.user.profile_id %}">
+              <a href="#">
                 <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
             </div>
           </div>
-          {% endfor %}
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </div>

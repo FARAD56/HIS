@@ -99,8 +99,8 @@ class ProfileModel(models.Model):
         return self.user.username
 
 
-
-class PatientVital(models.Model):
+#not migrated
+class BookPatient(models.Model):
     class Triage(models.TextChoices):
         CRITICAL = "CRITICAL"
         SEVERE = "SEVERE"
