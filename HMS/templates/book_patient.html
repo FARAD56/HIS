@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Patient Vitals</title>
+  <title>Book Patient</title>
   {% compress css  %}
   <link href="{% static 'src/output.css' %}" rel="stylesheet">
   <link href="{% static 'css/patient_list.css' %}" rel="stylesheet">
@@ -28,13 +28,13 @@
           <div class="text-xs sm:text-sm mb-16 md:mb-4 mx-2 sm:mx-8 h-full w-[90%] sm:w-3/5 lg:w-[35%] pb-4 bg-white shadow-lg rounded-lg">
   
             <!-- Form Title -->
-              <h1 class="text-slate-700 text-center font-bold text-3xl mt-12">Patient Vitals</h1>
-              <h1 class="text-slate-700 text-center font-semibold mt-2 mb-6">Include Patient Vitals</h1>
+              <h1 class="text-slate-700 text-center font-bold text-3xl mt-12">Book Patient</h1>
+              <h1 class="text-slate-700 text-center font-semibold mt-2 mb-6">Book Patient to meet Doctor</h1>
             <!-- End Form Title -->
     
             <form method="POST">
               {% csrf_token %}
-              {% for field in v_form %}
+              {% for field in book_form %}
               
             <div class="text-xs md:text-sm lg:text-md flex items-center px-4 sm:px-6 justify-between my-4">
               <label class="text-slate-900 font-bold" for="{{ field.id_for_label }}"> {{field.label}} </label>
@@ -56,7 +56,7 @@
           <!-- Save and Continue -->
           <div class="flex items-center justify-center px-4 sm:px-8">
             <a href="{% url 'patient_list' %}">
-              <input type="submit" value="Save" class=" text-base bg-blue-600 px-8 py-3 my-4 rounded-lg text-white font-semibold">
+              <input type="submit" value="Book" class=" text-base bg-blue-600 px-8 py-3 my-4 rounded-lg text-white font-semibold">
             </a>
           </div>
             </form>

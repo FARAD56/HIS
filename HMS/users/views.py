@@ -80,7 +80,7 @@ def book_patient(request):
     context = {
         'book_form':book_form
     }
-    return render(request,'patient_vitals.html',context)
+    return render(request,'book_patient.html',context)
 
 
 @login_required

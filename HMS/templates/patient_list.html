@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-  Dashboard
+  Patient List
 {% endblock title %}
 
 {% block content %}
@@ -74,12 +74,12 @@
               <h1 class="uppercase font-bold">TRIAGE</h1>
               <block class="bg-red-600 text-transparent">Critical</block>
             </div>
-
             <div>
-              <a href="#">
+              <a href="{% url 'patient_details' patient.profile_id %}">
                 <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
             </div>
+            {% endfor %}
           </div>
         </div>
       </div>
