@@ -118,3 +118,66 @@ class BookPatient(models.Model):
 
     def __str__(self):
         return f'Vitals for {self.user} at {self.date_created}'
+    
+
+# class Diagnosis(models.Model):
+#     class Type(models.TextChoices):
+#         CHRONIC = "CHRONIC"
+#         ACUTE = "ACUTE"
+
+#     class Diagnosis(models.TextChoices):
+#         HEADACHE = "HEADACHE"
+#         SEIZURES = "SEIZURES"
+#         DIABETES = "DIABETES"
+#         HYPERTENSION = "HYPERTENSION"
+#         DEPRESSION = "DEPRESSION"
+#         PNEUMONIA = "PNEUMONIA"
+#         ARTHRITIS = "ARTHRITIS"
+#         DERMATHITIS = "DERMATHITIS"
+#         BACK_PAIN = "BACK_PAIN"
+#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+#     diagnosis = models.CharField(
+#             max_length=20, 
+#             blank=True, 
+#             null=True,
+#             choices=Diagnosis.choices,
+#             default=Diagnosis.HEADACHE
+#         )
+#     type = models.CharField(
+#             max_length=20, 
+#             blank=True, 
+#             null=True,
+#             choices=Type.choices,
+#             default=Type.ACUTE
+#         )
+    
+#     date_created = models.DateTimeField(auto_now_add= True)
+
+#     def __str__(self):
+#         return f'Diagnosis for {self.user} at {self.date_created}'
+    
+
+
+# class Prescription(models.Model):
+#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+#     diagnosis = models.ForeignKey(Diagnosis, on_delete=models.CASCADE)
+#     medicine = models.CharField(max_length=255, blank=True, null=True)
+#     dosage = models.CharField(max_length=255, blank=True, null=True)
+#     duration = models.CharField(max_length=30,blank=True,null=True)
+#     strength = models.CharField(max_length=30,blank=True,null=True)
+#     quatity  = models.PositiveIntegerField(blank=True,null=True)
+#     frequency = models.CharField(max_length=255,blank=True,null=True)
+#     instructions = models.TextField(max_length=255,blank=True,null=True)
+#     date_created = models.DateTimeField(auto_now_add= True)
+
+#     def __str__(self):
+#         return f'Prescription for {self.user} at {self.date_created}'
+    
+
+# class Investigation(models.Model):
+#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+#     referral_facility = models.CharField(max_length=255, blank=True, null=True)
+#     investigation = models.CharField(max_length=255, blank=True, null=True)
+#     unit = models.CharField(max_length=255, blank=True, null=True)
+#     date = models.DateField(blank=True, null=True)
+#     reason = models.TextField(max_length=255, blank=True, null=True)

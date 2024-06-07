@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-  Patient Profile
+  Patient Details
 {% endblock title %}
 
 {% block content %}
@@ -87,7 +87,7 @@
                    View Profile
                 </h5>
   
-                <img src="{{patient.profilemodel.profile_picture.url}}" alt="" class="h-10 w-10 rounded-lg">
+                <img src="{{patient.profilemodel.profile_picture.url}}" alt="" class="h-10 w-15 rounded-lg">
 
               </div>
             </a>
@@ -106,7 +106,7 @@
           </div>
 
           <div class="space-y-4 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
-            <a href="medication.html">
+            <a href="{% url 'medication' patient.profile_id %}">
               <div>
                 <h5
                   class="text-lg font-bold leading-tight text-neutral-800">

@@ -117,7 +117,9 @@ def patient_profile(request,profile_id):
 
 @login_required
 def patient_attendance(request,profile_id):
+    patient = get_object_or_404(CustomUser, profile_id=profile_id)
     context = {
+        'patient': patient
     }
 
     return render(request, 'patient_attendance_details.html', context)
@@ -146,3 +148,7 @@ def chats(request,profile_id):
 @login_required
 def book_appointment(request,profile_id):
     return render(request,'book_appointment.html')
+
+@login_required
+def medication(request,profile_id):
+    return render(request,'medication.html')

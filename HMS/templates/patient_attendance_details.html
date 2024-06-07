@@ -13,7 +13,7 @@
 
       <div class="py-4 ml-10">
         <h1 class="font-bold text-md sm:text-xl text-slate-900">Add patient</h1>
-        <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a href="{% url 'patient_attendance' %}">Medical Record</a></span></h2>
+        <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a href="{% url 'patient_attendance' patient.profile_id %}">Medical Record</a></span></h2>
       </div>
 
       <div class="text-xs sm:text-sm mb-16 md:mb-4 mt-4 mx-2 sm:mx-8 h-full pb-4 bg-white shadow-lg rounded-lg">
