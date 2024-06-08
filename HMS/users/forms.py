@@ -11,27 +11,27 @@ class CustomSignUpForm(forms.Form):
     first_name = forms.CharField(
         label='First Name',
         widget=forms.TextInput(attrs={
-        'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+        'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
         'placeholder': 'First Name',
     }))
     last_name = forms.CharField(
         label='Last Name',
         widget=forms.TextInput(attrs={
-        'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+        'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
         'placeholder': 'Last Name',
     })
     )
     contact = forms.CharField(
         label='Contact',
         widget=forms.TextInput(attrs={
-        'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+        'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
         'placeholder': 'Phone Number 10 digits',
     })
     )
     dob = forms.DateField(
         label=' DOB',
         widget=forms.DateInput(attrs={
-        'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+        'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
         'placeholder': 'Date of Birth',
     }),
     
@@ -41,27 +41,27 @@ class CustomSignUpForm(forms.Form):
         label='Sex',
         choices=SEX_CHOICES,
         widget=forms.Select(attrs={
-            'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+            'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
             'placeholder': 'Select One'
         }),
     )
     email = forms.EmailField(
         label='Email',
         widget=forms.EmailInput(attrs={
-        'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+        'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
         'placeholder': 'Email',
     }))
     password = forms.CharField(
         label='Password',
         widget=forms.PasswordInput(attrs={
-        'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+        'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
         'placeholder': 'Enter Password',
     })
     )
     confirm_password  = forms.CharField(
         label='Confirm Password',
         widget=forms.PasswordInput(attrs={
-        'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+        'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
         'placeholder': 'Confirm Password',
     })
     )
@@ -94,11 +94,11 @@ class CustomSignUpForm(forms.Form):
 
 class CustomLoginForm(forms.Form):
     email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={
-         'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+         'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
         'placeholder': 'EMAIL',
     }))
     password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={
-        'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+        'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
         'placeholder': 'PASSWORD',
     }))
     
@@ -107,18 +107,91 @@ class UserUpdateForm(forms.ModelForm):
         model = CustomUser
         fields = ['first_name','last_name','contact','email']
     
-    # def __init__(self, *args, **kwargs) -> None:
-    #     super(UserUpdateForm,self).__init__(*args, **kwargs)
-        
-    #     for fieldname in ['username','email']:
-    #         self.fields[fieldname].help_text = None
+        widgets = {
+            'first_name': forms.TextInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder':'first name'
+            }),
+            'last_name': forms.TextInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'last name'
+            }),
+            'contact': forms.TextInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'contact'
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'email'
+            }),
+        }
 
 class ProfileModelForm(forms.ModelForm):
     class Meta:
         model = ProfileModel
-        fields = ['profile_picture','religion','place_of_birth','marital_status',
+        fields = ['speciality','profile_picture','religion','place_of_birth','marital_status',
                   'nationality','occupation','region','address','kin_name','kin_address',
                   'relationship','kin_contact','kin_email']
+        widgets = {
+            'speciality': forms.Select(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+            }),
+            'profile_picture': forms.FileInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder':'Profile Picture'
+            }),
+            'religion': forms.Select(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'religion'
+            }),
+            'place_of_birth': forms.TextInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'Place Of Birth'
+            }),
+            'marital_status': forms.Select(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]'
+            }),
+            'nationality': forms.TextInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'nationality'
+            }),
+            'occupation': forms.TextInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'occupation'
+            }),
+            'region': forms.Select(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'region'
+            }),
+            'occupation': forms.TextInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'occupation'
+            }),
+            'address': forms.TextInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'address'
+            }),
+            'kin_name': forms.TextInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'kin Name'
+            }),
+            'kin_address': forms.TextInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'Kin Address'
+            }),
+            'relationship': forms.TextInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'Relationship'
+            }),
+            'kin_contact': forms.TextInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'Kin Contact'
+            }),
+            'kin_email': forms.EmailInput(attrs={
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-[90%]',
+                'placeholder': 'Kin Email'
+            }),
+        }
         
 class BookPatientForm(forms.ModelForm):
     class Meta:
@@ -126,22 +199,22 @@ class BookPatientForm(forms.ModelForm):
         fields = ['user','temperature','blood_pressure','triage','comments']
         widgets = {
             'patient': forms.Select(attrs={
-                'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
                 # 'placeholder':'patient_id'
             }),
             'temperature': forms.TextInput(attrs={
-                'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
                 'placeholder': 'Temperature'
             }),
             'blood_pressure': forms.TextInput(attrs={
-                'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
                 'placeholder': 'Blood Pressure'
             }),
             'triage': forms.Select(attrs={
-                'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full'
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full'
             }),
             'comments': forms.Textarea(attrs={
-                'class': 'bg-slate-200 p-2 border border-black rounded-lg w-full',
+                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
                 'placeholder': 'Comments'
             }),
         }

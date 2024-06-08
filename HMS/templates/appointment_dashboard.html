@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Appointment dashboard
+{% endblock title %}
+
+{% block content %}
+  
+    <!-- RIGHT SIDE -->
+    <div class="main_body transition-all duration-500 pb-8 md:w-4/5 w-full sm:ml-auto min-h-screen bg-slate-400">
+
+        <div class="py-4 ml-10">
+          <h1 class="font-bold text-md sm:text-xl text-slate-900">Bookings</h1>
+          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a href="{% url 'appointment_dashboard' %}">Book Appointment</a></span></h2>
+        </div>
+
+        <div class="text-xs sm:text-sm mt-4 mx-2 sm:mx-8 h-full pb-4 bg-white shadow-lg rounded-t-lg">
+
+          <!-- Form Title -->
+          <div class="bg-slate-700 w-full py-2 px-8 rounded-t-lg">
+            <h1 class="text-white font-bold text-lg">Book</h1>
+          </div>
+          <!-- End Form Title -->
+
+          <!-- Speciality -->
+          <div class="px-2 sm:px-4 lg:px-8 py-4">
+            <form method="GET">
+              <label for="speciality" class="text-slate-900 font-bold lg:mr-8">Speciality :</label>
+              <select name="speciality" class="w-[40%] border bg-slate-200 rounded-lg p-2 border-black">
+                <option value="option1">Select One </option>
+                <option value="Pathology">Pathology</option>
+                <option value="Cardiology">Cardiology</option>
+                <option value="Cardithoracy">Cardithoracy</option>
+                <option value="Gynaecology">Gynaecology</option>
+                <option value="Pediatric">Pediatric</option>
+                <option value="Opthometry">Opthometry</option>
+                <option value="Neurology">Neurology</option>
+                <option value="Neurosurgeon">Neurosurgeon</option>
+                <option value="Nephrology">Nephrology</option>
+                <option value="Opthalmology">Opthalmology</option>
+                <option value="Physician Speciality">Physician Speciality</option>
+                <option value="Family Medicine">Family Medicine</option>
+                <option value="Orthopedics">Orthopedics</option>
+              </select>  
+              <div class="flex my-4 justify-center w-1/2">
+                <button type="submit" class="sm:text-sm bg-blue-600 py-2 px-8 rounded-lg text-white font-semibold">
+                  Filter
+                </button>
+              </div>
+            </form>
+        </div>
+        <!-- End Speciality -->
+        </div>
+
+        <div class="text-sm mb-16 md:mb-4 mx-2 sm:mx-8 h-full px-8 py-4 bg-white shadow-lg rounded-b-lg">
+
+          <div class="grid xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+            {% for doctor in doctors  %}
+              
+            <a href="{% url 'book_appointment' %}">
+              <div class="flex flex-col items-center justify-center">
+                <div class="bg-white text-center w-32 sm:w-40 rounded-xl shadow-xl my-4">
+                  <img src="{{doctor.profilemodel.profile_picture.url}}" alt="" class="h-30 w-32 sm:h-40 sm:w-40 rounded-t-xl">
+                  <div class="py-4">
+                    <h1 class="font-bold">Dr. {{doctor.full_name}} </h1>
+                    <h1> {{doctor.profilemodel.speciality}} </h1>
+                  </div>
+                </div>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+
+        </div>
+
+    </div>
+          
+    <!-- END RIGHT SIDE -->
+{% endblock content %}

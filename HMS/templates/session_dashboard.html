@@ -28,13 +28,13 @@
           >
             SCHEDULED
           </button>
-          <a href="{% url 'book_appointment' request.user.profile_id %}">
-            <button
-              class="rounded bg-slate-900 text-xs sm:text-sm md:text-md text-white px-4 py-1 uppercase"
-            >
+          {% if not request.user.is_staff %}
+          <a href="{% url 'appointment_dashboard' %}">
+            <button class="rounded bg-slate-900 text-xs sm:text-sm md:text-md text-white px-4 py-1 uppercase">
               BOOK
             </button>
           </a>
+          {% endif %}
         </div>
 
         <div

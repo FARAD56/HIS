@@ -8,194 +8,198 @@
 {% block content %}
   
     <!-- RIGHT SIDE -->
-    <div class="main_body transition-all duration-500 pb-8 md:w-4/5 w-full sm:ml-auto min-h-screen bg-slate-400">
+    <div class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto h-auto bg-slate-200">
+      
+      <!-- Header -->
+      <div class="bg-slate-400 h-auto sm:min-h-screen pb-10 sm:pb-0">
 
         <div class="py-4 ml-10">
           <h1 class="font-bold text-md sm:text-xl text-slate-900">Bookings</h1>
-          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="dashboard.html">Home</a> | <span><a href="book_appointment.html">Book Appointment</a></span></h2>
+          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="dashboard.html">Home</a> | <span><a href="book_appointment2.html">Doctor Availability</a></span></h2>
         </div>
 
-        <div class="text-xs sm:text-sm mt-4 mx-2 sm:mx-8 h-full pb-4 bg-white shadow-lg rounded-t-lg">
-
-          <!-- Form Title -->
-          <div class="bg-slate-700 w-full py-2 px-8 rounded-t-lg">
-            <h1 class="text-white font-bold text-lg">Book</h1>
+        <!-- Header Profile -->
+        <div class="h-[20%] bg-gray-100 mb-8 flex justify-center mx-4 sm:mx-8 md:mx-10 lg:mx-16  rounded-lg">
+          <div class="flex text-sm sm:text-lg p-5 text-slate-900 font-bold">
+            <div class="flex justify-center" >
+              <img src="../images/prof0.jpg" alt="" class="rounded-[100%] w-[80px] h-[80px] ">
+            </div>
+            <div class=" text-gray-800 mx-3 flex justify-between items-center">
+              <div class="text-xs xs:text-sm sm:text-[16px]">
+                <h1>Name : Dr. John Brown</h1>
+                <h1>Speciality : Optician</h1>
+                <h1>Hospital : Korle bu</h1>
+              </div>
+            </div>
+            
           </div>
-          <!-- End Form Title -->
+        </div>
+        <!-- End Header Profile -->
 
-          <!-- Speciality -->
-
-          <div class="px-2 sm:px-4 lg:px-8 py-4">
-              <label for="" class="text-slate-900 font-bold lg:mr-8">Speciality :</label>
-              <select class="w-[70%] border bg-slate-200 rounded-lg p-2 border-black">
-                <option value="option1">Select One </option>
-                <option value="option2">Pathology</option>
-                <option value="option2">Cardiology</option>
-                <option value="option3">Cardithoracy</option>
-                <option value="option3">Gynaecology</option>
-                <option value="option3">Pediatric</option>
-                <option value="option3">Opthometry</option>
-                <option value="option3">Neurology</option>
-                <option value="option3">Neurosurgeon</option>
-                <option value="option3">Nephrology</option>
-                <option value="option3">Opthalmology</option>
-                <option value="option3">Physician Speciality</option>
-                <option value="option3">Family Medicine</option>
-                <option value="option3">Orthopedics</option>
-              </select>          
-          </div>
-          <!-- End Speciality -->
-
-          <div class="flex justify-center my-4">
-            <button class="sm:text-sm bg-blue-600 py-2 px-8 rounded-lg text-white font-semibold">
-              Search
+        <div class="mx-4 sm:mx-8 md:mx-10 lg:mx-16 pb-10">
+          <div class="flex justify-between my-6 ">
+            <button class="rounded bg-slate-900 px-4 py-1 uppercase text-white">
+              Filter
             </button>
-          </div>
+          </div> 
+
+        <div class="hover:shadow-2xl text-[11px] sm:text-sm my-4 px-4 py-[10px] sm:px-6 bg-white shadow-lg rounded-lg">
+
+            <div class="flex items-center justify-between my-2">
+              <div>
+                <h1 class="uppercase font-bold">Date</h1>
+                <p class="">18/03/2024</p>
+              </div>
+    
+              <div class="">
+                <h1 class="uppercase font-bold">Day</h1>
+                <p class="">Monday</p>
+              </div>
+    
+              <div class="hidden xxs:block">
+                <h1 class="uppercase font-bold">Time</h1>
+                <p class="">2:00pm</p>
+              </div>
+
+              <div class="hidden xxs:block">
+                <h1 class="uppercase font-bold">Type</h1>
+                <p class="">In-person</p>
+              </div>
+    
+              <a href="session_dashboard.html">
+                <button class="rounded bg-blue-700 px-2 sm:px-4 py-1 text-xs sm:text-sm uppercase text-white">
+                  BOOK
+                </button>
+              </a>
+
+            </div>
+
+            <div>
+              <input type="text" name="" id="" placeholder="Add a comment" class="border border-slate-600 rounded-lg p-2 w-3/5">
+            </div>
 
         </div>
+  
+         <div class="hover:shadow-2xl text-[11px] sm:text-sm my-4 px-4 py-[10px] sm:px-6 bg-white shadow-lg rounded-lg">
 
-        <div class="text-sm mb-16 md:mb-4 mx-2 sm:mx-8 h-full px-8 py-4 bg-white shadow-lg rounded-b-lg">
-
-          <div class="grid xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
-
-            <a href="book_appointment2.html">
-              <div class="flex flex-col items-center justify-center">
-                <div class="bg-white text-center w-32 sm:w-40 rounded-xl shadow-xl my-4">
-                  <img src="../images/prof0.jpg" alt="" class="h-30 w-32 sm:h-40 sm:w-40 rounded-t-xl">
-                  <div class="py-4">
-                    <h1 class="font-bold">Dr. John Brown</h1>
-                    <h1>Optician</h1>
-                  </div>
-                </div>
+            <div class="flex items-center justify-between my-2">
+              <div>
+                <h1 class="uppercase font-bold">Date</h1>
+                <p class="">18/03/2024</p>
               </div>
-            </a>
-
-            <a href="book_appointment2.html">
-              <div class="flex flex-col items-center justify-center">
-                <div class="bg-white text-center w-32 sm:w-40 rounded-xl shadow-xl my-4">
-                  <img src="../images/prof0.jpg" alt="" class="h-30 w-32 sm:h-40 sm:w-40 rounded-t-xl">
-                  <div class="py-4">
-                    <h1 class="font-bold">Dr. John Brown</h1>
-                    <h1>Optician</h1>
-                  </div>
-                </div>
+    
+              <div class="">
+                <h1 class="uppercase font-bold">Day</h1>
+                <p class="">Monday</p>
               </div>
-            </a>
-
-            <a href="book_appointment2.html">
-              <div class="flex flex-col items-center justify-center">
-                <div class="bg-white text-center w-32 sm:w-40 rounded-xl shadow-xl my-4">
-                  <img src="../images/prof0.jpg" alt="" class="h-30 w-32 sm:h-40 sm:w-40 rounded-t-xl">
-                  <div class="py-4">
-                    <h1 class="font-bold">Dr. John Brown</h1>
-                    <h1>Optician</h1>
-                  </div>
-                </div>
+    
+              <div class="hidden xxs:block">
+                <h1 class="uppercase font-bold">Time</h1>
+                <p class="">2:00pm</p>
               </div>
-            </a>
 
-            <a href="book_appointment2.html">
-              <div class="flex flex-col items-center justify-center">
-                <div class="bg-white text-center w-32 sm:w-40 rounded-xl shadow-xl my-4">
-                  <img src="../images/prof0.jpg" alt="" class="h-30 w-32 sm:h-40 sm:w-40 rounded-t-xl">
-                  <div class="py-4">
-                    <h1 class="font-bold">Dr. John Brown</h1>
-                    <h1>Optician</h1>
-                  </div>
-                </div>
+              <div class="hidden xxs:block">
+                <h1 class="uppercase font-bold">Type</h1>
+                <p class="">Virtual</p>
               </div>
-            </a>
+    
+              <a href="session_dashboard.html">
+                <button class="rounded bg-blue-700 px-2 sm:px-4 py-1 text-xs sm:text-sm uppercase text-white">
+                  BOOK
+                </button>
+              </a>
 
-            <a href="book_appointment2.html">
-              <div class="flex flex-col items-center justify-center">
-                <div class="bg-white text-center w-32 sm:w-40 rounded-xl shadow-xl my-4">
-                  <img src="../images/prof0.jpg" alt="" class="h-30 w-32 sm:h-40 sm:w-40 rounded-t-xl">
-                  <div class="py-4">
-                    <h1 class="font-bold">Dr. John Brown</h1>
-                    <h1>Optician</h1>
-                  </div>
-                </div>
-              </div>
-            </a>
+            </div>
 
-            <a href="book_appointment2.html">
-              <div class="flex flex-col items-center justify-center">
-                <div class="bg-white text-center w-32 sm:w-40 rounded-xl shadow-xl my-4">
-                  <img src="../images/prof0.jpg" alt="" class="h-30 w-32 sm:h-40 sm:w-40 rounded-t-xl">
-                  <div class="py-4">
-                    <h1 class="font-bold">Dr. John Brown</h1>
-                    <h1>Optician</h1>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a href="book_appointment2.html">
-              <div class="flex flex-col items-center justify-center">
-                <div class="bg-white text-center w-32 sm:w-40 rounded-xl shadow-xl my-4">
-                  <img src="../images/prof0.jpg" alt="" class="h-30 w-32 sm:h-40 sm:w-40 rounded-t-xl">
-                  <div class="py-4">
-                    <h1 class="font-bold">Dr. John Brown</h1>
-                    <h1>Optician</h1>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a href="book_appointment2.html">
-              <div class="flex flex-col items-center justify-center">
-                <div class="bg-white text-center w-32 sm:w-40 rounded-xl shadow-xl my-4">
-                  <img src="../images/prof0.jpg" alt="" class="h-30 w-32 sm:h-40 sm:w-40 rounded-t-xl">
-                  <div class="py-4">
-                    <h1 class="font-bold">Dr. John Brown</h1>
-                    <h1>Optician</h1>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a href="book_appointment2.html">
-              <div class="flex flex-col items-center justify-center">
-                <div class="bg-white text-center w-32 sm:w-40 rounded-xl shadow-xl my-4">
-                  <img src="../images/prof0.jpg" alt="" class="h-30 w-32 sm:h-40 sm:w-40 rounded-t-xl">
-                  <div class="py-4">
-                    <h1 class="font-bold">Dr. John Brown</h1>
-                    <h1>Optician</h1>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a href="book_appointment2.html">
-              <div class="flex flex-col items-center justify-center">
-                <div class="bg-white text-center w-32 sm:w-40 rounded-xl shadow-xl my-4">
-                  <img src="../images/prof0.jpg" alt="" class="h-30 w-32 sm:h-40 sm:w-40 rounded-t-xl">
-                  <div class="py-4">
-                    <h1 class="font-bold">Dr. John Brown</h1>
-                    <h1>Optician</h1>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <a href="book_appointment2.html">
-              <div class="flex flex-col items-center justify-center">
-                <div class="bg-white text-center w-32 sm:w-40 rounded-xl shadow-xl my-4">
-                  <img src="../images/prof0.jpg" alt="" class="h-30 w-32 sm:h-40 sm:w-40 rounded-t-xl">
-                  <div class="py-4">
-                    <h1 class="font-bold">Dr. John Brown</h1>
-                    <h1>Optician</h1>
-                  </div>
-                </div>
-              </div>
-            </a>
-
+            <div>
+              <input type="text" name="" id="" placeholder="Add a comment" class="border border-slate-600 rounded-lg p-2 w-3/5">
+            </div>
 
           </div>
+  
+         <div class="hover:shadow-2xl text-[11px] sm:text-sm my-4 px-4 py-[10px] sm:px-6 bg-white shadow-lg rounded-lg">
 
+            <div class="flex items-center justify-between my-2">
+              <div>
+                <h1 class="uppercase font-bold">Date</h1>
+                <p class="">18/03/2024</p>
+              </div>
+    
+              <div class="">
+                <h1 class="uppercase font-bold">Day</h1>
+                <p class="">Monday</p>
+              </div>
+    
+              <div class="hidden xxs:block">
+                <h1 class="uppercase font-bold">Time</h1>
+                <p class="">2:00pm</p>
+              </div>
+
+              <div class="hidden xxs:block">
+                <h1 class="uppercase font-bold">Type</h1>
+                <p class="">Virtual</p>
+              </div>
+    
+              <a href="session_dashboard.html">
+                <button class="rounded bg-blue-700 px-2 sm:px-4 py-1 text-xs sm:text-sm uppercase text-white">
+                  BOOK
+                </button>
+              </a>
+
+            </div>
+
+            <div>
+              <input type="text" name="" id="" placeholder="Add a comment" class="border border-slate-600 rounded-lg p-2 w-3/5">
+            </div>
+
+          </div>
+  
+         <div class="hover:shadow-2xl text-[11px] sm:text-sm my-4 px-4 py-[10px] sm:px-6 bg-white shadow-lg rounded-lg">
+
+            <div class="flex items-center justify-between my-2">
+              <div>
+                <h1 class="uppercase font-bold">Date</h1>
+                <p class="">18/03/2024</p>
+              </div>
+    
+              <div class="">
+                <h1 class="uppercase font-bold">Day</h1>
+                <p class="">Monday</p>
+              </div>
+    
+              <div class="hidden xxs:block">
+                <h1 class="uppercase font-bold">Time</h1>
+                <p class="">2:00pm</p>
+              </div>
+
+              <div class="hidden xxs:block">
+                <h1 class="uppercase font-bold">Type</h1>
+                <p class="">In-person</p>
+              </div>
+    
+              <a href="session_dashboard.html">
+                <button class="rounded bg-blue-700 px-2 sm:px-4 py-1 text-xs sm:text-sm uppercase text-white">
+                  BOOK
+                </button>
+              </a>
+
+            </div>
+
+            <div>
+              <input type="text" name="" id="" placeholder="Add a comment" class="border border-slate-600 rounded-lg p-2 w-3/5">
+            </div>
+
+          </div>
+  
+  
+          
         </div>
+
+      </div> 
+      <!-- End Header -->
 
     </div>
+    <!-- END RIGHT SIDE -->
           
     <!-- END RIGHT SIDE -->
 {% endblock content %}

@@ -6,9 +6,7 @@
   <meta charset="UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}
-    
-  {% endblock title %}</title>
+  <title>{% block title %} {% endblock title %}</title>
   {% compress css  %}
   <link href="{% static 'src/output.css' %}" rel="stylesheet">
   <link href="{% static 'css/patient_list.css' %}" rel="stylesheet">
@@ -82,7 +80,7 @@
           <ul class="">
             <div class="flex hover:bg-gray-200 py-1">
               <img src="{% static 'images/icons8-test-account-48.png' %}" alt="" class="w-5 h-5 mx-2">
-              <li><a href="{% url 'patient_profile' request.user.profile_id %}" class="block text-sm">My Profile</a></li>
+              <li><a href="{% url 'user_profile' request.user.profile_id %}" class="block text-sm">My Profile</a></li>
             </div>
             <hr>
             <div class="flex hover:bg-gray-200 py-1">
@@ -194,7 +192,6 @@
     <script src="{% static 'js/dashboard_tabs.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
-<script src="./js/script.js"></script>
 </html>

@@ -53,8 +53,11 @@ def user_logout(request):
 
 @login_required
 def dashboard_view(request):
-    
-    return render(request,'dashboard.html')
+    doctors = CustomUser.objects.filter(is_staff=True)
+    context = {
+        'doctors':doctors,
+    }
+    return render(request,'dashboard.html',context)
 
 @login_required
 @staff_member_required
@@ -89,7 +92,7 @@ def patient_details(request, profile_id):
     return render(request, 'patient.html', {'patient': patient})
 
 @login_required
-def patient_profile(request,profile_id):
+def user_profile(request,profile_id):
     patient = get_object_or_404(CustomUser, profile_id=profile_id)
     
     # Ensure the user has a ProfileModel
@@ -98,13 +101,18 @@ def patient_profile(request,profile_id):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST,instance=patient)
         p_form = ProfileModelForm(request.POST,request.FILES or None,instance=profile)
+        if not request.user.is_staff:
+            # Ensure staff-only field is not validated for non-staff
+            p_form.fields.pop('speciality', None)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            return redirect('patient_profile',profile_id=profile_id)
+            return redirect('user_profile',profile_id=profile_id)
     else:
         u_form = UserUpdateForm(instance=patient)
         p_form = ProfileModelForm(instance=profile)
+        if not request.user.is_staff:
+            p_form.fields.pop('speciality')
     
     context = {
         'u_form': u_form,
@@ -113,7 +121,7 @@ def patient_profile(request,profile_id):
         
     }
 
-    return render(request, 'patient_profile.html', context)
+    return render(request, 'user_profile.html', context)
 
 @login_required
 def patient_attendance(request,profile_id):
@@ -135,6 +143,24 @@ def medical_record(request,profile_id):
     return render(request,'medical_records.html',context)
 
 @login_required
+def appointment_dashboard(request):
+    doctors = CustomUser.objects.filter(is_staff=True)
+    if request.method == 'GET':
+        speciality = request.GET.get('speciality')
+        print(f"Selected speciality: {speciality}")
+        if speciality and speciality != 'option1':  # Assuming 'option1' is the "Select One" option
+            doctors = doctors.filter(profilemodel__speciality__iexact=speciality)
+            print(f"Filtered doctors: {doctors}")
+
+    context = {'doctors':doctors}
+    return render(request,'appointment_dashboard.html',context)
+
+def book_appointment(request):
+    context = {
+    }
+    return render(request,'book_appointment.html',context)
+
+@login_required
 def session_dashboard(request,profile_id):
     patient = get_object_or_404(CustomUser, profile_id=profile_id)
     # 
@@ -145,9 +171,7 @@ def chats(request,profile_id):
     
     return render(request,'chats.html')
 
-@login_required
-def book_appointment(request,profile_id):
-    return render(request,'book_appointment.html')
+
 
 @login_required
 def medication(request,profile_id):

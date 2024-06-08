@@ -268,43 +268,22 @@
                 <img src="{% static 'images/icons8-curved-arrow-48.png' %}" alt="" class="w-3 h-3">
               </a>
             </div>
-
             <div class="grid grid-cols-4 text-center my-2 font-bold">
+              {% for doctor in doctors  %}
               <div class="flex flex-col items-center">
-                <img src="{% static 'images/prof2.jpg' %}" alt="" class="rounded-full w-10 h-10">
-                <h1 class="text-[7px] xs:text-[9px] font-bold">Nathan Yu</h1>
+                <img src="{{doctor.profilemodel.profile_picture.url}}" alt="" class="rounded-full w-10 h-10">
+                <h1 class="text-[7px] xs:text-[9px] font-bold"> {{doctor.full_name}} </h1>
               </div>
-              <div class="flex flex-col items-center">
-                <img src="{% static 'images/prof3.jpg' %}" alt="" class="rounded-full w-10 h-10">
-                <h1 class="text-[7px] xs:text-[9px] font-bold">Abu Lukman</h1>
-              </div>
-              <div class="flex flex-col items-center">
-                <img src="{% static 'images/prof4.jpg' %}" alt="" class="rounded-full w-10 h-10">
-                <h1 class="text-[7px] xs:text-[9px] font-bold">Farad Wells</h1>
-              </div>
-              <div class="flex flex-col items-center">
-                <img src="{% static 'images/prof5.jpg' %}" alt="" class="rounded-full w-10 h-10">
-                <h1 class="text-[7px] xs:text-[9px] font-bold">Fafa</h1>
-              </div>
+              {% endfor %}
             </div>
 
           </div>
 
         </div>
-        
       </div>
-
-
-
       </div>
-      
-
-
-      
-
     </div>
     <!-- END RIGHT SIDE -->
-
   </div>
 
 {% endblock content %}
