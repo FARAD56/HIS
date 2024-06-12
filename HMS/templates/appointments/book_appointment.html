@@ -1,0 +1,104 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block title %} Book Appointment{% endblock title %} 
+{% block content %}
+
+<!-- RIGHT SIDE -->
+<div
+  class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto h-auto bg-slate-200"
+>
+  <!-- Header -->
+  <div class="bg-slate-400 h-auto sm:min-h-screen pb-10 sm:pb-0">
+    <div class="py-4 ml-10">
+      <h1 class="font-bold text-md sm:text-xl text-slate-900">Bookings</h1>
+      <h2 class="font-bold text-sm sm:text-lg text-slate-900">
+        <a href="{% url 'dashboard' %}">Home</a> |
+        <span
+          ><a href="{% url 'book_appointment' doctor.profile_id %}"
+            >Doctor Availability</a
+          ></span
+        >
+      </h2>
+    </div>
+
+    <!-- Header Profile -->
+    <div
+      class="h-[20%] bg-gray-100 mb-8 flex justify-center mx-4 sm:mx-8 md:mx-10 lg:mx-16 rounded-lg"
+    >
+      <div class="flex text-sm sm:text-lg p-5 text-slate-900 font-bold">
+        <div class="flex justify-center">
+          <img
+            src="{{doctor.profilemodel.profile_picture.url}}"
+            alt=""
+            class="rounded-[100%] w-[80px] h-[80px]"
+          />
+        </div>
+        <div class="text-gray-800 mx-3 flex justify-between items-center">
+          <div class="text-xs xs:text-sm sm:text-[16px]">
+            <h1>Name : Dr. {{doctor.full_name}}</h1>
+            <h1>Speciality : {{doctor.profilemodel.speciality}}</h1>
+            <!-- <h1>Hospital : Korle bu</h1> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Header Profile -->
+
+    <div class="mx-4 sm:mx-8 md:mx-10 lg:mx-16 pb-10">
+      <div class="flex justify-between my-6">
+        <button class="rounded bg-slate-900 px-4 py-1 uppercase text-white">
+          Doctor Availabilities
+        </button>
+      </div>
+      {% for item in availabilities %}
+      <div
+        class="hover:shadow-2xl text-[11px] sm:text-sm my-4 px-4 py-[10px] sm:px-6 bg-white shadow-lg rounded-lg"
+      >
+        <div class="flex items-center justify-between my-2">
+          <div>
+            <h1 class="uppercase font-bold">Date</h1>
+            <p class=""> {{item.date}} </p>
+          </div>
+
+          <div class="">
+            <h1 class="uppercase font-bold">Day</h1>
+            <p class=""> {{item.day_of_week}} </p>
+          </div>
+
+          <div class="hidden xxs:block">
+            <h1 class="uppercase font-bold">Time</h1>
+            <p class=""> {{item.time}} </p>
+          </div>
+
+          <div class="hidden xxs:block">
+            <h1 class="uppercase font-bold">Type</h1>
+            <p class=""> {{item.type}} </p>
+          </div>
+
+          <a href="{% url 'session_dashboard' doctor.profile_id %}">
+            <button
+              type="submit"
+              class="rounded bg-blue-700 px-2 sm:px-4 py-1 text-xs sm:text-sm uppercase text-white">
+              BOOK
+            </button>
+          </a>
+        </div>
+
+        <div>
+          {% csrf_token %}
+          <form method="POST">
+            {% for field in form %}
+              {{field}}
+            {% endfor %}
+          </form>
+        </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <!-- End Header -->
+</div>
+<!-- END RIGHT SIDE -->
+
+<!-- END RIGHT SIDE -->
+{% endblock content %}

@@ -1,9 +1,6 @@
 from django import forms
-from .models import CustomUser,ProfileModel,BookPatient
+from .models import CustomUser,ProfileModel
 from django.contrib.auth.hashers import make_password
-
-
-
 
 class CustomSignUpForm(forms.Form):
     SEX_CHOICES = (('Male', 'Male'), ('Female', 'Female'))
@@ -33,6 +30,7 @@ class CustomSignUpForm(forms.Form):
         widget=forms.DateInput(attrs={
         'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
         'placeholder': 'Date of Birth',
+        'type': 'date',
     }),
     
     input_formats=['%d/%m/%Y', '%d-%m-%Y'],
@@ -91,7 +89,6 @@ class CustomSignUpForm(forms.Form):
         return user
     
 
-
 class CustomLoginForm(forms.Form):
     email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={
          'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
@@ -102,6 +99,7 @@ class CustomLoginForm(forms.Form):
         'placeholder': 'PASSWORD',
     }))
     
+
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = CustomUser
@@ -125,6 +123,7 @@ class UserUpdateForm(forms.ModelForm):
                 'placeholder': 'email'
             }),
         }
+
 
 class ProfileModelForm(forms.ModelForm):
     class Meta:
@@ -193,31 +192,3 @@ class ProfileModelForm(forms.ModelForm):
             }),
         }
         
-class BookPatientForm(forms.ModelForm):
-    class Meta:
-        model = BookPatient
-        fields = ['user','temperature','blood_pressure','triage','comments']
-        widgets = {
-            'patient': forms.Select(attrs={
-                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
-                # 'placeholder':'patient_id'
-            }),
-            'temperature': forms.TextInput(attrs={
-                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
-                'placeholder': 'Temperature'
-            }),
-            'blood_pressure': forms.TextInput(attrs={
-                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
-                'placeholder': 'Blood Pressure'
-            }),
-            'triage': forms.Select(attrs={
-                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full'
-            }),
-            'comments': forms.Textarea(attrs={
-                'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
-                'placeholder': 'Comments'
-            }),
-        }
-
-
-

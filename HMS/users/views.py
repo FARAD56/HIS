@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from .forms import CustomSignUpForm,CustomLoginForm,UserUpdateForm,ProfileModelForm,BookPatientForm
+from .forms import *
 from django.contrib import messages
 from django.contrib.auth import authenticate,logout,login
-from .models import CustomUser,ProfileModel,BookPatient
+from .models import CustomUser,ProfileModel
 from django.contrib.auth.decorators import login_required
-from django.contrib.admin.views.decorators import staff_member_required
-
-
+from appointments.forms import AvailabilityForm
 
 def register(request):
     if request.method == "POST":
@@ -21,7 +19,7 @@ def register(request):
         'form': form,
     }
 
-    return render(request, "register.html", context)
+    return render(request, "users/register.html", context)
 
 
 def login_view(request):
@@ -44,52 +42,13 @@ def login_view(request):
         'form':form,
     }
 
-    return render(request,'login.html',context)
+    return render(request,'users/login.html',context)
 
 @login_required
 def user_logout(request):
     logout(request)
     return redirect('login')
 
-@login_required
-def dashboard_view(request):
-    doctors = CustomUser.objects.filter(is_staff=True)
-    context = {
-        'doctors':doctors,
-    }
-    return render(request,'dashboard.html',context)
-
-@login_required
-@staff_member_required
-def patient_list(request):
-    patients = CustomUser.objects.filter(is_staff=False)
-    
-    context = {
-        'patients':patients,
-    }
-    return render(request, 'patient_list.html',context )
-
-@login_required
-@staff_member_required
-def book_patient(request):
-    if request.method == 'POST':
-        book_form = BookPatientForm(request.POST)
-        if book_form.is_valid():
-            book_form.save()
-            return redirect('patient_list')
-    else:
-        book_form = BookPatientForm()
-    
-    context = {
-        'book_form':book_form
-    }
-    return render(request,'book_patient.html',context)
-
-
-@login_required
-def patient_details(request, profile_id):
-    patient = get_object_or_404(CustomUser, profile_id=profile_id)
-    return render(request, 'patient.html', {'patient': patient})
 
 @login_required
 def user_profile(request,profile_id):
@@ -101,16 +60,19 @@ def user_profile(request,profile_id):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST,instance=patient)
         p_form = ProfileModelForm(request.POST,request.FILES or None,instance=profile)
+        availability_form = AvailabilityForm(request.POST)
         if not request.user.is_staff:
             # Ensure staff-only field is not validated for non-staff
             p_form.fields.pop('speciality', None)
-        if u_form.is_valid() and p_form.is_valid():
+        if u_form.is_valid() and p_form.is_valid() and availability_form.is_valid():
             u_form.save()
             p_form.save()
+            availability_form.save()
             return redirect('user_profile',profile_id=profile_id)
     else:
         u_form = UserUpdateForm(instance=patient)
         p_form = ProfileModelForm(instance=profile)
+        availability_form = AvailabilityForm()
         if not request.user.is_staff:
             p_form.fields.pop('speciality')
     
@@ -118,61 +80,16 @@ def user_profile(request,profile_id):
         'u_form': u_form,
         'p_form':p_form,
         'patient': patient,
+        'availability_form':availability_form,
         
     }
 
-    return render(request, 'user_profile.html', context)
+    return render(request, 'users/user_profile.html', context)
 
-@login_required
-def patient_attendance(request,profile_id):
-    patient = get_object_or_404(CustomUser, profile_id=profile_id)
-    context = {
-        'patient': patient
-    }
-
-    return render(request, 'patient_attendance_details.html', context)
-
-@login_required
-@staff_member_required
-def medical_record(request,profile_id):
-    patient = get_object_or_404(CustomUser, profile_id=profile_id)
-    context = {
-        'patient': patient
-    }
-
-    return render(request,'medical_records.html',context)
-
-@login_required
-def appointment_dashboard(request):
-    doctors = CustomUser.objects.filter(is_staff=True)
-    if request.method == 'GET':
-        speciality = request.GET.get('speciality')
-        print(f"Selected speciality: {speciality}")
-        if speciality and speciality != 'option1':  # Assuming 'option1' is the "Select One" option
-            doctors = doctors.filter(profilemodel__speciality__iexact=speciality)
-            print(f"Filtered doctors: {doctors}")
-
-    context = {'doctors':doctors}
-    return render(request,'appointment_dashboard.html',context)
-
-def book_appointment(request):
-    context = {
-    }
-    return render(request,'book_appointment.html',context)
-
-@login_required
-def session_dashboard(request,profile_id):
-    patient = get_object_or_404(CustomUser, profile_id=profile_id)
-    # 
-    return render(request,'session_dashboard.html')
 
 @login_required
 def chats(request,profile_id):
     
-    return render(request,'chats.html')
+    return render(request,'chats/chats.html')
 
 
-
-@login_required
-def medication(request,profile_id):
-    return render(request,'medication.html')

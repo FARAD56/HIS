@@ -21,7 +21,8 @@
         <h1 class="font-bold text-5xl text-slate-900">HIS</h1>
       </div>
 
-      <form action="" method="POST">
+      <form  method="POST">
+        {% csrf_token %}
         <div class="flex justify-center">
           <div class="text-xs sm:text-sm mb-16 md:mb-4 mx-2 sm:mx-8 h-full w-[90%] sm:w-3/5 lg:w-[35%] pb-4 bg-white shadow-lg rounded-lg">
   
@@ -30,7 +31,6 @@
               <h1 class="text-slate-700 text-xs sm:text-base text-center font-semibold mt-2 mb-6 px-2">Enter your Email and password to log in</h1>
             <!-- End Form Title -->
   
-            {% csrf_token %}
             {% for field in form  %}
             <!-- <div class="text-lg md:text-sm lg:text-md flex items-center px-4 sm:px-6 justify-between my-4">
               <label class="text-slate-900 font-bold px-10" for="{{ field.id_for_label }}"> {{field.label}} </label>

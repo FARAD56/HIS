@@ -45,8 +45,10 @@
                 <p @click="openTab = 1" :class="{ 'text-blue-700': openTab === 1, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===1, 'text-gray-600': openTab !== 1 }" class="hover:text-blue-700 cursor-pointer font-semibold">Personal</p>
                 <p @click="openTab = 2" :class="{ 'text-blue-700': openTab === 2, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===2, 'text-gray-600': openTab !== 2 }" class="hover:text-blue-700 cursor-pointer font-semibold">Kin</p>
                 <p @click="openTab = 3" :class="{ 'text-blue-700': openTab === 3, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===3, 'text-gray-600': openTab !== 3 }" class="hover:text-blue-700 cursor-pointer font-semibold">Edit Profile</p>
-                <p @click="openTab = 4" :class="{ 'text-blue-700': openTab === 4, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===4, 'text-gray-600': openTab !== 4 }" class="hover:text-blue-700 cursor-pointer font-semibold">Reports</p>
-            </div>
+                {% if request.user.is_staff %}
+                <p @click="openTab = 4" :class="{ 'text-blue-700': openTab === 4, ' rounded border-b-blue-700 p-[2px] border-b-4 border-t-2 border-x-2':openTab===4, 'text-gray-600': openTab !== 4 }" class="hover:text-blue-700 cursor-pointer font-semibold">Availability</p>
+                {% endif %}
+              </div>
 
             <hr class="h-[3px] mt-4">
     
@@ -141,10 +143,7 @@
               <div class="space-y-2">
                 <form method="POST" enctype="multipart/form-data">
                   {% csrf_token %}
-                  <!-- {{u_form}}
-                  {{p_form}} -->
                   {% for field in u_form  %}
-                    
                   <div class="flex px-2 md:px-2">
                     <div class="w-[30%] font-semibold"> {{field.label}} </div>
                     <div class="w-[70%] mb-5">{{field}}</div>
@@ -160,16 +159,32 @@
                   <div class="flex items-center justify-center px-4 sm:px-8">
                       <button type="submit" class=" text-base bg-blue-600 px-8 py-3 my-4 rounded-lg text-white font-semibold">
                         Save
-                      </button>
+                     </button>
                   </div>
                 </form>
-                
 
               </div>
             </div>
 
             <div x-show="openTab === 4" class="mt-4">
-              <h1>No reports found</h1>
+              <div class="space-y-2">
+                <form method="POST">
+                  {% csrf_token %}
+                  {% for field in availability_form  %}                      
+                  <div class="flex px-2 md:px-2">
+                    <!-- label -->
+                    <div class="font-semibold mx-10"> {{field.label}} </div>
+                    <div class="mb-5">{{field}}</div>
+                  </div>
+                  {% endfor %}
+                  <div class="flex items-center justify-center px-4 sm:px-8">
+                      <button type="submit" class=" text-base bg-blue-600 px-8 py-3 my-4 rounded-lg text-white font-semibold">
+                        Save
+                      </button>
+                  </div>
+                </form>
+
+              </div>
             </div>
         </div>
           

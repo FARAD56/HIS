@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser,ProfileModel,BookPatient
+from .models import CustomUser,ProfileModel
 
 class CustomUserAdmin(UserAdmin):
     # Ensure you include the custom fields in the list display if needed
@@ -9,6 +9,8 @@ class CustomUserAdmin(UserAdmin):
         (None, {'fields': ('contact', 'dob', 'sex')}),
     )
 
+
+
+
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(ProfileModel)
-admin.site.register(BookPatient)
