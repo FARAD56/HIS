@@ -33,9 +33,9 @@
           <form method="POST">
             {% csrf_token %}
             {% for field in form  %}
-            <!-- <div class="text-xs md:text-sm lg:text-md flex items-center px-4 sm:px-6 justify-between my-4">
+            <div class="text-xs md:text-sm lg:text-md flex items-center px-4 sm:px-6 justify-between my-4">
               <label class="text-slate-900 font-bold px-10" for="{{ field.id_for_label }}"> {{field.label}} </label>
-            </div> -->
+            </div>
             <div class="md:text-sm lg:text-md flex items-center px-4 sm:px-6 justify-between my-4">
               {{ field }}
             </div>
@@ -55,7 +55,7 @@
 
         <!-- Save and Continue -->
         <div class="flex items-center justify-center px-4 sm:px-8">
-          <a href="login.html">
+          <a href="{% url 'login' %}">
             <button type="submit" class=" text-base bg-blue-600 px-8 py-3 my-4 rounded-lg text-white font-semibold">
               Register
             </button>

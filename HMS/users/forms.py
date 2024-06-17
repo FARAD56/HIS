@@ -32,8 +32,6 @@ class CustomSignUpForm(forms.Form):
         'placeholder': 'Date of Birth',
         'type': 'date',
     }),
-    
-    input_formats=['%d/%m/%Y', '%d-%m-%Y'],
     )
     sex = forms.ChoiceField(
         label='Sex',

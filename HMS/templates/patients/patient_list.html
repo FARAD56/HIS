@@ -21,25 +21,25 @@
       <div class="flex space-x-2 sm:space-x-4 justify-center py-2 px-4 md:px-8 ">
         <div @click="openTab = 1" :class="{ 'text-blue-700': openTab === 1, 'opacity-50': openTab !== 1 }" class="hover:text-blue-700 cursor-pointer">
           <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
-            <h5 class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">Critical</h5>
+            <h5 class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">All</h5>
           </div>
         </div>
 
         <div @click="openTab = 2" :class="{ 'text-blue-700': openTab === 2, 'opacity-50': openTab !== 2 }" class="hover:text-blue-700 cursor-pointer">
           <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
-            <h5 class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">Severe</h5>
+            <h5 class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">Normal</h5>
           </div>
         </div>
 
         <div @click="openTab = 3" :class="{ 'text-blue-700': openTab === 3, 'opacity-50': openTab !== 3 }" class="hover:text-blue-700 cursor-pointer">
           <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 sm:p-4 sm:mx-6 items-center">
-            <h5 class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">Normal</h5>
+            <h5 class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">Severe</h5>
           </div>
         </div>
 
         <div @click="openTab = 4" :class="{ 'text-blue-700': openTab === 4, 'opacity-50': openTab !== 4 }" class="hover:text-blue-700 cursor-pointer">
           <div class="space-y-1 mx-auto text-center block rounded-lg bg-white p-2 px-4 sm:px-8 sm:py-4 sm:mx-6 items-center">
-            <h5 class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">All</h5>
+            <h5 class="text-xs sm:text-sm md:text-lg font-bold leading-tight text-neutral-800">Critical</h5>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@
         </a>
       </div>
 
-      <!-- Critical Patients Tab -->
+      <!-- ALL Patients Tab -->
       <div x-show="openTab === 1" class="mt-4">
         <div class="bg-gray-200">
           {% for patient in patients %}
@@ -72,7 +72,13 @@
 
             <div class="items-center">
               <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-red-600 text-transparent">Critical</block>
+              {% if patient.profilemodel.triage == 'CRITICAL' %} 
+                <block class="bg-red-700 text-transparent">aaaaaaa</block>
+              {% elif patient.profilemodel.triage == 'SEVERE' %}
+                <block class="bg-yellow-500 text-transparent">aaaaaaa</block>
+              {% else  %}
+                <block class="bg-green-700 text-transparent">aaaaaaa</block>
+              {% endif %}
             </div>
             <div>
               <a href="{% url 'patient_details' patient.profile_id %}">
@@ -84,86 +90,92 @@
         </div>
       </div>
 
-      <!-- Severe Patients Tab -->
+      <!-- Normal Patients Tab -->
       <div x-show="openTab === 2" class="mt-4">
         <div class="bg-gray-200">
+          {% for normal_patient in normal_patients  %}
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">30049</h1>
-              <p>may</p>
+              <h1 class="uppercase font-bold">{{normal_patient.user.profile_id}}</h1>
+              <p>{{normal_patient.user.date_created|date:"F j, Y, g:i a"}}</p>
             </div>
 
             <div class="hidden xs:block">
               <h1 class="uppercase font-bold">Patient</h1>
-              <p>Awasiu</p>
+              <p>{{normal_patient.user.full_name}}</p>
             </div>
 
             <div class="items-center">
               <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-yellow-400 text-transparent">Severe</block>
+              <block class="bg-green-700 text-transparent">aaaaaaa</block>
             </div>
 
             <div>
-              <a href="#">
+              <a href="{% url 'patient_details' normal_patient.user.profile_id %}">
                 <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
             </div>
           </div>
+          {% endfor %}
         </div>
       </div>
 
-      <!-- Normal Patients Tab -->
+      <!-- Severe Patients Tab -->
       <div x-show="openTab === 3" class="mt-4">
+        {% for severe_patient in severe_patients  %}
         <div class="bg-gray-200">
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">3454</h1>
-              <p>June</p>
+              <h1 class="uppercase font-bold">{{severe_patient.user.profile_id}}</h1>
+              <p>{{severe_patient.user.date_created|date:"F j, Y, g:i a"}}</p>
             </div>
 
             <div class="hidden xs:block">
               <h1 class="uppercase font-bold">Patient</h1>
-              <p>Abubakari</p>
+              <p>{{severe_patient.user.full_name}}</p>
             </div>
 
             <div class="items-center">
               <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-green-500 text-transparent">Normal</block>
+              <block class="bg-yellow-500 text-transparent">aaaaaaa</block>
             </div>
 
             <div>
-              <a href="#">
+              <a href="{% url 'patient_details' severe_patient.user.profile_id %}">
                 <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
             </div>
           </div>
+          {% endfor %}
         </div>
       </div>
 
-      <!-- All Patients Tab -->
+      <!-- Critical Patients Tab -->
       <div x-show="openTab === 4" class="mt-4">
+        {% for critical_patient in critical_patients %}
         <div class="bg-gray-200">
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">1234</h1>
-              <p>May 12</p>
+              <h1 class="uppercase font-bold">{{critical_patient.user.profile_id}}</h1>
+              <p>{{critical_patient.user.date_created|date:"F j, Y, g:i a"}}</p>
             </div>
 
             <div class="hidden xs:block">
               <h1 class="uppercase font-bold">Patient</h1>
-              <p>Farad</p>
+              <p>{{critical_patient.user.full_name}}</p>
             </div>
 
             <div class="items-center">
               <h1 class="uppercase font-bold">TRIAGE</h1>
-              <block class="bg-blue-700 text-transparent">aaaaa</block>
+              <block class="bg-red-700 text-transparent">aaaaaaa</block>
             </div>
 
             <div>
-              <a href="#">
+              <a href="{% url 'patient_details' critical_patient.user.profile_id %}">
                 <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
             </div>
+            {% endfor %}
           </div>
         </div>
       </div>

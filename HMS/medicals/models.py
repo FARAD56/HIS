@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+
 # class Diagnosis(models.Model):
 #     class Type(models.TextChoices):
 #         CHRONIC = "CHRONIC"

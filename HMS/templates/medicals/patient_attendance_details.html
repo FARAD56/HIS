@@ -29,17 +29,23 @@
 
           <div class="flex text-sm font-bold space-x-2">
               <h1>Temperature : </h1>
-              <h1> 33 degrees</h1>
+              <h1>{{bookings.temperature}}</h1>
           </div>
 
           <div class=" flex text-sm font-bold space-x-2">
             <h1>Blood Pressure : </h1>
-            <h1> 120/80 mmHg</h1>
+            <h1> {{bookings.blood_pressure}} mmHg</h1>
           </div>
 
           <div class=" flex text-sm font-bold space-x-2">
-            <h1>Triage : </h1>
-            <h1 class="bg-red-600 text-red-600"> aaaaaa</h1>
+            <h1 class="uppercase font-bold text-center">Triage</h1>
+              {% if bookings.triage == 'CRITICAL' %} 
+                <block class="bg-red-700 text-transparent">aaaaaaa</block>
+              {% elif bookings.triage == 'SEVERE' %}
+                <block class="bg-yellow-500 text-transparent">aaaaaaa</block>
+              {% else  %}
+                <block class="bg-green-700 text-transparent">aaaaaaa</block>
+              {% endif %}
           </div>
 
         </div>
@@ -48,7 +54,7 @@
         <!-- comment -->
         <div class="px-4 sm:px-8 my-4">
           <h1 class="font-bold">Comments</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dolore voluptates nesciunt voluptatem beatae officia culpa, inventore eius vitae molestiae at incidunt eos earum optio.</p>
+          <p>{{bookings.comments}}</p>
         </div>
         <!-- End comment -->
 

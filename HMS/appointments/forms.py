@@ -7,7 +7,7 @@ class BookPatientForm(forms.ModelForm):
         model = BookPatient
         fields = ['patient_id','temperature','blood_pressure','triage','comments']
         widgets = {
-            'patient': forms.TextInput(attrs={
+            'patient_id': forms.TextInput(attrs={
                 'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
                 'placeholder':'Patient Id'
             }),
@@ -32,16 +32,16 @@ class BookPatientForm(forms.ModelForm):
 class AvailabilityForm(forms.ModelForm):
     class Meta:
         model = Availability
-        fields = ['doctor_id','date', 'time','type']
+        fields = ['doctor_id','day', 'time','type']
         widgets = {
             'doctor_id': forms.TextInput(attrs={
                 'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
                 'placeholder': 'Id',
                 'type': 'id'}),
-            'date': forms.DateInput(attrs={
+            'day': forms.Select(attrs={
                 'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
-                'placeholder': 'Date',
-                'type': 'date'}),
+                'placeholder': 'day of the week',
+                }),
             'time': forms.TimeInput(attrs={
                 'class': 'bg-slate-200 p-2 border border-blue-300 rounded-lg w-full',
                 'placeholder': 'Enter Time',

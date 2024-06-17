@@ -56,40 +56,39 @@
       >
         <div class="flex items-center justify-between my-2">
           <div>
-            <h1 class="uppercase font-bold">Date</h1>
-            <p class=""> {{item.date}} </p>
+            <h1 class="uppercase font-bold mb-2">Days</h1>
+            <p class=""> {{item.day}} </p>
           </div>
 
-          <div class="">
+          <!-- <div class="">
             <h1 class="uppercase font-bold">Day</h1>
             <p class=""> {{item.day_of_week}} </p>
-          </div>
+          </div> -->
 
           <div class="hidden xxs:block">
-            <h1 class="uppercase font-bold">Time</h1>
+            <h1 class="uppercase font-bold mb-2">Time</h1>
             <p class=""> {{item.time}} </p>
           </div>
 
           <div class="hidden xxs:block">
-            <h1 class="uppercase font-bold">Type</h1>
+            <h1 class="uppercase font-bold mb-2">Type</h1>
             <p class=""> {{item.type}} </p>
           </div>
-
-          <a href="{% url 'session_dashboard' doctor.profile_id %}">
-            <button
-              type="submit"
-              class="rounded bg-blue-700 px-2 sm:px-4 py-1 text-xs sm:text-sm uppercase text-white">
-              BOOK
-            </button>
-          </a>
         </div>
 
         <div>
-          {% csrf_token %}
-          <form method="POST">
+          <form method="POST" class="flex">
+            {% csrf_token %}
             {% for field in form %}
               {{field}}
             {% endfor %}
+            <div class="flex-end justify-end">
+              <button
+                type="submit"
+                class="rounded bg-blue-700 px-2 sm:px-4 py-1 text-xs sm:text-sm uppercase text-white">
+                BOOK
+              </button>
+            </div>
           </form>
         </div>
         </div>

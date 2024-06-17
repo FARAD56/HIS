@@ -45,7 +45,7 @@ class ProfileModel(models.Model):
         MARRIED = "MARRIED"
 
     class Religion(models.TextChoices):
-        CHRISTIANITY = "CHRISTIANITY"
+        CHRISTIAN = "CHRISTIAN"
         ISLAM = "ISLAM"
 
     class Region(models.TextChoices):
@@ -81,9 +81,19 @@ class ProfileModel(models.Model):
         FAMILY_MEDICINE = 'Family Medicine'
         ORTHOPEDICS = 'Orthopedics'
 
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(default='default.png', upload_to='profile_pictures/', validators=[FileExtensionValidator(['png', 'jpg'])])
-    religion = models.CharField(max_length=255, blank=True, null=True, choices=Religion.choices, default=Religion.CHRISTIANITY)
+    class Triage(models.TextChoices):
+        CRITICAL = "CRITICAL"
+        SEVERE = "SEVERE"
+        NORMAL = 'NORMAL'
+
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profilemodel')
+    profile_picture = models.ImageField(default='default.png', upload_to='profile_pictures/', validators=[FileExtensionValidator(['png', 'jpg','jpeg'])])
+    religion = models.CharField(max_length=255, blank=True, null=True, choices=Religion.choices, default=Religion.CHRISTIAN)
+    triage = models.CharField(max_length=20,  
+                                blank=True, 
+                                null=True,
+                                choices=Triage.choices,
+                                default=Triage.NORMAL)
     speciality = models.CharField(max_length=255, blank=True, choices=Speciality.choices, null=True)
     place_of_birth = models.CharField(max_length=255, blank=True, null=True)
     marital_status = models.CharField(max_length=255, blank=True, null=True, choices=MaritalStatus.choices, default=MaritalStatus.SINGLE)

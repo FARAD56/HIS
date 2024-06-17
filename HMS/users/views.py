@@ -64,11 +64,18 @@ def user_profile(request,profile_id):
         if not request.user.is_staff:
             # Ensure staff-only field is not validated for non-staff
             p_form.fields.pop('speciality', None)
-        if u_form.is_valid() and p_form.is_valid() and availability_form.is_valid():
+        if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
+            return redirect('user_profile',profile_id=profile_id)
+        if availability_form.is_valid():
             availability_form.save()
             return redirect('user_profile',profile_id=profile_id)
+        else:
+            # Print form errors to debug
+            print(u_form.errors)
+            print(p_form.errors)
+            print(availability_form.errors)
     else:
         u_form = UserUpdateForm(instance=patient)
         p_form = ProfileModelForm(instance=profile)
@@ -81,7 +88,6 @@ def user_profile(request,profile_id):
         'p_form':p_form,
         'patient': patient,
         'availability_form':availability_form,
-        
     }
 
     return render(request, 'users/user_profile.html', context)
