@@ -10,6 +10,7 @@
   {% compress css  %}
   <link href="{% static 'src/output.css' %}" rel="stylesheet">
   <link href="{% static 'css/patient_list.css' %}" rel="stylesheet">
+  <link href="{% static 'css/msg.css' %}" rel="stylesheet">
   {% endcompress %}
 </head>
 <body class="bg-gray-200">
@@ -139,14 +140,6 @@
           <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text" >Chats</p> 
         </a>  
       </div>
-
-      <!-- <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <a href="#" class="flex items-center">
-          <img src="{% static 'images/settings.png' %}" class="w-10 h-10" alt="" > 
-          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Settings</p>  
-        </a> 
-      </div> -->
-
     </div>
     <!-- end Sidebar -->
 
@@ -185,6 +178,7 @@
     {% endblock content %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{% static 'js/chart.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/dashboard_tabs.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
     <script src="{% static 'js/script.js' %}"></script>
