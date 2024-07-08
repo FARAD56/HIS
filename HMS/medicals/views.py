@@ -21,15 +21,6 @@ def patient_attendance(request,profile_id):
 
     return render(request, 'medicals/patient_attendance_details.html', context)
 
-@login_required
-@staff_member_required
-def medical_record(request,profile_id):
-    patient = get_object_or_404(CustomUser, profile_id=profile_id)
-    context = {
-        'patient': patient
-    }
-
-    return render(request,'medicals/medical_records.html',context)
 
 @login_required
 def medication(request,profile_id):
@@ -42,12 +33,13 @@ class AddDiagnosis(View):
         patient = get_object_or_404(CustomUser, profile_id=profile_id)
 
         diagnosis = request.POST.get('diagnosis')
-        type = request.POST.get('type')
+        diagnosis_type = request.POST.get('diagnosis_type')
+      
         diagnosis_obj = Diagnosis.objects.create(
             patient=patient,
             doctor=request.user,
             diagnosis=diagnosis,
-            type=type
+            type=diagnosis_type
         )
         if diagnosis_obj:
             messages.success(request, 'Diagnosis added successfully')
@@ -117,3 +109,20 @@ class AddInvestigation(View):
         return redirect('patient_attendance',profile_id)
     
 
+class MedicalRecordView(View):
+    template_name = 'medicals/medical_records.html'
+    
+    def get(self, request, profile_id):
+        patient = get_object_or_404(CustomUser, profile_id=profile_id)
+        diagnosis = Diagnosis.objects.filter(patient=patient)
+
+        context = {
+            'diagnosis': diagnosis,
+            'patient': patient,
+        }
+        return render(request, self.template_name, context)
+    
+    
+    
+
+    

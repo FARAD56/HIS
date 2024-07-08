@@ -17,7 +17,7 @@ Medical Records
       <h1 class="font-bold text-md sm:text-xl text-slate-900">Records</h1>
       <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a
             href="{% url 'patient_details' patient.profile_id %}"> {{request.user.full_name}} </a></span> | <span><a
-            href="{% url 'medical_record' patient.profile_id %}">Records</a></span></h2>
+            href="{% url 'get_medical_record' patient.profile_id %}">Records</a></span></h2>
     </div>
 
     <!-- Header Profile -->
@@ -41,29 +41,30 @@ Medical Records
     <!-- Patient list -->
     <div class="bg-slate-400 mx-4 sm:mx-8 md:mx-10 lg:mx-16 pb-10">
 
+      {% for item in diagnosis %}
       <div
         class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+          
+        
         <div>
           <h1 class="uppercase font-bold">Date</h1>
-          <p>24/02/2024</p>
+          <p>{{item.date_created}}</p>
         </div>
 
         <div class="hidden xxs:block">
           <h1 class="uppercase font-bold">Doctor</h1>
-          <p>A. Al-Waasiu</p>
+          <p>{{item.doctor.full_name}}</p>
         </div>
 
         <div class="hidden xs:block">
           <h1 class="uppercase font-bold">diagnosis</h1>
-          <p>Seizures</p>
+          <p>{{item.diagnosis}}</p>
         </div>
 
         <div class="items-center">
-          <h1 class="uppercase font-bold">Report</h1>
+          <h1 class="uppercase font-bold">Type</h1>
           <div class="flex justify-center">
-            <a href="#">
-              <img src="{% static 'images/pdf.png' %}" alt="" class="w-6 h-6 rounded-lg">
-            </a>
+            <p> {{item.type}} </p>
           </div>
         </div>
 
@@ -74,8 +75,9 @@ Medical Records
             </button>
           </a>
         </div>
-      </div>
 
+      </div>
+      {% endfor %}
     </div>
 
 

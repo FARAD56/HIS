@@ -84,17 +84,16 @@
                   </div>
                   <div class="w-[60%] sm:w-[70%]">
                     <select name="diagnosis" id="diagnosis" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">Headache</option>
-                      <option value="option3">Seizures</option>
-                      <option value="option3">Diabetes</option>
-                      <option value="option3">Hypertension</option>
-                      <option value="option3">Depression</option>
-                      <option value="option3">Pneumonia</option>
-                      <option value="option3">Arthritis</option>
-                      <option value="option3">Dermatitis</option>
-                      <option value="option3">Back pain</option>
-                      <option value="option3">Upper respiratory tract infection</option>
+                      <option value="">Select One </option>
+                      <option value="Headache">Headache</option>
+                      <option value="Seizures">Seizures</option>
+                      <option value="Diabetes">Diabetes</option>
+                      <option value="Hypertension">Hypertension</option>
+                      <option value="Depression">Depression</option>
+                      <option value="Pneumonia">Pneumonia</option>
+                      <option value="Arthritis">Arthritis</option>
+                      <option value="Dermatitis">Dermatitis</option>
+                      <option value="Back pain">Back pain</option>
                     </select>          
                   </div>
                 </div>
@@ -106,8 +105,8 @@
                   <div class="w-[60%] sm:w-[70%]">
                     <select name="diagnosis_type" id="diagnosis_type" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
                       <option value="option1">Select One </option>
-                      <option value="option2">Chronic</option>
-                      <option value="option3">Acute</option>
+                      <option value="Chronic">Chronic</option>
+                      <option value="Acute">Acute</option>
                     </select>          
                   </div>
                 </div>
@@ -138,36 +137,36 @@
   
                 <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
                   <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Medicine : </label>
+                    <label for="medicine" class="text-slate-900 font-bold">Medicine : </label>
                   </div>
                   <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">Paracetamol    </option>
-                      <option value="option3">Lacosamide     </option>
-                      <option value="option3">Metformin      </option>
-                      <option value="option3">ACE inhibitors </option>
-                      <option value="option3">SSR inhibitors </option>
-                      <option value="option3">Amoxicillin    </option>
-                      <option value="option3">Azathioprines  </option>
-                      <option value="option3">Hydrocortisones</option>
-                      <option value="option3">Ibuprofen      </option>
-                      <option value="option3">Doxycycline    </option>
+                    <select name="medicine" id="medicine"  class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="">Select One </option>
+                      <option value="Paracetamol">Paracetamol </option>
+                      <option value="Lacosamide">Lacosamide</option>
+                      <option value="Metformin">Metformin</option>
+                      <option value="ACE inhibitors">ACE inhibitors </option>
+                      <option value="SSR inhibitors">SSR inhibitors</option>
+                      <option value="Amoxicillin">Amoxicillin</option>
+                      <option value="Azathioprines">Azathioprines  </option>
+                      <option value="Hydrocortisones">Hydrocortisones</option>
+                      <option value="Ibuprofen">Ibuprofen</option>
+                      <option value="Doxycycline">Doxycycline</option>
                     </select>          
                   </div>
                 </div>
   
                 <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
                   <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Strength : </label>
+                    <label for="strength" class="text-slate-900 font-bold">Strength : </label>
                   </div>
                   <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">50mg </option>
-                      <option value="option2">100mg</option>
-                      <option value="option3">200mg</option>
-                      <option value="option3">500mg</option>
+                    <select name="strength" id="strength"  class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
+                      <option value="">Select One </option>
+                      <option value="50mg">50mg </option>
+                      <option value="100mg">100mg</option>
+                      <option value="200mg">200mg</option>
+                      <option value="500mg">500mg</option>
                     </select>          
                   </div>
                 </div>
@@ -178,37 +177,25 @@
   
                 <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
                   <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Dose : </label>
+                    <label for="dose" class="text-slate-900 font-bold">Dose : </label>
                   </div>
                   <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">OD </option>
-                      <option value="option3">BID</option>
-                      <option value="option3">TID</option>
-                      <option value="option3">QID</option>
+                    <select name="dose" id="dose"  class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="">Select One </option>
+                      <option value="OD">OD </option>
+                      <option value="BID">BID</option>
+                      <option value="TID">TID</option>
+                      <option value="QID">QID</option>
                     </select>          
                   </div>
                 </div>
   
                 <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
                   <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Quantity : </label>
+                    <label for="quantity" class="text-slate-900 font-bold">Quantity : </label>
                   </div>
                   <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">1</option>
-                      <option value="option3">2</option>
-                      <option value="option3">3</option>
-                      <option value="option3">4</option>
-                      <option value="option3">5</option>
-                      <option value="option3">6</option>
-                      <option value="option3">7</option>
-                      <option value="option3">8</option>
-                      <option value="option3">9</option>
-                      <option value="option3">10</option>
-                    </select>          
+                    <input type="number" name="quantity" id="quantity" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
                   </div>
                 </div>
   
@@ -218,32 +205,32 @@
   
                 <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
                   <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Duration : </label>
+                    <label for="duration" class="text-slate-900 font-bold">Duration : </label>
                   </div>
                   <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">1 week  </option>
-                      <option value="option2">2 weeks </option>
-                      <option value="option2">3 weeks </option>
-                      <option value="option2">1 month </option>
-                      <option value="option2">2 months</option>
-                      <option value="option2">3 months</option>
+                    <select name="duration" id="duration"  class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="">Select One </option>
+                      <option value="1 week">1 week  </option>
+                      <option value="2 weeks">2 weeks </option>
+                      <option value="3 weeks">3 weeks </option>
+                      <option value="1 month">1 month </option>
+                      <option value="2 months">2 months</option>
+                      <option value="3 months">3 months</option>
                     </select>          
                   </div>
                 </div>
   
                 <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
                   <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Frequency : </label>
+                    <label for="frequency" class="text-slate-900 font-bold">Frequency : </label>
                   </div>
                   <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">Once daily</option>
-                      <option value="option2">Two times daily</option>
-                      <option value="option3">Three times daily</option>
-                      <option value="option3">Four times daily</option>
+                    <select name="frequency" id="frequency" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
+                      <option value="">Select One </option>
+                      <option value="Once daily">Once Daily</option>
+                      <option value="Two times daily">Two Times Daily</option>
+                      <option value="Three times daily">Three Times Daily</option>
+                      <option value="Four times daily">Four Times Daily</option>
                     </select>          
                   </div>
                 </div>
@@ -252,7 +239,7 @@
   
               <div class="mt-8 mb-4">
                 <h1 class="font-bold uppercase">Instructions</h1>
-                <input type="text" class="my-2 bg-slate-200 p-2 border border-black w-[90%] sm:w-[80%] rounded-lg" placeholder="Add Instructions">
+                <input name="instructions" id="instructions" type="text" class="my-2 bg-slate-200 p-2 border border-black w-[90%] sm:w-[80%] rounded-lg" placeholder="Add Instructions">
               </div>
   
               <div class="flex justify-center">
@@ -279,33 +266,33 @@
   
                 <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
                   <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Referral Facility : </label>
+                    <label for="referral_facility" class="text-slate-900 font-bold">Referral Facility : </label>
                   </div>
                   <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">Korle Bu Main hospital            </option>
-                      <option value="option3">Legon Hospital                    </option>
-                      <option value="option3">University of Ghana Medical center</option>
-                      <option value="option3">Accra Medical center              </option>
-                      <option value="option3">Noguchie Health center             </option>
+                    <select name="referral_facility" id="referral_facility" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="">Select One </option>
+                      <option value="Korle Bu Main hospital">Korle Bu Main hospital</option>
+                      <option value="Legon Hospital ">Legon Hospital</option>
+                      <option value="UG Medical center">UG Medical center</option>
+                      <option value="Accra Medical center">Accra Medical center</option>
+                      <option value="Noguchie Health center">Noguchie Health center</option>
                     </select>          
                   </div>
                 </div>
   
                 <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
                   <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Unit : </label>
+                    <label for="unit" class="text-slate-900 font-bold">Unit : </label>
                   </div>
                   <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">Pathology   </option>
-                      <option value="option2">Cardiology  </option>
-                      <option value="option3">Cardithoracy</option>
-                      <option value="option3">Gynaecology </option>
-                      <option value="option3">Pediatric   </option>
-                      <option value="option3">Opthometry  </option>
+                    <select name="unit" id="unit" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
+                      <option value="">Select One </option>
+                      <option value="Pathology">Pathology</option>
+                      <option value="Cardiology">Cardiology</option>
+                      <option value="Cardithoracy">Cardithoracy</option>
+                      <option value="Gynaecology">Gynaecology</option>
+                      <option value="Pediatric">Pediatric</option>
+                      <option value="Opthometry">Opthometry</option>
                     </select>          
                   </div>
                 </div>
@@ -316,26 +303,26 @@
   
                 <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
                   <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Investigation: </label>
+                    <label for="investigation" class="text-slate-900 font-bold">Investigation: </label>
                   </div>
                   <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">Blood tests  </option>
-                      <option value="option3">Urinalysis   </option>
-                      <option value="option3">Biopsy       </option>
-                      <option value="option3">Amniocentesis</option>
-                      <option value="option3">Thyroid function tests</option>
+                    <select name="investigation" id="investigation" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="">Select One </option>
+                      <option value="Blood tests">Blood tests  </option>
+                      <option value="Blood tests">Urinalysis   </option>
+                      <option value="Biopsy">Biopsy       </option>
+                      <option value="Amniocentesis">Amniocentesis</option>
+                      <option value="Thyroid function tests">Thyroid function tests</option>
                     </select>          
                   </div>
                 </div>
               </div>
               <div class="mt-8 mb-4">
                 <h1 class="font-bold uppercase">Reason</h1>
-                <input type="text" class="my-2 bg-slate-200 p-2 border border-black w-[90%] sm:w-[80%] rounded-lg" placeholder="Add Instructions">
+                <input name="reason" id="reason" type="text" class="my-2 bg-slate-200 p-2 border border-black w-[90%] sm:w-[80%] rounded-lg" placeholder="Add Instructions">
               </div>
               <div class="flex justify-center">
-                <button class="bg-blue-700 text-white font-bold my-4 py-2 px-4 rounded-lg">Add</button>
+                <button type="submit" class="bg-blue-700 text-white font-bold my-4 py-2 px-4 rounded-lg">Add</button>
               </div>
             </div>
           </div>
