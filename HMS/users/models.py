@@ -1,12 +1,38 @@
 # Create your models here.
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser,BaseUserManager
 from datetime import date
 from django.core.validators import FileExtensionValidator
-
-
-
 from . utils import generate_profile_id
+
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, username, role=None, password=None):
+        if not email:
+            raise ValueError('Users must have an email address')
+        if not username:
+            raise ValueError('Users must have a username')
+
+        user = self.model(
+            email=self.normalize_email(email),
+            username=username,
+        )
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, username, password=None):
+        user = self.create_user(
+            email,
+            username=username,
+            password=password,
+        )
+        user.is_superuser = True
+        user.is_staff = True
+        user.save(using=self._db)
+        return user
+
+
 class CustomUser(AbstractUser):
     SEX_CHOICES = (('Male', 'Male'), ('Female', 'Female'))
 
@@ -22,8 +48,11 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    objects = CustomUserManager()
+
+
     def __str__(self):
-        return self.email if self.email else self.username
+        return self.profile_id
 
     @property
     def age(self):
@@ -37,6 +66,7 @@ class CustomUser(AbstractUser):
         if self.first_name and self.last_name:
             return f'{self.first_name} {self.last_name}'
         return self.username
+    
     
 
 class ProfileModel(models.Model):

@@ -168,3 +168,6 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.ERROR: 'error',
 }
+
+GOOGLE_CLIENT_SECRETS_FILE = os.path.join(BASE_DIR, 'secrets', 'credentials.json')
+GOOGLE_API_SCOPES = ['https://www.googleapis.com/auth/calendar.events']

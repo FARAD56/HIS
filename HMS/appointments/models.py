@@ -46,7 +46,7 @@ class Availability(models.Model):
 
 class Appointment(models.Model):
     doctor = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='doctor_appointments')
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='appointments')
+    patient = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='appointments')
     availability = models.ForeignKey(Availability, on_delete=models.CASCADE)
     comments = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -56,7 +56,7 @@ class Appointment(models.Model):
         unique_together = ('doctor', 'availability')
 
     def __str__(self):
-        return f"Appointment with Dr. {self.doctor.full_name} on {self.availability.day} at {self.availability.time} for {self.user.full_name}"
+        return f"Appointment with Dr. {self.doctor.full_name} on {self.availability.day} at {self.availability.time} for {self.patient.full_name}"
 
     def save(self, *args, **kwargs):
         # Custom save logic, if needed

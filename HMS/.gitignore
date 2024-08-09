@@ -17,3 +17,4 @@ node_modules/
 # Ignore logs and temporary files
 *.log
 tmp/
+secrets/

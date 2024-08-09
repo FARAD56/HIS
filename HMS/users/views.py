@@ -60,7 +60,6 @@ def user_profile(request,profile_id):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST,instance=patient)
         p_form = ProfileModelForm(request.POST,request.FILES or None,instance=profile)
-        availability_form = AvailabilityForm(request.POST)
         if not request.user.is_staff:
             # Ensure staff-only field is not validated for non-staff
             p_form.fields.pop('speciality', None)
@@ -68,21 +67,19 @@ def user_profile(request,profile_id):
             u_form.save()
             p_form.save()
             return redirect('user_profile',profile_id=profile_id)
-        if availability_form.is_valid():
-            availability_form.save()
-            return redirect('user_profile',profile_id=profile_id)
         else:
             # Print form errors to debug
             print(u_form.errors)
             print(p_form.errors)
-            print(availability_form.errors)
     else:
         u_form = UserUpdateForm(instance=patient)
         p_form = ProfileModelForm(instance=profile)
-        availability_form = AvailabilityForm()
+        # availability_form = AvailabilityForm()
         if not request.user.is_staff:
             p_form.fields.pop('speciality')
     
+    # Ensure availability_form is included in the context
+    availability_form = AvailabilityForm()
     context = {
         'u_form': u_form,
         'p_form':p_form,

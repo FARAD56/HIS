@@ -168,7 +168,7 @@
 
             <div x-show="openTab === 4" class="mt-4">
               <div class="space-y-2">
-                <form method="POST">
+                <form method="POST" action="{% url 'availability' patient.profile_id %}">
                   {% csrf_token %}
                   {% for field in availability_form  %}                      
                   <div class="flex px-2 md:px-2">
