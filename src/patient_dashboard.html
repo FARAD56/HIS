@@ -110,7 +110,7 @@
     <div class="sidebar transition-all duration-200 space-y-10 fixed w-1/5 h-[100vh] hidden md:block bg-slate-900">
 
       <div class="flex bg-slate-400 mx-[6%] rounded-xl mt-10 px-4 items-center "> 
-        <a href="dashboard.html" class="flex items-center">
+        <a href="patient_dashboard.html" class="flex items-center">
         <img src="../images/home.png" class="w-10 h-10" alt="" > 
         <p class="text-white  font-bold ml-4 transition-all duration-200" id="side_text">Home</p>
         </a>           
@@ -138,19 +138,14 @@
         </a>  
       </div>
 
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <a href="settings.html" class="flex items-center">
-          <img src="../images/settings.png" class="w-10 h-10" alt="" > 
-          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Settings</p>  
-        </a> 
-      </div>
+
 
     </div>
     <!-- end Sidebar -->
 
     <!-- bottom bar -->
     <div class="fixed flex justify-between items-center px-4 md:hidden bottom-0 w-full h-[50px] z-[999] bg-slate-900 py-8 text-white bg-opacity-90">
-      <a href="dashboard.html">
+      <a href="patient_dashboard.html">
         <img src="../images/home.png" class="w-8 h-8" alt="" >
         <p class="text-[12px] font-bold">Home</p>
       </a>
@@ -166,10 +161,7 @@
         <img src="../images/chats.png" class="w-8 h-8" alt="" >
         <p class="text-[12px] font-bold">Chats</p>
       </a>
-      <a href="settings.html">
-        <img src="../images/settings.png" class="w-8 h-8" alt="" >
-        <p class="text-[12px] font-bold">Settings</p>
-      </a> 
+
       
     </div>
     <!-- End bottom bar -->
@@ -184,7 +176,7 @@
       <!-- Header -->
       <div class="">
         <div class="py-4 ml-10">
-          <h1 class="font-bold text-md sm:text-xl text-slate-900">Doctor Dashboard</h1>
+          <h1 class="font-bold text-md sm:text-xl text-slate-900">Dashboard</h1>
         </div>
       </div>
       <!-- End Header -->
@@ -199,7 +191,7 @@
                   <img src="../images/icons8-diagnosis-64.png" alt="" class="w-7 h-7">
                   <div class="my-1">
                     <h5 class="xxs:text-[10px] xs:text-xs lg:text-sm font-bold ">Diagnosis</h5>
-                    <h5 class="text-[6px] xs:text-[8px] font-bold">Diagnosis statistics</h5>
+                    <h5 class="text-[6px] xs:text-[8px] font-bold">Disease Statistics</h5>
                   </div>
                 </div>
             </div>
@@ -208,8 +200,8 @@
                 <div>
                   <img src="../images/icons8-heart-beat-64.png" alt="" class="w-7 h-7">
                   <div class="my-1">
-                    <h5 class="xxs:text-[10px] xs:text-xs lg:text-sm font-bold">Patient</h5>
-                    <h5 class="text-[6px] xs:text-[8px] font-bold">Patient gender statistics</h5>
+                    <h5 class="xxs:text-[10px] xs:text-xs lg:text-sm font-bold">Vitals</h5>
+                    <h5 class="text-[6px] xs:text-[8px] font-bold">Temperature/Blood Pressure</h5>
                   </div>
                 </div>
             </div>
@@ -218,8 +210,8 @@
                 <div>
                   <img src="../images/icons8-recommended-64.png" alt="" class="w-7 h-7">
                   <div class="my-1">
-                    <h5 class="xxs:text-[10px] xs:text-xs lg:text-sm font-bold">Activity</h5>
-                    <h5 class="text-[6px] xs:text-[8px] font-bold">Activity</h5>
+                    <h5 class="xxs:text-[10px] xs:text-xs lg:text-sm font-bold">Recommendations</h5>
+                    <h5 class="text-[6px] xs:text-[8px] font-bold">Nutritional Predictions</h5>
                   </div>
                 </div>
             </div>
@@ -227,8 +219,8 @@
   
           <div class="grid mx-2 xxs:hidden grid-cols-12 divide-x bg-slate-300 text-xs text-center rounded-lg text-white font-semibold">
             <div class="tab tab-active col-span-4 bg-purple-500 p-2 rounded-s-lg">Diagnosis</div>
-            <div class="tab col-span-3 bg-red-400 p-2">Patients</div>
-            <div class="tab col-span-5 bg-blue-400 p-2 rounded-e-lg">Activity</div>
+            <div class="tab col-span-3 bg-red-400 p-2">Vitals</div>
+            <div class="tab col-span-5 bg-blue-400 p-2 rounded-e-lg">Recommendation</div>
           </div>
         
           <div class="tab-content w-[91%] m-4 ">
@@ -239,166 +231,96 @@
             <canvas id="vitalsChart" class="bg-white w-full rounded-xl"></canvas>
           </div>
           
-          <div class="tab-content w-[91%] m-4 hidden bg-white rounded-3xl">
-            <h1 class="bg-slate-700 text-white font-bold px-4 py-2 rounded-t-3xl shadow-sm my-4">
-              Patient Checkup
-            </h1>
-
-            <div class="px-4 pb-4">
-              <h1 class="bg-blue-400 p-2 rounded-2xl shadow-sm my-4">
-                Patient Checkup
-              </h1>
-              
-              <h1 class="bg-yellow-300 p-2 rounded-2xl shadow-sm my-4">
-                Surgery
-              </h1>
-  
-              <h1 class="bg-blue-400 p-2 rounded-2xl shadow-sm my-4">
-                Patient Checkup
-              </h1>
-  
-              <h1 class="bg-blue-400 p-2 rounded-2xl shadow-sm my-4">
-                Patient Checkup
-              </h1>
-  
-              <h1 class="bg-blue-400 p-2 rounded-2xl shadow-sm my-4">
-                Patient Checkup
-              </h1>
-
-              <div class=" flex justify-center">
-                <button class="bg-blue-700 px-2 py-1 text-white font-semibold rounded-lg">Add activity</button>
-              </div>
-            </div>
-            
+          <div class="tab-content w-[91%] m-4 hidden">
+            <canvas id="" class="bg-white w-full rounded-xl"></canvas>
           </div> 
 
-          <div class="px-2 sm:px-4 my-8">
+          <div class="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-4 px-2 sm:px-4 my-8">
 
-            <div class=" bg-gray-200 rounded-lg">
-
-              <div class="flex justify-between bg-slate-700 text-white font-bold px-4 py-2 rounded-t-lg shadow-sm">
-                <h1>Patient List</h1>
-                <a href="patient_list.html" class="flex underline underline-offset-1 items-center">
-                  <h1 class=" text-white  text-[10px]">see all</h1>
-                  <img src="../images/icons8-curved-arrow-48.png" alt="" class="w-3 h-3">
-                </a>
+            <div class="bg-white w-[96%] sm:w-[48%] px-2 sm:px-4 py-1 md:py-2 rounded-xl">
+              <div class="flex justify-between text-sm xs:text-base lg:text-lg font-bold mb-4">
+                <h1>Medications</h1>
+                <h1 class="text-gray-600">...</h1>
               </div>
-            
-              <div class="p-2">
-                <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                  <div>
-                    <h1 class="uppercase font-bold">id 89276</h1>
-                    <p >12 Mins ago</p>
-                  </div>
-      
-                  <div class="hidden xs:block">
-                    <h1 class="uppercase font-bold">patient</h1>
-                    <p>Abubakari Al-Waasiu</p>
-                  </div>
-      
-      
-                  <div class="items-center">
-                    <h1 class="uppercase font-bold">TRIAGE</h1>
-                    <block class="bg-red-600 text-transparent">aaaaaaa</block>
-                  </div>
-      
-                  <div>
-                    <a href="patient.html">
-                      <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                        view
-                      </button>
-                    </a>
-                    
-                  </div>
-      
-                </div>  
-                
-                <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                  <div>
-                    <h1 class="uppercase font-bold">id 89276</h1>
-                    <p >12 Mins ago</p>
-                  </div>
-      
-                  <div class="hidden xs:block">
-                    <h1 class="uppercase font-bold">patient</h1>
-                    <p>Abubakari Al-Waasiu</p>
-                  </div>
-      
-      
-                  <div class="items-center">
-                    <h1 class="uppercase font-bold">TRIAGE</h1>
-                    <block class="bg-red-600 text-transparent">aaaaaaa</block>
-                  </div>
-      
-                  <div>
-                    <a href="patient.html">
-                      <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                        view
-                      </button>
-                    </a>
-                    
-                  </div>
-      
+
+              <div class="flex my-2 items-center">
+                <img src="../images/icons8-pill-48.png" alt="" class="w-5 sm:w-7 h-5 sm:h-7 rounded-lg">
+                <div class="mx-2 lg:mx-4">
+                  <h5 class="text-[9px] xs:text-xs lg:text-sm font-bold">Vitamin A</h5>
+                  <h5 class="text-[7px] xs:text-[9px] font-bold text-gray-600">Two times dialy</h5>
                 </div>
-      
-                <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                  <div>
-                    <h1 class="uppercase font-bold">id 89276</h1>
-                    <p >12 Mins ago</p>
-                  </div>
-      
-                  <div class="hidden xs:block">
-                    <h1 class="uppercase font-bold">patient</h1>
-                    <p>Abubakari Al-Waasiu</p>
-                  </div>
-      
-      
-                  <div class="items-center">
-                    <h1 class="uppercase font-bold">TRIAGE</h1>
-                    <block class="bg-red-600 text-transparent">aaaaaaa</block>
-                  </div>
-      
-                  <div>
-                    <a href="patient.html">
-                      <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                        view
-                      </button>
-                    </a>
-                    
-                  </div>
-      
+              </div>
+              <hr>
+
+              <div class="flex my-2 items-center">
+                <img src="../images/icons8-pill-48 (1).png" alt="" class="w-5 sm:w-7 h-5 sm:h-7 rounded-lg">
+                <div class="mx-2 lg:mx-4">
+                  <h5 class="text-[9px] xs:text-xs lg:text-sm font-bold">Paracetamol</h5>
+                  <h5 class="text-[7px] xs:text-[9px] font-bold text-gray-600">Two times dialy</h5>
                 </div>
-      
-                <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-                  <div>
-                    <h1 class="uppercase font-bold">id 89276</h1>
-                    <p >12 Mins ago</p>
-                  </div>
-      
-                  <div class="hidden xs:block">
-                    <h1 class="uppercase font-bold">patient</h1>
-                    <p>Abubakari Al-Waasiu</p>
-                  </div>
-      
-      
-                  <div class="items-center">
-                    <h1 class="uppercase font-bold">TRIAGE</h1>
-                    <block class="bg-red-600 text-transparent">aaaaaaa</block>
-                  </div>
-      
-                  <div>
-                    <a href="patient.html">
-                      <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                        view
-                      </button>
-                    </a>
-                    
-                  </div>
-      
+              </div>
+              <hr>
+
+              <div class="flex my-2 items-center">
+                <img src="../images/icons8-pill-48 (2).png" alt="" class="w-5 sm:w-7 h-5 sm:h-7 rounded-lg">
+                <div class="mx-2 lg:mx-4">
+                  <h5 class="text-[9px] xs:text-xs lg:text-sm font-bold">ACE inhibitors</h5>
+                  <h5 class="text-[7px] xs:text-[9px] font-bold text-gray-600">Two times dialy</h5>
+                </div>
+              </div>
+              <hr>
+
+              <div class="flex my-2 items-center">
+                <img src="../images/icons8-pill-48 (3).png" alt="" class="w-5 sm:w-7 h-5 sm:h-7 rounded-lg">
+                <div class="mx-2 lg:mx-4">
+                  <h5 class="text-[9px] xs:text-xs lg:text-sm font-bold">Hydrocortisones</h5>
+                  <h5 class="text-[7px] xs:text-[9px] font-bold text-gray-600">Two times dialy</h5>
                 </div>
               </div>
 
-    
+            </div>
+
+            <div class="bg-white w-[96%] sm:w-[48%] px-2 sm:px-4 py-1 md:py-2 rounded-xl">
+              <div class="flex justify-between text-sm xs:text-base lg:text-lg font-bold mb-4">
+                <h1>Recommendations</h1>
+                <h1 class="text-gray-600">...</h1>
+              </div>
+
+              <div class="flex my-2 items-center">
+                <img src="../images/icons8-water-48.png" alt="" class="w-5 sm:w-7 h-5 sm:h-7 rounded-lg">
+                <div class="mx-2 lg:mx-4">
+                  <h5 class="text-[9px] xs:text-xs font-bold">Stay hydrated for optimal health. Drink at least 8 glasses of water.</h5>
+                </div>
+              </div>
+              <hr>
+
+              <div class="flex my-2 items-center">
+                <img src="../images/icons8-exercise-48.png" alt="" class="w-5 sm:w-7 h-5 sm:h-7 rounded-lg">
+                <div class="mx-2 lg:mx-4">
+                  <h5 class="text-[9px] xs:text-xs font-bold">Stay active for a healthy body. Regular exercise is essential.</h5>
+                </div>
+              </div>
+              <hr>
+
+              <div class="flex my-2 items-center">
+                <img src="../images/icons8-group-of-fruits-48.png" alt="" class="w-5 sm:w-7 h-5 sm:h-7 rounded-lg">
+                <div class="mx-2 lg:mx-4">
+                  <h5 class="text-[9px] xs:text-xs font-bold">Include fruits in your diet for a balanced nutrition.</h5>
+                </div>
+              </div>
+              <hr>
+
+
+              <div class="flex my-2 items-center">
+                <img src="../images/icons8-vegetables-48.png" alt="" class="w-5 sm:w-7 h-5 sm:h-7 rounded-lg">
+                <div class="mx-2 lg:mx-4">
+                  <h5 class="text-[9px] xs:text-xs font-bold">Boost your health with a variety of vegetables in meals.</h5>
+                </div>
+              </div>
+
+              <div>
+
+              </div>
             </div>
 
           </div>
@@ -410,7 +332,7 @@
           <div class="shadow-xl rounded-lg p-2 my-4">
             <div class="flex justify-between text-sm xs:text-base lg:text-lg font-bold mb-2">
               <h1>Details</h1>
-              <a href="doctor_profile.html" class="flex underline underline-offset-1 items-center">
+              <a href="patient_profile.html" class="flex underline underline-offset-1 items-center">
                 <h1 class=" text-blue-600  text-[10px]">see all</h1>
                 <img src="../images/icons8-curved-arrow-48.png" alt="" class="w-3 h-3">
               </a>
@@ -418,16 +340,16 @@
 
             <div class="grid grid-cols-3 divide-x text-center my-2 font-bold">
               <div>
-                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Specialization</h1>
-                <h1 class="text-[8px] sm:text-[10px]">Cardiology</h1>
+                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Height</h1>
+                <h1 class="text-[8px] sm:text-[10px]">170cm</h1>
               </div>
               <div>
-                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Member status</h1>
-                <h1 class="text-[8px] sm:text-[10px]">Active</h1>
+                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Weight</h1>
+                <h1 class="text-[8px] sm:text-[10px]">55kg</h1>
               </div>
               <div>
-                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Staff ID</h1>
-                <h1 class="text-[8px] sm:text-[10px]">DR22678</h1>
+                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Blood group</h1>
+                <h1 class="text-[8px] sm:text-[10px]">0+</h1>
               </div>
             </div>
 
@@ -477,7 +399,8 @@
             <div class="flex w-[96%] shadow-lg mt-5 mb-2 px-4 py-2 rounded-lg">
               <img src="../images/profile.jpg" alt="" class="rounded-full w-10 h-10">
               <div class="mx-2">
-                <h1 class="font-bold text-[9px] xs:text-xs">Nathan Yu</h1>
+                <h1 class="font-bold text-[9px] xs:text-xs">Dr.Nathan Yu</h1>
+                <h1 class="text-gray-600 text-[7px] xs:text-[9px] font-bold">Cardiologist</h1>
                 <h1 class="text-[9px] xs:text-xs font-bold">10:00am</h1>
               </div>
             </div>
@@ -485,7 +408,8 @@
             <div class="flex w-[96%] shadow-lg my-2 px-4 rounded-lg py-2">
               <img src="../images/prof0.jpg" alt="" class="rounded-full w-10 h-10">
               <div class="mx-2">
-                <h1 class="font-bold text-[9px] xs:text-xs">Abu Lukman</h1>
+                <h1 class="font-bold text-[9px] xs:text-xs">Dr.Abu Lukman</h1>
+                <h1 class="text-gray-600 text-[7px] xs:text-[9px] font-bold">Cardiologist</h1>
                 <h1 class="text-[9px] xs:text-xs font-bold">2:00pm</h1>
               </div>
             </div>
@@ -493,7 +417,8 @@
             <div class="flex w-[96%] shadow-lg my-2 px-4 py-2 rounded-lg">
               <img src="../images/prof10.jpg" alt="" class="rounded-full w-10 h-10">
               <div class="mx-2">
-                <h1 class="font-bold text-[9px] xs:text-xs">Farad Wells</h1>
+                <h1 class="font-bold text-[9px] xs:text-xs">Dr.Farad Wells</h1>
+                <h1 class="text-gray-600 text-[7px] xs:text-[9px] font-bold">Cardiologist</h1>
                 <h1 class="text-[9px] xs:text-xs font-bold">10:00am</h1>
               </div>
             </div>
@@ -502,7 +427,7 @@
 
           <div class="shadow-xl rounded-lg p-2 my-4">
             <div class="flex justify-between text-sm xs:text-base lg:text-lg font-bold mb-2">
-              <h1>Patients</h1>
+              <h1>Doctors</h1>
               <a href="all_medical_records.html" class="flex underline underline-offset-1 items-center">
                 <h1 class=" text-blue-600  text-[10px]">see all</h1>
                 <img src="../images/icons8-curved-arrow-48.png" alt="" class="w-3 h-3">
@@ -553,7 +478,7 @@
 
 
 </body>
-<script src="./js/chart copy.js"></script>
+<script src="./js/chart.js"></script>
 <script src="./js/dashboard_tabs.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
 <script src="./js/script.js"></script>
