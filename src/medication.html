@@ -108,28 +108,39 @@
     <div class="sidebar transition-all duration-200 space-y-10 fixed w-1/5 h-[100vh] hidden md:block bg-slate-900">
 
       <div class="flex bg-slate-400 mx-[6%] rounded-xl mt-10 px-4 items-center "> 
+        <a href="dashboard.html" class="flex items-center">
         <img src="../images/home.png" class="w-10 h-10" alt="" > 
-        <p class="text-white  font-bold ml-4 transition-all duration-200" id="side_text">Home</p>           
+        <p class="text-white  font-bold ml-4 transition-all duration-200" id="side_text">Home</p>
+        </a>           
+      </div>
+
+      
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 "> 
+        <a href="patient_list.html" class="flex items-center">
+          <img src="../images/patient_list.png" alt="" class="w-10 h-10 "> 
+          <p class="text-white font-bold ml-4 transition-all duration-200"id="side_text" >Patients</p> 
+        </a>  
       </div>
 
       <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <img src="../images/patient_list.png" alt="" class="w-10 h-10 "> 
-        <p class="text-white font-bold ml-4 transition-all duration-200"id="side_text" >Patients</p>   
+        <a href="session_dashboard.html" class="flex items-center">
+          <img src="../images/icons8-appointment-48.png" alt="" class="w-10 h-10"> 
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Sessions</p>   
+        </a>
       </div>
 
       <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-      <img src="../images/icons8-appointment-48.png" alt="" class="w-10 h-10"> 
-      <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Sessions</p>   
+        <a href="chats.html" class="flex items-center">
+          <img src="../images/chats.png" class="w-10 h-10" alt="" > 
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text" >Chats</p> 
+        </a>  
       </div>
 
       <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-      <img src="../images/chats.png" class="w-10 h-10" alt="" > 
-      <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text" >Chats</p>   
-      </div>
-
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-      <img src="../images/settings.png" class="w-10 h-10" alt="" > 
-      <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Settings</p>   
+        <a href="settings.html" class="flex items-center">
+          <img src="../images/settings.png" class="w-10 h-10" alt="" > 
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Settings</p>  
+        </a> 
       </div>
 
     </div>
@@ -137,26 +148,26 @@
 
     <!-- bottom bar -->
     <div class="fixed flex justify-between items-center px-4 md:hidden bottom-0 w-full h-[50px] z-50 bg-slate-900 py-8 text-white bg-opacity-90">
-      <div>
+      <a href="dashboard.html">
         <img src="../images/home.png" class="w-8 h-8" alt="" >
         <p class="text-[12px] font-bold">Home</p>
-      </div>
-      <div>
+      </a>
+      <a href="patient_list.html">
         <img src="../images/patient_list.png" alt="" class="w-8 h-8 ">
         <p class="text-[12px] font-bold">Patient</p>
-      </div>
-      <div>
+      </a>
+      <a href="session_dashboard.html">
         <img src="../images/icons8-appointment-48.png" alt="" class="w-8 h-8">
         <p class="text-[12px] font-bold">Sessions</p>
-      </div>
-      <div>
+      </a>
+      <a href="chats.html">
         <img src="../images/chats.png" class="w-8 h-8" alt="" >
         <p class="text-[12px] font-bold">Chats</p>
-      </div>
-      <div>
+      </a>
+      <a href="settings.html">
         <img src="../images/settings.png" class="w-8 h-8" alt="" >
         <p class="text-[12px] font-bold">Settings</p>
-      </div> 
+      </a> 
       
     </div>
     <!-- End bottom bar -->
@@ -166,349 +177,395 @@
 
 
     <!-- RIGHT SIDE -->
-    <div class=" main_body transition-all duration-500 md:w-4/5 w-full ml-auto h-auto bg-slate-200">
+    <div class="main_body transition-all duration-500 md:w-4/5 w-full ml-auto h-auto bg-slate-200">
       
       <!-- Header -->
-      <div class="bg-slate-400 h-auto sm:h-60 pb-10 sm:pb-0">
+      <div class="bg-slate-400 h-auto sm:min-h-screen pb-10 sm:pb-0">
 
         <div class="py-4 ml-10">
-          <h1 class="font-bold text-md sm:text-xl text-slate-900">Diagnosis</h1>
-          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="patient_list.html">Home</a> | <span><a href="#">Al-Waasiu</a></span></h2>
+          <h1 class="font-bold text-md sm:text-xl text-slate-900">Medication</h1>
+          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="dashboard.html">Home</a> | <span><a href="patient.html">Al-Waasiu </a></span> | <span><a href="all_medical_records.html">Medication</a></span></h2>
         </div>
 
-        <div class="sm:flex space-y-10 sm:space-y-0 px-1 sm:px-4 md:px-8">
-
-          <div class="space-y-1 mx-auto text-center block w-3/5 sm:w-1/4 rounded-lg bg-white p-4 sm:mx-6 items-center">
-
-            <h5
-              class="text-lg font-bold leading-tight text-neutral-800">
-              All
-            </h5>
-
-            <h1 class="text-xl">
-              13
-            </h1>
-
-            <p class="text-base font-semibold text-neutral-600">
-              Last Updated
-            </p>
-
-            <p class="text-base font-medium text-neutral-600">
-              A min ago
-            </p>
+        <!-- Header Profile -->
+        <div class="h-[20%] bg-gray-100 mb-8 flex justify-center mx-4 sm:mx-8 md:mx-10 lg:mx-16  rounded-lg">
+          <div class="flex text-sm sm:text-lg p-5 text-slate-900 font-bold">
+            <div class="flex justify-center" >
+              <img src="../images/profile.jpg" alt="" class="rounded-[100%] w-[80px] h-[80px] ">
+            </div>
+            <div class=" text-gray-800 mx-3 flex justify-between items-center">
+              <div class="text-xs xs:text-sm sm:text-[16px]">
+                <h1>Name : Al-Waasiu Abubakari</h1>
+                <h1>ID : ID89276</h1>
+                <h1>Last Visited : 21/02/2023</h1>
+              </div>
+            </div>
+            
           </div>
-
-          <div class="space-y-1 mx-auto text-center block w-3/5 sm:w-1/4 rounded-lg bg-white p-4 sm:mx-6 items-center opacity-70">
-
-            <h5
-              class=" text-lg font-bold leading-tight text-neutral-800">
-              Completed
-            </h5>
-
-            <h1 class=" text-xl">
-              6
-            </h1>
-
-            <p class=" text-base font-semibold text-neutral-600">
-              Last Updated
-            </p>
-
-            <p class=" text-base font-medium text-neutral-600">
-              A min ago
-            </p>
-          </div>
-
-          <div class=" space-y-1 mx-auto text-center block w-3/5 sm:w-1/4 rounded-lg bg-white p-4 sm:mx-6 items-center opacity-70">
-
-            <h5
-              class=" text-lg font-bold leading-tight text-neutral-800">
-              Uncompleted
-            </h5>
-
-            <h1 class=" text-xl">
-              7
-            </h1>
-
-            <p class=" font-semibold text-neutral-600">
-              Last Updated
-            </p>
-
-            <p class="  text-neutral-600">
-              A min ago
-            </p>
-          </div>
-
         </div>
-      </div> 
-      <!-- End Header -->
+        <!-- End Header Profile -->
 
-      <!-- Patient list -->
-      <div class="bg-gray-200 mx-4 sm:mx-8 md:mx-10 lg:mx-16 pb-10">
-        <div class="my-6">
-          <button class="rounded bg-slate-400 px-4 py-1 uppercase">
-            Filter
+          <!-- Patient list -->
+      <div class="bg-slate-400 mx-4 sm:mx-8 md:mx-10 lg:mx-16 pb-10">
+
+        <a href="book_patient_medical_record.html">
+          <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">
+            Current Medication
           </button>
+        </a>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 my-4 gap-4">
+
+            <div class=" rounded-lg">
+              <div class="flex justify-between items-center p-2 rounded-t-lg bg-slate-700 text-white">
+                <h1 class="text-center font-bold">Paracetamol</h1>
+                <h1 class="text-sm font-semibold">2 Days left</h1>
+              </div>
+              <div class="px-2 py-1 bg-white rounded-b-lg">
+                <div class="flex items-center">
+                  <img class="h-5 w-5" src="../images/icons8-time-40.png" alt=""> 
+                  <h1 class="font-semibold mx-4">8 : 00 am</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-pill-48 (3).png" alt=""> 
+                  <h1 class="font-semibold mx-4">4 pills </h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-frequency-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Twice a day</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-instruction-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Take milk in low quantity</h1>
+                </div>
+
+                <div class="flex justify-evenly my-4 px-8">
+                  <button class="bg-red-600 text-white text-sm px-2 py-1 rounded-lg">
+                    Drop
+                  </button>
+                  <button class="bg-blue-600 text-white text-sm px-2 py-1 rounded-lg">
+                    View Record
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class=" rounded-lg">
+              <div class="flex justify-between items-center p-2 rounded-t-lg bg-slate-700 text-white">
+                <h1 class="text-center font-bold">Paracetamol</h1>
+                <h1 class="text-sm font-semibold">2 Days left</h1>
+              </div>
+              <div class="px-2 py-1 bg-white rounded-b-lg">
+                <div class="flex items-center">
+                  <img class="h-5 w-5" src="../images/icons8-time-40.png" alt=""> 
+                  <h1 class="font-semibold mx-4">8 : 00 am</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-pill-48 (3).png" alt=""> 
+                  <h1 class="font-semibold mx-4">4 pills </h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-frequency-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Twice a day</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-instruction-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Take milk in low quantity</h1>
+                </div>
+
+                <div class="flex justify-evenly my-4 px-8">
+                  <button class="bg-red-600 text-white text-sm px-2 py-1 rounded-lg">
+                    Drop
+                  </button>
+                  <button class="bg-blue-600 text-white text-sm px-2 py-1 rounded-lg">
+                    View Record
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class=" rounded-lg">
+              <div class="flex justify-between items-center p-2 rounded-t-lg bg-slate-700 text-white">
+                <h1 class="text-center font-bold">Paracetamol</h1>
+                <h1 class="text-sm font-semibold">2 Days left</h1>
+              </div>
+              <div class="px-2 py-1 bg-white rounded-b-lg">
+                <div class="flex items-center">
+                  <img class="h-5 w-5" src="../images/icons8-time-40.png" alt=""> 
+                  <h1 class="font-semibold mx-4">8 : 00 am</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-pill-48 (3).png" alt=""> 
+                  <h1 class="font-semibold mx-4">4 pills </h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-frequency-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Twice a day</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-instruction-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Take milk in low quantity</h1>
+                </div>
+
+                <div class="flex justify-evenly my-4 px-8">
+                  <button class="bg-red-600 text-white text-sm px-2 py-1 rounded-lg">
+                    Drop
+                  </button>
+                  <button class="bg-blue-600 text-white text-sm px-2 py-1 rounded-lg">
+                    View Record
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class=" rounded-lg">
+              <div class="flex justify-between items-center p-2 rounded-t-lg bg-slate-700 text-white">
+                <h1 class="text-center font-bold">Paracetamol</h1>
+                <h1 class="text-sm font-semibold">2 Days left</h1>
+              </div>
+              <div class="px-2 py-1 bg-white rounded-b-lg">
+                <div class="flex items-center">
+                  <img class="h-5 w-5" src="../images/icons8-time-40.png" alt=""> 
+                  <h1 class="font-semibold mx-4">8 : 00 am</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-pill-48 (3).png" alt=""> 
+                  <h1 class="font-semibold mx-4">4 pills </h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-frequency-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Twice a day</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-instruction-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Take milk in low quantity</h1>
+                </div>
+
+                <div class="flex justify-evenly my-4 px-8">
+                  <button class="bg-red-600 text-white text-sm px-2 py-1 rounded-lg">
+                    Drop
+                  </button>
+                  <button class="bg-blue-600 text-white text-sm px-2 py-1 rounded-lg">
+                    View Record
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class=" rounded-lg">
+              <div class="flex justify-between items-center p-2 rounded-t-lg bg-slate-700 text-white">
+                <h1 class="text-center font-bold">Paracetamol</h1>
+                <h1 class="text-sm font-semibold">2 Days left</h1>
+              </div>
+              <div class="px-2 py-1 bg-white rounded-b-lg">
+                <div class="flex items-center">
+                  <img class="h-5 w-5" src="../images/icons8-time-40.png" alt=""> 
+                  <h1 class="font-semibold mx-4">8 : 00 am</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-pill-48 (3).png" alt=""> 
+                  <h1 class="font-semibold mx-4">4 pills </h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-frequency-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Twice a day</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-instruction-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Take milk in low quantity</h1>
+                </div>
+
+                <div class="flex justify-evenly my-4 px-8">
+                  <button class="bg-red-600 text-white text-sm px-2 py-1 rounded-lg">
+                    Drop
+                  </button>
+                  <button class="bg-blue-600 text-white text-sm px-2 py-1 rounded-lg">
+                    View Record
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class=" rounded-lg">
+              <div class="flex justify-between items-center p-2 rounded-t-lg bg-slate-700 text-white">
+                <h1 class="text-center font-bold">Paracetamol</h1>
+                <h1 class="text-sm font-semibold">2 Days left</h1>
+              </div>
+              <div class="px-2 py-1 bg-white rounded-b-lg">
+                <div class="flex items-center">
+                  <img class="h-5 w-5" src="../images/icons8-time-40.png" alt=""> 
+                  <h1 class="font-semibold mx-4">8 : 00 am</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-pill-48 (3).png" alt=""> 
+                  <h1 class="font-semibold mx-4">4 pills </h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-frequency-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Twice a day</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-instruction-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Take milk in low quantity</h1>
+                </div>
+
+                <div class="flex justify-evenly my-4 px-8">
+                  <button class="bg-red-600 text-white text-sm px-2 py-1 rounded-lg">
+                    Drop
+                  </button>
+                  <button class="bg-blue-600 text-white text-sm px-2 py-1 rounded-lg">
+                    View Record
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class=" rounded-lg">
+              <div class="flex justify-between items-center p-2 rounded-t-lg bg-slate-700 text-white">
+                <h1 class="text-center font-bold">Paracetamol</h1>
+                <h1 class="text-sm font-semibold">2 Days left</h1>
+              </div>
+              <div class="px-2 py-1 bg-white rounded-b-lg">
+                <div class="flex items-center">
+                  <img class="h-5 w-5" src="../images/icons8-time-40.png" alt=""> 
+                  <h1 class="font-semibold mx-4">8 : 00 am</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-pill-48 (3).png" alt=""> 
+                  <h1 class="font-semibold mx-4">4 pills </h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-frequency-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Twice a day</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-instruction-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Take milk in low quantity</h1>
+                </div>
+
+                <div class="flex justify-evenly my-4 px-8">
+                  <button class="bg-red-600 text-white text-sm px-2 py-1 rounded-lg">
+                    Drop
+                  </button>
+                  <button class="bg-blue-600 text-white text-sm px-2 py-1 rounded-lg">
+                    View Record
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class=" rounded-lg">
+              <div class="flex justify-between items-center p-2 rounded-t-lg bg-slate-700 text-white">
+                <h1 class="text-center font-bold">Paracetamol</h1>
+                <h1 class="text-sm font-semibold">2 Days left</h1>
+              </div>
+              <div class="px-2 py-1 bg-white rounded-b-lg">
+                <div class="flex items-center">
+                  <img class="h-5 w-5" src="../images/icons8-time-40.png" alt=""> 
+                  <h1 class="font-semibold mx-4">8 : 00 am</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-pill-48 (3).png" alt=""> 
+                  <h1 class="font-semibold mx-4">4 pills </h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-frequency-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Twice a day</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-instruction-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Take milk in low quantity</h1>
+                </div>
+
+                <div class="flex justify-evenly my-4 px-8">
+                  <button class="bg-red-600 text-white text-sm px-2 py-1 rounded-lg">
+                    Drop
+                  </button>
+                  <button class="bg-blue-600 text-white text-sm px-2 py-1 rounded-lg">
+                    View Record
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class=" rounded-lg">
+              <div class="flex justify-between items-center p-2 rounded-t-lg bg-slate-700 text-white">
+                <h1 class="text-center font-bold">Paracetamol</h1>
+                <h1 class="text-sm font-semibold">2 Days left</h1>
+              </div>
+              <div class="px-2 py-1 bg-white rounded-b-lg">
+                <div class="flex items-center">
+                  <img class="h-5 w-5" src="../images/icons8-time-40.png" alt=""> 
+                  <h1 class="font-semibold mx-4">8 : 00 am</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-pill-48 (3).png" alt=""> 
+                  <h1 class="font-semibold mx-4">4 pills </h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-frequency-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Twice a day</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-instruction-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Take milk in low quantity</h1>
+                </div>
+
+                <div class="flex justify-evenly my-4 px-8">
+                  <button class="bg-red-600 text-white text-sm px-2 py-1 rounded-lg">
+                    Drop
+                  </button>
+                  <button class="bg-blue-600 text-white text-sm px-2 py-1 rounded-lg">
+                    View Record
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class=" rounded-lg">
+              <div class="flex justify-between items-center p-2 rounded-t-lg bg-slate-700 text-white">
+                <h1 class="text-center font-bold">Paracetamol</h1>
+                <h1 class="text-sm font-semibold">2 Days left</h1>
+              </div>
+              <div class="px-2 py-1 bg-white rounded-b-lg">
+                <div class="flex items-center">
+                  <img class="h-5 w-5" src="../images/icons8-time-40.png" alt=""> 
+                  <h1 class="font-semibold mx-4">8 : 00 am</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-pill-48 (3).png" alt=""> 
+                  <h1 class="font-semibold mx-4">4 pills </h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-frequency-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Twice a day</h1>
+                </div>
+                <div class="flex items-center my-2">
+                  <img class="h-5 w-5 rounded-lg" src="../images/icons8-instruction-64.png" alt=""> 
+                  <h1 class="font-semibold mx-4">Take milk in low quantity</h1>
+                </div>
+
+                <div class="flex justify-evenly my-4 px-8">
+                  <button class="bg-red-600 text-white text-sm px-2 py-1 rounded-lg">
+                    Drop
+                  </button>
+                  <button class="bg-blue-600 text-white text-sm px-2 py-1 rounded-lg">
+                    View Record
+                  </button>
+                </div>
+              </div>
+            </div>
+
+
         </div>
 
-        <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-          <div>
-            <h1 class="uppercase font-bold">id 89276</h1>
-            <p >12 Mins ago</p>
-          </div>
-
-          <div class="hidden xxs:block">
-            <h1 class="uppercase font-bold">patient</h1>
-            <p>Abubakari Al-Waasiu</p>
-          </div>
-
-          <div class="hidden xs:block">
-            <h1 class="uppercase font-bold">doctor</h1>
-            <p>Farad Wells</p>
-          </div>
-
-          <div>
-            <h1 class="uppercase font-bold">status</h1>
-            <p class="text-yellow-500 font-bold">pending</p>
-          </div>
-
-          <div>
-            <a href="patient.html">
-              <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                view
-              </button>
-            </a>
-            
-          </div>
-
-        </div>
-        
-        <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-          <div>
-            <h1 class="uppercase font-bold">id 89276</h1>
-            <p >12 Mins ago</p>
-          </div>
-
-          <div class="hidden xxs:block">
-            <h1 class="uppercase font-bold">patient</h1>
-            <p>Abubakari Al-Waasiu</p>
-          </div>
-
-          <div class="hidden xs:block">
-            <h1 class="uppercase font-bold">doctor</h1>
-            <p>Farad Wells</p>
-          </div>
-
-          <div>
-            <h1 class="uppercase font-bold">status</h1>
-            <p class="text-yellow-500 font-bold">pending</p>
-          </div>
-
-          <div>
-            <a href="patient.html">
-              <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                view
-              </button>
-            </a>
-            
-          </div>
-
-        </div>
-
-        <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-          <div>
-            <h1 class="uppercase font-bold">id 89276</h1>
-            <p >12 Mins ago</p>
-          </div>
-
-          <div class="hidden xxs:block">
-            <h1 class="uppercase font-bold">patient</h1>
-            <p>Abubakari Al-Waasiu</p>
-          </div>
-
-          <div class="hidden xs:block">
-            <h1 class="uppercase font-bold">doctor</h1>
-            <p>Farad Wells</p>
-          </div>
-
-          <div>
-            <h1 class="uppercase font-bold">status</h1>
-            <p class="text-yellow-500 font-bold">pending</p>
-          </div>
-
-          <div>
-            <a href="patient.html">
-              <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                view
-              </button>
-            </a>
-            
-          </div>
-
-        </div>
-
-        <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-          <div>
-            <h1 class="uppercase font-bold">id 89276</h1>
-            <p >12 Mins ago</p>
-          </div>
-
-          <div class="hidden xxs:block">
-            <h1 class="uppercase font-bold">patient</h1>
-            <p>Abubakari Al-Waasiu</p>
-          </div>
-
-          <div class="hidden xs:block">
-            <h1 class="uppercase font-bold">doctor</h1>
-            <p>Farad Wells</p>
-          </div>
-
-          <div>
-            <h1 class="uppercase font-bold">status</h1>
-            <p class="text-yellow-500 font-bold">pending</p>
-          </div>
-
-          <div>
-            <a href="patient.html">
-              <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                view
-              </button>
-            </a>
-            
-          </div>
-
-        </div>
-
-        <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-          <div>
-            <h1 class="uppercase font-bold">id 89276</h1>
-            <p >12 Mins ago</p>
-          </div>
-
-          <div class="hidden xxs:block">
-            <h1 class="uppercase font-bold">patient</h1>
-            <p>Abubakari Al-Waasiu</p>
-          </div>
-
-          <div class="hidden xs:block">
-            <h1 class="uppercase font-bold">doctor</h1>
-            <p>Farad Wells</p>
-          </div>
-
-          <div>
-            <h1 class="uppercase font-bold">status</h1>
-            <p class="text-yellow-500 font-bold">pending</p>
-          </div>
-
-          <div>
-            <a href="patient.html">
-              <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                view
-              </button>
-            </a>
-            
-          </div>
-
-        </div>
-
-        <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-          <div>
-            <h1 class="uppercase font-bold">id 89276</h1>
-            <p >12 Mins ago</p>
-          </div>
-
-          <div class="hidden xxs:block">
-            <h1 class="uppercase font-bold">patient</h1>
-            <p>Abubakari Al-Waasiu</p>
-          </div>
-
-          <div class="hidden xs:block">
-            <h1 class="uppercase font-bold">doctor</h1>
-            <p>Farad Wells</p>
-          </div>
-
-          <div>
-            <h1 class="uppercase font-bold">status</h1>
-            <p class="text-yellow-500 font-bold">pending</p>
-          </div>
-
-          <div>
-            <a href="patient.html">
-              <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                view
-              </button>
-            </a>
-            
-          </div>
-
-        </div>
-
-        <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-          <div>
-            <h1 class="uppercase font-bold">id 89276</h1>
-            <p >12 Mins ago</p>
-          </div>
-
-          <div class="hidden xxs:block">
-            <h1 class="uppercase font-bold">patient</h1>
-            <p>Abubakari Al-Waasiu</p>
-          </div>
-
-          <div class="hidden xs:block">
-            <h1 class="uppercase font-bold">doctor</h1>
-            <p>Farad Wells</p>
-          </div>
-
-          <div>
-            <h1 class="uppercase font-bold">status</h1>
-            <p class="text-yellow-500 font-bold">pending</p>
-          </div>
-
-          <div>
-            <a href="patient.html">
-              <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                view
-              </button>
-            </a>
-            
-          </div>
-
-        </div>
-
-        <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-          <div>
-            <h1 class="uppercase font-bold">id 89276</h1>
-            <p >12 Mins ago</p>
-          </div>
-
-          <div class="hidden xxs:block">
-            <h1 class="uppercase font-bold">patient</h1>
-            <p>Abubakari Al-Waasiu</p>
-          </div>
-
-          <div class="hidden xs:block">
-            <h1 class="uppercase font-bold">doctor</h1>
-            <p>Farad Wells</p>
-          </div>
-
-          <div>
-            <h1 class="uppercase font-bold">status</h1>
-            <p class="text-yellow-500 font-bold">pending</p>
-          </div>
-
-          <div>
-            <a href="patient.html">
-              <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-                view
-              </button>
-            </a>
-            
-          </div>
-
-        </div>
 
         
       </div>
       <!-- End Patient list -->
+
+      </div> 
+      <!-- End Header -->
 
     </div>
     <!-- END RIGHT SIDE -->

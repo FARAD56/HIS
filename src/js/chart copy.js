@@ -1,5 +1,5 @@
-const diagnosisChart = document.getElementById('diagnosisChart');
-var vitalsChart = document.getElementById('vitalsChart').getContext('2d');
+const diagnosisChart1 = document.getElementById('diagnosisChart');
+var vitalsChart1 = document.getElementById('vitalsChart').getContext('2d');
 
 
 const calculateFontSize = function(context) {
@@ -62,19 +62,19 @@ new Chart(vitalsChart, {
     data: {
         labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6'],
         datasets: [{
-            label: 'Temperature',
+            label: 'Men',
             data: [36, 30.2, 37.8, 34.5, 39.3, 34],
             borderColor: 'green',
             backgroundColor: 'green',
             tension: 0.4
         }, {
-            label: 'Systole',
+            label: 'Women',
             data: [120, 118, 122, 125, 119, 112],
             borderColor: 'blue',
             backgroundColor: 'blue',
             tension: 0.4
         }, {
-            label: 'Diastole',
+            label: 'Children',
             data: [76, 76, 84, 87, 80, 72],
             borderColor: 'deepskyblue',
             backgroundColor: 'deepskyblue',

@@ -177,150 +177,119 @@
 
 
     <!-- RIGHT SIDE -->
-    <div class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto bg-slate-200">
-      
-      <!-- Header -->
-      <div class="bg-slate-400 h-auto sm:h-auto pb-20 lg:pb-2">
+    <div class="main_body transition-all duration-500 pb-8 md:w-4/5 w-full sm:ml-auto min-h-screen bg-slate-400">
 
         <div class="py-4 ml-10">
-          <h1 class="font-bold text-md sm:text-xl text-slate-900">Patient</h1>
-          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="dashboard.html">Home</a> | <span><a href="patient.html">Al-Waasiu</a></span></h2>
+          <h1 class="font-bold text-md sm:text-xl text-slate-900">Add Investigation</h1>
+          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="dashboard.html">Home</a> | <span><a href="single_medical_record.html">Medical Record</a></span> | <span><a href="diagnosis.html">Acute Seizures</a></span></h2>
         </div>
 
-        <!-- Header Profile -->
-        <div class="h-[20%] bg-gray-100 mb-4 flex justify-center mx-4 sm:mx-8 md:mx-10 lg:mx-16  rounded-lg">
-          <div class="flex text-sm sm:text-lg p-5 text-slate-900 font-bold">
-            <div class="flex flex-col justify-center text-center mx-2" >
-              <img src="../images/profile.jpg" alt="" class="rounded-[100%] w-[80px] h-[80px] ">
-              <h1 class="text-xs xs:text-sm sm:text-[16px] mt-2">ID89276</h1>
-            </div>
-            <div class=" text-gray-800 mx-3 flex justify-between items-center">
-              <div class="text-xs xs:text-sm sm:text-[16px]">
-                <h1>Name : Al-Waasiu Abubakari</h1>
-                <h1>Sex : Male</h1>
-                <h1>Age : 18</h1>
-                <h1>Last Visited : 21/02/2023</h1>
-              </div>
-            </div>
+        <div class="text-xs sm:text-sm mb-16 md:mb-4 mt-4 mx-2 sm:mx-8 h-full pb-4 bg-white shadow-lg rounded-lg">
+
+          <!-- Form Title -->
+          <div class="bg-slate-700 w-full py-2 px-8 rounded-t-lg">
+            <h1 class="text-white font-bold text-lg">Acute Seizures</h1>
+          </div>
+          <!-- End Form Title -->
+
+           <!-- Investigation -->
+           <div class="px-4 sm:px-8 my-8">
             
-          </div>
-        </div>
-        <!-- End Header Profile -->
-
-        <!-- Header Profile -->
-        <div class="hover:shadow-2xl text-[11px] sm:text-sm my-4 px-4 py-[10px] sm:px-6 mx-4 sm:mx-8 md:mx-10 lg:mx-16 bg-white shadow-lg rounded-lg">
-
-          <div class="flex items-center justify-between my-2">
-            <div>
-              <h1 class="uppercase font-bold text-center">Date</h1>
-              <p class="text-center">24/02/2024</p>
-            </div>
-  
-            <div class="hidden xxs:block">
-              <h1 class="uppercase font-bold text-center">Temperature</h1>
-              <p class="text-center">33 degrees</p>
-            </div>
-  
-            <div class="hidden xs:block">
-              <h1 class="uppercase font-bold text-center">Blood Pressure</h1>
-              <p class="text-center">120/80 bpm</p>
+            <div class="bg-slate-700 flex items-center justify-between w-full py-2 px-2 sm:px-4 lg:px-8 rounded-t-lg">
+              <h1 class="text-white font-bold text-[16px]">Add Lab test</h1>
+              <img src="../images/icons8-add-48.png" alt="" class="w-8 h-8">
             </div>
 
-            <div class="items-center">
-              <h1 class="uppercase font-bold text-center">Triage</h1>
-              <p class="bg-red-600 text-red-600 font-bold text-center">aaaaaaa</p>
-            </div>
-  
-            <a href="single_medical_record.html">
-              <button class="rounded bg-blue-700 px-1 sm:px-4 py-1 text-xs uppercase text-white">
-                Attend
-              </button>
-            </a>
+            <div class="w-full py-2 px-1 sm:px-4 lg:px-8 shadow-lg bg-slate-200">
 
-          </div>
+              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
 
-          <div class="mt-4">
-            <h1 class="uppercase font-bold mb-2">Comments</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus pariatur totam numquam! Aliquam voluptatem vero cumque amet deserunt minus quis. Cum ratione mollitia error sapiente!</p>
-          </div>
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Referral Facility : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">Korle Bu Main hospital</option>
+                      <option value="option3">Legon Hospital</option>
+                      <option value="option3">University of Ghana Medical center</option>
+                      <option value="option3">Accra Medical center</option>
+                      <option value="option3">Noguchie Health center</option>
+                    </select>          
+                  </div>
+                </div>
 
-        </div>
-        <!-- End Header Profile -->
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Unit : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">Pathology</option>
+                      <option value="option2">Cardiology</option>
+                      <option value="option3">Cardithoracy</option>
+                      <option value="option3">Gynaecology</option>
+                      <option value="option3">Pediatric</option>
+                      <option value="option3">Opthometry</option>
+                    </select>          
+                  </div>
+                </div>
 
-        <div class="sm:flex space-y-10 sm:space-y-0 px-1 sm:px-4 md:px-8">
-
-          <div class="block space-y-1 mx-auto text-center w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
-            <a href="patient_profile.html">
-              <div class="flex flex-col items-center justify-center">
-                <h5
-                  class="text-lg font-bold leading-tight text-neutral-800">
-                  Profile
-                </h5>
-  
-                <img src="../images/profile.png" alt="" class="h-10 w-10 rounded-lg">
-  
-                <p class="text-base font-semibold text-neutral-600">
-                  Last Updated
-                </p>
-  
-                <p class="text-base font-medium text-neutral-600">
-                  A min ago
-                </p>
               </div>
-            </a>
-          </div>
 
-          <div class="space-y-4 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
-            <a href="all_medical_records.html">
-              <div>
-                <h5
-                  class="text-lg font-bold leading-tight text-neutral-800">
-                  Medical Records
-                </h5>
-  
-                <h1 class="text-3xl">
-                  10
-                </h1>
-  
-                <p class="text-base font-semibold text-neutral-600">
-                  Last Updated
-                </p>
-  
-                <p class="text-base font-medium text-neutral-600">
-                  A min ago
-                </p>
-              </div>
-            </a>
-          </div>
+              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
 
-          <div class="space-y-4 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
-            <a href="medication.html">
-              <div>
-                <h5
-                  class="text-lg font-bold leading-tight text-neutral-800">
-                  Medication
-                </h5>
-  
-                <h1 class="text-3xl">
-                  15
-                </h1>
-  
-                <p class="text-base font-semibold text-neutral-600">
-                  Last Updated
-                </p>
-  
-                <p class="text-base font-medium text-neutral-600">
-                  A min ago
-                </p>
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Investigation: </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="option1">Select One </option>
+                      <option value="option2">Blood tests</option>
+                      <option value="option3">Urinalysis</option>
+                      <option value="option3">Biopsy</option>
+                      <option value="option3">Amniocentesis</option>
+                      <option value="option3">Thyroid function tests</option>
+                    </select>          
+                  </div>
+                </div>
+
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="" class="text-slate-900 font-bold">Date : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <input type="text" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">       
+                  </div>
+                </div>
+
               </div>
-            </a>
+
+              <div class="mt-8 mb-4">
+                <h1 class="font-bold uppercase">Reason</h1>
+                <input type="text" class="my-2 bg-slate-200 p-2 border border-black w-[90%] sm:w-[80%] rounded-lg" placeholder="Add Instructions">
+              </div>
+
+
+              <div class="flex justify-center">
+                <a href="diagnosis.html">
+                    <button class="bg-blue-700 text-white font-bold my-4 py-2 px-4 rounded-lg">Add</button>
+                </a>
+              </div>
+
+
+            </div>
+
           </div>
+          <!-- End Investigation -->
+
 
         </div>
-
-      </div> 
-      <!-- End Header -->
-
+          
+        </div>
     </div>
     <!-- END RIGHT SIDE -->
 

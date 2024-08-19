@@ -177,150 +177,180 @@
 
 
     <!-- RIGHT SIDE -->
-    <div class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto bg-slate-200">
-      
-      <!-- Header -->
-      <div class="bg-slate-400 h-auto sm:h-auto pb-20 lg:pb-2">
+    <div class="main_body transition-all duration-500 pb-8 md:w-4/5 w-full sm:ml-auto min-h-screen bg-slate-400">
 
         <div class="py-4 ml-10">
-          <h1 class="font-bold text-md sm:text-xl text-slate-900">Patient</h1>
-          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="dashboard.html">Home</a> | <span><a href="patient.html">Al-Waasiu</a></span></h2>
+          <h1 class="font-bold text-md sm:text-xl text-slate-900">Diagnosis details</h1>
+          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="dashboard.html">Home</a> | <span><a href="single_medical_record.html">Medical Record</a></span></h2>
         </div>
 
-        <!-- Header Profile -->
-        <div class="h-[20%] bg-gray-100 mb-4 flex justify-center mx-4 sm:mx-8 md:mx-10 lg:mx-16  rounded-lg">
-          <div class="flex text-sm sm:text-lg p-5 text-slate-900 font-bold">
-            <div class="flex flex-col justify-center text-center mx-2" >
-              <img src="../images/profile.jpg" alt="" class="rounded-[100%] w-[80px] h-[80px] ">
-              <h1 class="text-xs xs:text-sm sm:text-[16px] mt-2">ID89276</h1>
+        <div class="text-xs sm:text-sm mb-16 md:mb-4 mt-4 mx-2 sm:mx-8 h-full pb-4 bg-white shadow-lg rounded-lg">
+
+          <!-- Form Title -->
+          <div class="bg-slate-700 w-full py-2 px-8 rounded-t-lg">
+            <h1 class="text-white font-bold text-lg">Acute Seizures</h1>
+          </div>
+          <!-- End Form Title -->
+
+          
+          <div class="bg-white p-2 sm:px-4 lg:px-8 pb-4">
+            <div class="my-6 flex justify-between">
+                <button class="rounded bg-slate-900 text-xs sm:text-sm md:text-md text-white px-4 py-1 uppercase">
+                  PRESCRIPTIONS
+                </button>
             </div>
-            <div class=" text-gray-800 mx-3 flex justify-between items-center">
-              <div class="text-xs xs:text-sm sm:text-[16px]">
-                <h1>Name : Al-Waasiu Abubakari</h1>
-                <h1>Sex : Male</h1>
-                <h1>Age : 18</h1>
-                <h1>Last Visited : 21/02/2023</h1>
+            <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-gray-200 shadow-lg rounded-lg">
+              <div>
+                <h1 class="uppercase font-bold">Date</h1>
+                <p >24/02/2024</p>
               </div>
+    
+              <div class="hidden xxs:block">
+                <h1 class="uppercase font-bold">Medicine</h1>
+                <p>Paracetamol</p>
+              </div>
+    
+              <div class="hidden xs:block">
+                <h1 class="uppercase font-bold">Dosage</h1>
+                <p>200mg</p>
+              </div>
+    
+              <div class="hidden xs:block">
+                <h1 class="uppercase font-bold">Duration</h1>
+                <p>3 months</p>
+              </div>
+    
+              <div>
+                <a href="add_prescription.html">
+                  <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                    EDIT
+                  </button>
+                </a>
+                
+              </div>
+    
             </div>
+          </div>
+
+
+          <div class="bg-white p-2 sm:px-4 lg:px-8 pb-4">
+            <div class="my-6 flex justify-between">
+                <button class="rounded bg-slate-900 text-xs sm:text-sm md:text-md text-white px-4 py-1 uppercase">
+                  INVESTIGATIONS
+                </button>
+            </div>
+
+            <div class="hover:shadow-2xl text-[11px] sm:text-sm my-4 px-4 py-[10px] sm:px-6 bg-gray-200 shadow-lg rounded-lg">
+
+                <div class="flex items-center justify-between my-2">
+                    <div>
+                        <h1 class="uppercase font-bold">Date</h1>
+                        <p >24/02/2024</p>
+                      </div>
             
-          </div>
-        </div>
-        <!-- End Header Profile -->
+                      <div class="hidden xxs:block">
+                        <h1 class="uppercase font-bold">Facility</h1>
+                        <p>Korle Bu</p>
+                      </div>
+            
+                      <div class="hidden xs:block">
+                        <h1 class="uppercase font-bold">Unit</h1>
+                        <p>Pathology</p>
+                      </div>
+            
+                      <div class="hidden xs:block">
+                        <h1 class="uppercase font-bold">Type</h1>
+                        <p>Blood Test</p>
+                      </div>
+            
+                      <div>
+                        <a href="add_Investigation.html">
+                          <button class="rounded bg-green-700 px-4 py-1 text-sm uppercase text-white">
+                            Returned
+                          </button>
+                        </a>
+                        
+                      </div>
+    
+                </div>
+    
+                <div class="flex space-x-4 py-4">
+                  <h1 class="font-bold">Reason : </h1>
+                  <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, laborum.</h1>
+                </div>
 
-        <!-- Header Profile -->
-        <div class="hover:shadow-2xl text-[11px] sm:text-sm my-4 px-4 py-[10px] sm:px-6 mx-4 sm:mx-8 md:mx-10 lg:mx-16 bg-white shadow-lg rounded-lg">
-
-          <div class="flex items-center justify-between my-2">
-            <div>
-              <h1 class="uppercase font-bold text-center">Date</h1>
-              <p class="text-center">24/02/2024</p>
+                <div class="my-4">
+                  <div class="flex">
+                    <h1 class="font-bold ">Status: </h1>
+                    <h1 class="text-green-600 mx-4 font-bold">Returned</h1>
+                    <img src="../images/icons8-correct-50.png" alt="" class=" w-4 h-4">
+                    <img src="../images/icons8-wrong-50.png" alt="" class="hidden w-4 h-4">
+                  </div>
+                  <div class="flex items-center space-x-4">
+                    <img src="../images/pdf.png" alt="" class="w-6 h-6 my-2 rounded-lg">
+                    <a href="#" class="underline underline-offset-2 text-blue-600 font-semibold">Blood test.pdf</a>
+                  </div>
+                </div>
+    
             </div>
-  
-            <div class="hidden xxs:block">
-              <h1 class="uppercase font-bold text-center">Temperature</h1>
-              <p class="text-center">33 degrees</p>
+
+            <div class="hover:shadow-2xl text-[11px] sm:text-sm my-4 px-4 py-[10px] sm:px-6 bg-gray-200 shadow-lg rounded-lg">
+
+                <div class="flex items-center justify-between my-2">
+                    <div>
+                        <h1 class="uppercase font-bold">Date</h1>
+                        <p >24/02/2024</p>
+                      </div>
+            
+                      <div class="hidden xxs:block">
+                        <h1 class="uppercase font-bold">Facility</h1>
+                        <p>Korle Bu</p>
+                      </div>
+            
+                      <div class="hidden xs:block">
+                        <h1 class="uppercase font-bold">Unit</h1>
+                        <p>Pathology</p>
+                      </div>
+            
+                      <div class="hidden xs:block">
+                        <h1 class="uppercase font-bold">Type</h1>
+                        <p>Blood Test</p>
+                      </div>
+            
+                      <div>
+                        <a href="add_Investigation.html">
+                          <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                            Edit
+                          </button>
+                        </a>
+                        
+                      </div>
+    
+                </div>
+    
+                <div class="flex space-x-4 py-4">
+                  <h1 class="font-bold">Reason : </h1>
+                  <h1>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui, laborum.</h1>
+                </div>
+
+                <div class="my-4">
+                  <div class="flex">
+                    <h1 class="font-bold ">Status: </h1>
+                    <h1 class="text-red-600 mx-4 font-bold">Pending</h1>
+                    <img src="../images/icons8-correct-50.png" alt="" class=" w-4 h-4">
+                    <img src="../images/icons8-wrong-50.png" alt="" class="hidden w-4 h-4">
+                  </div>
+                </div>
+    
             </div>
-  
-            <div class="hidden xs:block">
-              <h1 class="uppercase font-bold text-center">Blood Pressure</h1>
-              <p class="text-center">120/80 bpm</p>
-            </div>
-
-            <div class="items-center">
-              <h1 class="uppercase font-bold text-center">Triage</h1>
-              <p class="bg-red-600 text-red-600 font-bold text-center">aaaaaaa</p>
-            </div>
-  
-            <a href="single_medical_record.html">
-              <button class="rounded bg-blue-700 px-1 sm:px-4 py-1 text-xs uppercase text-white">
-                Attend
-              </button>
-            </a>
 
           </div>
 
-          <div class="mt-4">
-            <h1 class="uppercase font-bold mb-2">Comments</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus pariatur totam numquam! Aliquam voluptatem vero cumque amet deserunt minus quis. Cum ratione mollitia error sapiente!</p>
-          </div>
 
-        </div>
-        <!-- End Header Profile -->
-
-        <div class="sm:flex space-y-10 sm:space-y-0 px-1 sm:px-4 md:px-8">
-
-          <div class="block space-y-1 mx-auto text-center w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
-            <a href="patient_profile.html">
-              <div class="flex flex-col items-center justify-center">
-                <h5
-                  class="text-lg font-bold leading-tight text-neutral-800">
-                  Profile
-                </h5>
-  
-                <img src="../images/profile.png" alt="" class="h-10 w-10 rounded-lg">
-  
-                <p class="text-base font-semibold text-neutral-600">
-                  Last Updated
-                </p>
-  
-                <p class="text-base font-medium text-neutral-600">
-                  A min ago
-                </p>
-              </div>
-            </a>
-          </div>
-
-          <div class="space-y-4 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
-            <a href="all_medical_records.html">
-              <div>
-                <h5
-                  class="text-lg font-bold leading-tight text-neutral-800">
-                  Medical Records
-                </h5>
-  
-                <h1 class="text-3xl">
-                  10
-                </h1>
-  
-                <p class="text-base font-semibold text-neutral-600">
-                  Last Updated
-                </p>
-  
-                <p class="text-base font-medium text-neutral-600">
-                  A min ago
-                </p>
-              </div>
-            </a>
-          </div>
-
-          <div class="space-y-4 mx-auto text-center block w-3/5 sm:w-3/10 rounded-lg bg-white p-4 sm:mx-6 items-center">
-            <a href="medication.html">
-              <div>
-                <h5
-                  class="text-lg font-bold leading-tight text-neutral-800">
-                  Medication
-                </h5>
-  
-                <h1 class="text-3xl">
-                  15
-                </h1>
-  
-                <p class="text-base font-semibold text-neutral-600">
-                  Last Updated
-                </p>
-  
-                <p class="text-base font-medium text-neutral-600">
-                  A min ago
-                </p>
-              </div>
-            </a>
-          </div>
 
         </div>
-
-      </div> 
-      <!-- End Header -->
-
+          
+        </div>
     </div>
     <!-- END RIGHT SIDE -->
 

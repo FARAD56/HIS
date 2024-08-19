@@ -180,8 +180,8 @@
     <div class="main_body transition-all duration-500 pb-8 md:w-4/5 w-full sm:ml-auto min-h-screen bg-slate-400">
 
         <div class="py-4 ml-10">
-          <h1 class="font-bold text-md sm:text-xl text-slate-900">Add patient</h1>
-          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="dashboard.html">Home</a> | <span><a href="single_medical_record.html">Medical Record</a></span></h2>
+          <h1 class="font-bold text-md sm:text-xl text-slate-900">Attend patient</h1>
+          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="dashboard.html">Home</a> | <span><a href="patient.html">Al-Waasiu</a></span> | <span><a href="single_medical_record.html">Medical Record</a></span></h2>
         </div>
 
         <div class="text-xs sm:text-sm mb-16 md:mb-4 mt-4 mx-2 sm:mx-8 h-full pb-4 bg-white shadow-lg rounded-lg">
@@ -277,249 +277,59 @@
 
           </div>
           <!-- End Diagnosis -->
-
-          <!-- Prescription -->
-          <div class="px-4 sm:px-8 mt-8 mb-4">
-            
-            <div class="bg-slate-700 flex items-center justify-between w-full py-2 px-2 sm:px-4 lg:px-8 rounded-t-lg">
-              <h1 class="text-white font-bold text-[16px]">Prescription</h1>
-              <img src="../images/icons8-add-48.png" alt="" class="w-8 h-8">
+          <div class="bg-white p-2 sm:px-4 lg:px-8 pb-4">
+            <div class="my-6 flex justify-between">
+                <button class="rounded bg-slate-900 text-xs sm:text-sm md:text-md text-white px-4 py-1 uppercase">
+                  DIAGNOSISES
+                </button>
             </div>
 
-            <div class="w-full p-2 sm:px-4 lg:px-8 shadow-lg bg-slate-200">
+            <div class="hover:shadow-2xl text-[11px] sm:text-sm my-4 px-4 py-[10px] sm:px-6 bg-gray-200 shadow-lg rounded-lg">
 
-              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
-
-                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
-                  <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Medicine : </label>
-                  </div>
-                  <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">Paracetamol</option>
-                      <option value="option3">Lacosamide</option>
-                      <option value="option3">Metformin</option>
-                      <option value="option3">ACE inhibitors</option>
-                      <option value="option3">SSR inhibitors</option>
-                      <option value="option3">Amoxicillin</option>
-                      <option value="option3">Azathioprines</option>
-                      <option value="option3">Hydrocortisones</option>
-                      <option value="option3">Ibuprofen</option>
-                      <option value="option3">Doxycycline</option>
-                    </select>          
-                  </div>
+              <div class="flex items-center justify-between my-2">
+                <div>
+                  <h1 class="uppercase font-bold">Date</h1>
+                  <p >24/02/2024</p>
                 </div>
-
-                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
-                  <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Strength : </label>
-                  </div>
-                  <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">50mg</option>
-                      <option value="option2">100mg</option>
-                      <option value="option3">200mg</option>
-                      <option value="option3">500mg</option>
-                    </select>          
-                  </div>
+      
+                <div class="hidden xxs:block">
+                  <h1 class="uppercase font-bold">Doctor</h1>
+                  <p>A. Al-Waasiu</p>
                 </div>
-
+      
+                <div class="hidden xs:block">
+                  <h1 class="uppercase font-bold">diagnosis</h1>
+                  <p>Seizures</p>
+                </div>
+      
+                <div class="hidden xs:block">
+                  <h1 class="uppercase font-bold">Type</h1>
+                  <p>Acute</p>
+                </div>
+      
+                <div>
+                  <a href="diagnosis.html">
+                    <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                      view
+                    </button>
+                  </a>
+                  
+                </div>
+  
               </div>
-
-              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
-
-                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
-                  <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Dose : </label>
-                  </div>
-                  <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">OD</option>
-                      <option value="option3">BID</option>
-                      <option value="option3">TID</option>
-                      <option value="option3">QID</option>
-                    </select>          
-                  </div>
-                </div>
-
-                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
-                  <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Quantity : </label>
-                  </div>
-                  <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">1</option>
-                      <option value="option3">2</option>
-                      <option value="option3">3</option>
-                      <option value="option3">4</option>
-                      <option value="option3">5</option>
-                      <option value="option3">6</option>
-                      <option value="option3">7</option>
-                      <option value="option3">8</option>
-                      <option value="option3">9</option>
-                      <option value="option3">10</option>
-                    </select>          
-                  </div>
-                </div>
-
+  
+              <div class="flex justify-center space-x-4 pt-4">
+                <a href="add_prescription.html">
+                  <button class="bg-blue-700 text-white font-bold py-2 px-4 rounded-lg uppercase">Add Prescription</button>
+                </a>
+                <a href="add_Investigation.html">
+                  <button class="bg-blue-700 text-white font-bold py-2 px-4 rounded-lg uppercase">Add Investigation</button>
+                </a>
               </div>
-
-              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
-
-                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
-                  <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Duration : </label>
-                  </div>
-                  <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">1 week</option>
-                      <option value="option2">2 weeks</option>
-                      <option value="option2">3 weeks</option>
-                      <option value="option2">1 month</option>
-                      <option value="option2">2 months</option>
-                      <option value="option2">3 months</option>
-                    </select>          
-                  </div>
-                </div>
-
-                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
-                  <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Frequency : </label>
-                  </div>
-                  <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">Chronic</option>
-                      <option value="option3">Acute</option>
-                    </select>          
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="mt-8 mb-4">
-                <h1 class="font-bold uppercase">Instructions</h1>
-                <input type="text" class="my-2 bg-slate-200 p-2 border border-black w-[90%] sm:w-[80%] rounded-lg" placeholder="Add Instructions">
-              </div>
-
-              <div class="flex justify-center">
-                <button class="bg-blue-700 text-white font-bold my-4 py-2 px-4 rounded-lg">Add</button>
-              </div>
-
-
-            </div>
+  
+          </div>
 
           </div>
-          <!-- End Prescription -->
-
-          <!-- Investigation -->
-          <div class="px-4 sm:px-8 my-8">
-            
-            <div class="bg-slate-700 flex items-center justify-between w-full py-2 px-2 sm:px-4 lg:px-8 rounded-t-lg">
-              <h1 class="text-white font-bold text-[16px]">Investigation</h1>
-              <img src="../images/icons8-add-48.png" alt="" class="w-8 h-8">
-            </div>
-
-            <div class="w-full py-2 px-1 sm:px-4 lg:px-8 shadow-lg bg-slate-200">
-
-              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
-
-                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
-                  <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Referral Facility : </label>
-                  </div>
-                  <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">Korle Bu Main hospital</option>
-                      <option value="option3">Legon Hospital</option>
-                      <option value="option3">University of Ghana Medical center</option>
-                      <option value="option3">Accra Medical center</option>
-                      <option value="option3">Noguchie Health center</option>
-                    </select>          
-                  </div>
-                </div>
-
-                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
-                  <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Unit : </label>
-                  </div>
-                  <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">Pathology</option>
-                      <option value="option2">Cardiology</option>
-                      <option value="option3">Cardithoracy</option>
-                      <option value="option3">Gynaecology</option>
-                      <option value="option3">Pediatric</option>
-                      <option value="option3">Opthometry</option>
-                    </select>          
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
-
-                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
-                  <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Investigation: </label>
-                  </div>
-                  <div class="w-[60%] sm:w-[70%]">
-                    <select class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
-                      <option value="option1">Select One </option>
-                      <option value="option2">Blood tests</option>
-                      <option value="option3">Urinalysis</option>
-                      <option value="option3">Biopsy</option>
-                      <option value="option3">Amniocentesis</option>
-                      <option value="option3">Thyroid function tests</option>
-                    </select>          
-                  </div>
-                </div>
-
-                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
-                  <div class="w-[40%] sm:w-[30%]">
-                    <label for="" class="text-slate-900 font-bold">Date : </label>
-                  </div>
-                  <div class="w-[60%] sm:w-[70%]">
-                    <input type="text" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">       
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="mt-8 mb-4">
-                <h1 class="font-bold uppercase">Reason</h1>
-                <input type="text" class="my-2 bg-slate-200 p-2 border border-black w-[90%] sm:w-[80%] rounded-lg" placeholder="Add Instructions">
-              </div>
-
-              <div class="my-4">
-                <div class="flex">
-                  <h1 class="font-bold ">Lab Test returned</h1>
-                  <img src="../images/icons8-correct-50.png" alt="" class=" w-4 h-4 mx-4">
-                  <img src="../images/icons8-wrong-50.png" alt="" class="hidden w-4 h-4 mx-4">
-                </div>
-                <div class="flex items-center space-x-4">
-                  <img src="../images/pdf.png" alt="" class="w-6 h-6 my-2 rounded-lg">
-                  <h1 class="underline underline-offset-2 text-blue-600 font-semibold">Blood test.pdf</h1>
-                </div>
-              </div>
-
-
-              <div class="flex justify-center">
-                <button class="bg-blue-700 text-white font-bold my-4 py-2 px-4 rounded-lg">Add</button>
-              </div>
-
-
-            </div>
-
-          </div>
-          <!-- End Investigation -->
 
           <!-- Final Diagnosis -->
           <div class="px-4 sm:px-8 my-8">
@@ -531,7 +341,6 @@
           <!-- Final Diagnosis -->
           <div class="flex justify-center space-x-4">
             <button class="bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Submit</button>
-            <button class="bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Generate pdf</button>
           </div>
           <!-- End Final Diagnosis -->
 
