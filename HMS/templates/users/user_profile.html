@@ -15,22 +15,28 @@
 
     <div class="py-4 ml-10">
       <h1 class="font-bold text-md sm:text-xl text-slate-900">Profile</h1>
-      <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a href="{% url 'user_profile' patient.profile_id %}">Patient</a></span> | <span><a href="#">{{patient.first_name}}</a></span></h2>
+      <h2 class=" font-bold text-sm sm:text-lg text-slate-900">
+        {% if request.user.is_staff %}
+        <a href="{% url 'doctor_dashboard' request.user.profile_id %}">Home</a>
+        {% else %}
+        <a href="{% url 'dashboard' request.user.profile_id %}">Home</a>
+        {% endif %}
+         | <span><a href="{% url 'user_profile' user.profile_id %}">user</a></span> | <span><a href="#">{{user.first_name}}</a></span></h2>
     </div>
 
     <div class="flex flex-col sm:flex-row text-xs sm:text-sm md:text-md">
       <div class="sm:w-2/5">
         <div class="mx-4 sm:mx-8 my-4 p-4 bg-white items-center ">
           <div class="flex justify-center">
-            <img src="{{patient.profilemodel.profile_picture.url}}" alt="" class="w-40 h-40 rounded-full">
+            <img src="{{user.profilemodel.profile_picture.url}}" alt="" class="w-40 h-40 rounded-full">
           </div>
 
           <div class="flex flex-col text-center justify-center">
-            <h1 class="mt-2 font-bold text-lg text-slate-900">ID {{patient.profile_id}}</h1>
-            <h1 class="mt-2 font-semibold text-slate-900">Sex: {{patient.sex}}</h1>
-            <h1 class="mt-2 font-semibold text-slate-900">Age: {{patient.age}}</h1>
+            <h1 class="mt-2 font-bold text-lg text-slate-900">ID {{user.profile_id}}</h1>
+            <h1 class="mt-2 font-semibold text-slate-900">Sex: {{user.sex}}</h1>
+            <h1 class="mt-2 font-semibold text-slate-900">Age: {{user.age}}</h1>
             {% if request.user.is_staff %}
-            <h1 class="mt-2 font-semibold text-slate-900">Speciality: {{patient.profilemodel.speciality}} </h1>
+            <h1 class="mt-2 font-semibold text-slate-900">Speciality: {{user.profilemodel.speciality}} </h1>
             {% endif %}
           </div>
         </div>
@@ -58,51 +64,51 @@
 
                   <div class="flex px-2 md:px-4">
                     <div class="w-[35%] font-semibold">Full Name:</div>
-                    <div class="w-[65%]">{{patient.first_name}} {{patient.last_name}}</div>
+                    <div class="w-[65%]">{{user.first_name}} {{user.last_name}}</div>
                   </div>
 
                   <div class="flex px-2 md:px-4">
                     <div class="w-[35%] font-semibold">Date of Birth:</div>
-                    <div class="w-[65%]">{{patient.dob}}</div>
+                    <div class="w-[65%]">{{user.dob}}</div>
                   </div>
 
                   <div class="flex px-2 md:px-4">
                     <div class="w-[35%] font-semibold">Place of Birth:</div>
-                    <div class="w-[65%]">{{patient.profilemodel.place_of_birth}}</div>
+                    <div class="w-[65%]">{{user.profilemodel.place_of_birth}}</div>
                   </div>
 
                   <div class="flex px-2 md:px-4">
                     <div class="w-[35%] font-semibold">Religion:</div>
-                    <div class="w-[65%]">{{patient.profilemodel.religion}}</div>
+                    <div class="w-[65%]">{{user.profilemodel.religion}}</div>
                   </div>
                   <div class="flex px-2 md:px-4">
                     <div class="w-[35%] font-semibold">Nationality:</div>
-                    <div class="w-[65%]">{{patient.profilemodel.nationality}}</div>
+                    <div class="w-[65%]">{{user.profilemodel.nationality}}</div>
                   </div>
 
                   <div class="flex px-2 md:px-4">
                     <div class="w-[35%] font-semibold">Contact:</div>
-                    <div class="w-[65%]">{{patient.contact}}</div>
+                    <div class="w-[65%]">{{user.contact}}</div>
                   </div>
 
                   <div class="flex px-2 md:px-4">
                     <div class="w-[35%] font-semibold">Residential Address:</div>
-                    <div class="w-[65%]">{{patient.profilemodel.address}}</div>
+                    <div class="w-[65%]">{{user.profilemodel.address}}</div>
                   </div>
 
                   <div class="flex px-2 md:px-4">
                     <div class="w-[35%] font-semibold">Marital Status:</div>
-                    <div class="w-[65%]">{{patient.profilemodel.marital_status}}</div>
+                    <div class="w-[65%]">{{user.profilemodel.marital_status}}</div>
                   </div>
 
                   <div class="flex px-2 md:px-4">
                     <div class="w-[35%] font-semibold">Occupation:</div>
-                    <div class="w-[65%]">{{patient.profilemodel.occupation}}</div>
+                    <div class="w-[65%]">{{user.profilemodel.occupation}}</div>
                   </div>
 
                   <div class="flex px-2 md:px-4">
                     <div class="w-[35%] font-semibold">Region:</div>
-                    <div class="w-[65%]">{{patient.profilemodel.region}}</div>
+                    <div class="w-[65%]">{{user.profilemodel.region}}</div>
                   </div>
 
                 </div>
@@ -113,27 +119,27 @@
 
                 <div class="flex px-2 md:px-4">
                   <div class="w-[35%] font-semibold">Name:</div>
-                  <div class="w-[65%]">{{patient.profilemodel.kin_name}}</div>
+                  <div class="w-[65%]">{{user.profilemodel.kin_name}}</div>
                 </div>
 
                 <div class="flex px-2 md:px-4">
                   <div class="w-[35%] font-semibold">Relationship:</div>
-                  <div class="w-[65%]">{{patient.profilemodel.relationship}}</div>
+                  <div class="w-[65%]">{{user.profilemodel.relationship}}</div>
                 </div>
 
                 <div class="flex px-2 md:px-4">
                   <div class="w-[35%] font-semibold">Residential Address:</div>
-                  <div class="w-[65%]">{{patient.profilemodel.kin_address}}</div>
+                  <div class="w-[65%]">{{user.profilemodel.kin_address}}</div>
                 </div>
 
                 <div class="flex px-2 md:px-4">
                   <div class="w-[35%] font-semibold">Contact:</div>
-                  <div class="w-[65%]">{{patient.profilemodel.kin_contact}}</div>
+                  <div class="w-[65%]">{{user.profilemodel.kin_contact}}</div>
                 </div>
 
                 <div class="flex px-2 md:px-4">
                   <div class="w-[35%] font-semibold">Email:</div>
-                  <div class="w-[65%]">{{patient.profilemodel.kin_email}}</div>
+                  <div class="w-[65%]">{{user.profilemodel.kin_email}}</div>
                 </div>
 
               </div>
@@ -168,7 +174,7 @@
 
             <div x-show="openTab === 4" class="mt-4">
               <div class="space-y-2">
-                <form method="POST" action="{% url 'availability' patient.profile_id %}">
+                <form method="POST" action="{% url 'availability' user.profile_id %}">
                   {% csrf_token %}
                   {% for field in availability_form  %}                      
                   <div class="flex px-2 md:px-2">

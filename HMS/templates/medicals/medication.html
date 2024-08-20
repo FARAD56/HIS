@@ -15,7 +15,13 @@ Medication
 
     <div class="py-4 ml-10">
       <h1 class="font-bold text-md sm:text-xl text-slate-900">Medication</h1>
-      <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a
+      <h2 class=" font-bold text-sm sm:text-lg text-slate-900">
+        {% if request.user.is_staff %}
+        <a href="{% url 'doctor_dashboard' request.user.profile_id %}">Home</a>
+        {% else %}
+        <a href="{% url 'dashboard' request.user.profile_id %}">Home</a>
+        {% endif %}
+         | <span><a
             href="{% url 'patient_details' patient.profile_id %}">{{patient.first_name}} </a></span> | <span><a href="{% url 'medication' patient.profile_id %}">Medication</a></span></h2>
     </div>
 

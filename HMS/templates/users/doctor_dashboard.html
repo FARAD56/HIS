@@ -1,0 +1,247 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Doctor Dashboard
+{% endblock title %}
+{% block content %}
+    <!-- RIGHT SIDE -->
+    <div class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto h-auto bg-slate-400 pb-20">
+
+      <!-- Header -->
+      <div class="">
+        <div class="py-4 ml-10">
+          <h1 class="font-bold text-md sm:text-xl text-slate-900">Doctor Dashboard</h1>
+        </div>
+      </div>
+      <!-- End Header -->
+
+      <div class="flex flex-col md:flex-row">
+
+        <div class="w-full md:w-[70%] lg:px-4">
+
+          <div class="hidden xxs:flex space-x-4 px-2 sm:px-4 text-white">
+            <div class="tab tab-active bg-purple-500 p-2 w-[30%] rounded-xl">
+              <div>
+                <img src="{% static 'images/icons8-diagnosis-64.png' %}" alt="" class="w-7 h-7">
+                <div class="my-1">
+                  <h5 class="xxs:text-[10px] xs:text-xs lg:text-sm font-bold ">Diagnosis</h5>
+                  <h5 class="text-[6px] xs:text-[8px] font-bold">Diagnosis statistics</h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab bg-red-400 p-2 w-[30%] rounded-xl">
+              <div>
+                <img src="{% static 'images/icons8-heart-beat-64.png' %}" alt="" class="w-7 h-7">
+                <div class="my-1">
+                  <h5 class="xxs:text-[10px] xs:text-xs lg:text-sm font-bold">Patient</h5>
+                  <h5 class="text-[6px] xs:text-[8px] font-bold">Patient gender statistics</h5>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab bg-blue-400 p-2 w-[30%] rounded-xl">
+              <div>
+                <img src="{% static 'images/icons8-recommended-64.png' %}" alt="" class="w-7 h-7">
+                <div class="my-1">
+                  <h5 class="xxs:text-[10px] xs:text-xs lg:text-sm font-bold">Activity</h5>
+                  <h5 class="text-[6px] xs:text-[8px] font-bold">Activity</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="grid mx-2 xxs:hidden grid-cols-12 divide-x bg-slate-300 text-xs text-center rounded-lg text-white font-semibold">
+            <div class="tab tab-active col-span-4 bg-purple-500 p-2 rounded-s-lg">Diagnosis</div>
+            <div class="tab col-span-3 bg-red-400 p-2">Patients</div>
+            <div class="tab col-span-5 bg-blue-400 p-2 rounded-e-lg">Activity</div>
+          </div>
+
+          <div class="tab-content w-[91%] m-4 ">
+            <canvas id="diagnosisChart" class="bg-white  w-full h-full rounded-xl"></canvas>
+          </div>
+
+          <div class="tab-content w-[91%] m-4 hidden">
+            <canvas id="vitalsChart" class="bg-white w-full rounded-xl"></canvas>
+          </div>
+
+          <div class="tab-content w-[91%] m-4 hidden bg-white rounded-3xl">
+            <h1 class="bg-slate-700 text-white font-bold px-4 py-2 rounded-t-3xl shadow-sm my-4">
+              Patient Checkup
+            </h1>
+
+            <div class="px-4 pb-4">
+              <h1 class="bg-blue-400 p-2 rounded-2xl shadow-sm my-4">
+                Patient Checkup
+              </h1>
+
+              <h1 class="bg-yellow-300 p-2 rounded-2xl shadow-sm my-4">
+                Surgery
+              </h1>
+
+              <h1 class="bg-blue-400 p-2 rounded-2xl shadow-sm my-4">
+                Patient Checkup
+              </h1>
+
+              <h1 class="bg-blue-400 p-2 rounded-2xl shadow-sm my-4">
+                Patient Checkup
+              </h1>
+
+              <h1 class="bg-blue-400 p-2 rounded-2xl shadow-sm my-4">
+                Patient Checkup
+              </h1>
+
+              <div class=" flex justify-center">
+                <button class="bg-blue-700 px-2 py-1 text-white font-semibold rounded-lg">Add activity</button>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="px-2 sm:px-4 my-8">
+
+            <div class=" bg-gray-200 rounded-lg">
+
+              <div class="flex justify-between bg-slate-700 text-white font-bold px-4 py-2 rounded-t-lg shadow-sm">
+                <h1>Your Patient List</h1>
+                <!-- <a href="patient_list.html" class="flex underline underline-offset-1 items-center">
+                  <h1 class=" text-white  text-[10px]">see all</h1>
+                  <img src="{% static 'images/icons8-curved-arrow-48.png' %}" alt="" class="w-3 h-3">
+                </a> -->
+              </div>
+
+              <div class="p-2">
+                {% for item in patients_diagnosed %}                
+                <div
+                  class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+                  <div>
+                    <h1 class="uppercase font-bold">id {{item.profile_id}}</h1>
+                    <p>{{item.date_created}}</p>
+                  </div>
+
+                  <div class="hidden xs:block">
+                    <h1 class="uppercase font-bold">patient</h1>
+                    <p>{{item.full_name}}</p>
+                  </div>
+
+
+                  <div class="items-center">
+                    <h1 class="uppercase font-bold">TRIAGE</h1>
+                    {% if item.profilemodel.triage == 'CRITICAL' %} 
+                    <block class="bg-red-700 text-transparent">aaaaaaa</block>
+                    {% elif item.profilemodel.triage == 'SEVERE' %}
+                      <block class="bg-yellow-500 text-transparent">aaaaaaa</block>
+                    {% else  %}
+                      <block class="bg-green-700 text-transparent">aaaaaaa</block>
+                    {% endif %}
+                  </div>
+
+                  <div>
+                    <a href="{% url 'patient_details' item.profile_id %}">
+                      <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                        view
+                      </button>
+                    </a>
+
+                  </div>
+
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="z-999 w-[93%] md:w-[30%] bg-white rounded-2xl md:rounded-e-0 px-2 mx-2 sm:mx-4 h-auto">
+
+          <div class="shadow-xl rounded-lg p-2 my-4">
+            <div class="flex justify-between text-sm xs:text-base lg:text-lg font-bold mb-2">
+              <h1>Details</h1>
+              <a href="{% url 'user_profile' doctor.profile_id %}" class="flex underline underline-offset-1 items-center">
+                <h1 class=" text-blue-600  text-[10px]">see all</h1>
+                <img src="{% static 'images/icons8-curved-arrow-48.png' %}" alt="" class="w-3 h-3">
+              </a>
+            </div>
+
+            <div class="grid grid-cols-3 divide-x text-center my-2 font-bold">
+              <div>
+                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Specialization</h1>
+                <h1 class="text-[8px] sm:text-[10px]">{{doctor.profilemodel.speciality}}</h1>
+              </div>
+              <div>
+                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Member status</h1>
+                <h1 class="text-[8px] sm:text-[10px]">Active</h1>
+              </div>
+              <div>
+                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Staff ID</h1>
+                <h1 class="text-[8px] sm:text-[10px]">{{doctor.profile_id}}</h1>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="shadow-xl rounded-lg p-2 my-4">
+
+            <div class="flex justify-between text-sm xs:text-base lg:text-lg font-bold mb-2">
+              <h1>Appointments</h1>
+              <a href="{% url 'session_dashboard' doctor.profile_id %}" class="flex underline underline-offset-1 items-center">
+                <h1 class=" text-blue-600  text-[10px]">see all</h1>
+                <img src="{% static 'images/icons8-curved-arrow-48.png' %}" alt="" class="w-3 h-3">
+              </a>
+            </div>
+            <!-- <div class="grid grid-cols-10 gap-1 my-2 items-center">
+
+              <div class="flex items-center col-span-1">
+                <img src="{% static 'images/icons8-back-26.png' %}" alt="">
+              </div>
+
+              <div class="bg-gray-300 text-center rounded-lg font-bold col-span-2">
+                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Sun</h1>
+                <h2 class="text-xs sm:text-sm">14</h2>
+              </div>
+
+              <div class="bg-green-700 text-center rounded-lg font-bold col-span-2">
+                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Mon</h1>
+                <h2 class="text-xs sm:text-sm">15</h2>
+              </div>
+
+              <div class="bg-gray-300 text-center rounded-lg font-bold col-span-2">
+                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Tues</h1>
+                <h2 class="text-xs sm:text-sm">16</h2>
+              </div>
+
+              <div class="bg-gray-300 text-center rounded-lg font-bold col-span-2">
+                <h1 class="text-xs sm:text-sm md:text-xs test-sm">Wed</h1>
+                <h2 class="text-xs sm:text-sm">17</h2>
+              </div>
+
+              <div class="flex items-center col-span-1">
+                <img src="{% static 'images/icons8-forward-26.png' %}" alt="">
+              </div>
+
+            </div> -->
+            {% for item in appointments %}
+            <div class="flex w-[96%] shadow-lg mt-5 mb-2 px-4 py-2 rounded-lg">
+              <img src="{% static 'images/profile.jpg' %}" alt="" class="rounded-full w-10 h-10">
+              <div class="mx-2">
+                <h1 class="font-bold text-[9px] xs:text-xs">{{item.patient.full_name}}</h1>
+                <h1 class="text-[9px] xs:text-xs font-bold">{{item.availability.time}}</h1>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+    <!-- END RIGHT SIDE -->
+
+    {% endblock content %}
+

@@ -18,7 +18,13 @@
         {% endif %}
         <div class="py-4 ml-10">
           <h1 class="font-bold text-md sm:text-xl text-slate-900">Add Investigation</h1>
-          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="patient_dashboard.html">Home</a> | <span><a href="single_medical_record.html">Medical Record</a></span> | <span><a href="diagnosis.html">Acute Seizures</a></span></h2>
+          <h2 class=" font-bold text-sm sm:text-lg text-slate-900">
+            {% if request.user.is_staff %}
+          <a href="{% url 'doctor_dashboard' request.user.profile_id %}">Home</a>
+          {% else %}
+          <a href="{% url 'dashboard' request.user.profile_id %}">Home</a>
+          {% endif %}
+             | <span><a href="{% url 'add_diagnosis' diagnosis.patient.profile_id %}">Medical Record</a></span></h2>
         </div>
 
         <div class="text-xs sm:text-sm mb-16 md:mb-4 mt-4 mx-2 sm:mx-8 h-full pb-4 bg-white shadow-lg rounded-lg">

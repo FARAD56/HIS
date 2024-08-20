@@ -15,7 +15,13 @@
     <div class="bg-slate-400">
       <div class="py-4 ml-10">
         <h1 class="font-bold text-md sm:text-xl text-slate-900">Patient List</h1>
-        <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a href="{% url 'patient_list' %}">Patient List</a></span></h2>
+        <h2 class=" font-bold text-sm sm:text-lg text-slate-900">
+          {% if request.user.is_staff %}
+          <a href="{% url 'doctor_dashboard' request.user.profile_id %}">Home</a>
+          {% else %}
+          <a href="{% url 'dashboard' request.user.profile_id %}">Home</a>
+          {% endif %}
+           | <span><a href="{% url 'patient_list' %}">Patient List</a></span></h2>
       </div>
 
       <div class="flex space-x-2 sm:space-x-4 justify-center py-2 px-4 md:px-8 ">
