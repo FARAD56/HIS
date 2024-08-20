@@ -1,4 +1,3 @@
-from typing import Any
 from django.db import models
 from users.models import CustomUser
 # Create your models here.
@@ -82,7 +81,7 @@ class Prescription(models.Model):
 
     patient = models.ForeignKey(CustomUser, on_delete=models.CASCADE,related_name='patient_prescription')
     doctor = models.ForeignKey(CustomUser, on_delete=models.CASCADE,related_name='doctor_prescription')
-    diagnosis = models.ForeignKey(Diagnosis, on_delete=models.CASCADE)
+    diagnosis = models.ForeignKey(Diagnosis, on_delete=models.CASCADE,related_name='patient_diagnosis')
     medicine = models.CharField(max_length=255,
                                 choices=Medicine.choices,
                                 blank=True, null=True)
@@ -125,12 +124,13 @@ class Investigation(models.Model):
         Pathology    = 'Pathology'
         Cardiology   = 'Cardiology'
         Cardithoracy = 'Cardithoracy'
-        Gynaecology  = 'Gynaecology'
+        Gynaecology  = 'Gynaecology'  
         Pediatric    = 'Pediatric'
         Opthometry   = 'Opthometry'
 
     patient = models.ForeignKey(CustomUser, on_delete=models.CASCADE,related_name='patient_investigation')
     doctor = models.ForeignKey(CustomUser, on_delete=models.CASCADE,related_name='doctor_investigation')
+    diagnosis = models.ForeignKey(Diagnosis, on_delete=models.CASCADE,related_name='patient_disease')
     referral_facility = models.CharField(max_length=255, blank=True,
                                         choices=Referral.choices,
                                         default=Referral.Korle_Bu_Main_hospital,

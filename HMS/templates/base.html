@@ -2,106 +2,111 @@
 {% load static %}
 <!doctype html>
 <html>
+
 <head>
   <meta charset="UTF-8">
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %} {% endblock title %}</title>
-  {% compress css  %}
+  {% compress css %}
   <link href="{% static 'src/output.css' %}" rel="stylesheet">
   <link href="{% static 'css/patient_list.css' %}" rel="stylesheet">
   <link href="{% static 'css/msg.css' %}" rel="stylesheet">
   {% endcompress %}
 </head>
+
 <body class="bg-gray-200">
   <div>
- <!-- Navbar -->
- <nav class="fixed bg-white w-full flex px-3 sm:px-5 md:px-10 py-2 h-14 shadow-xl z-50">
-  <div class="w-1/2 flex justify-between items-center ">
+    <!-- Navbar -->
+    <nav class="fixed bg-white w-full flex px-3 sm:px-5 md:px-10 py-2 h-14 shadow-xl z-50">
+      <div class="w-1/2 flex justify-between items-center ">
 
-    <div class="flex items-center text-center py-2">
-      <img src="{% static 'images/nav_logo.png' %}" class="w-[32px] mr-2" alt="">
-      <p class="text-xl sm:text-2xl md:text-3xl font-bold">HIS</p>
-    </div>
+        <div class="flex items-center text-center py-2">
+          <img src="{% static 'images/nav_logo.png' %}" class="w-[32px] mr-2" alt="">
+          <p class="text-xl sm:text-2xl md:text-3xl font-bold">HIS</p>
+        </div>
 
-    <div class="flex w-1/2">
-      <img src="{% static 'images/menu_squared.png' %}" alt="" class=" mr-2 toggle_btn h-10 w-10 hidden md:block">
-      <input type="text" placeholder="Patient's name/ ID" class="hidden sm:block border px-3 py-1 w-60 font-semibold text-lg rounded-xl">
-    </div>
+        <div class="flex w-1/2">
+          <img src="{% static 'images/menu_squared.png' %}" alt="" class=" mr-2 toggle_btn h-10 w-10 hidden md:block">
+          <input type="text" placeholder="Patient's name/ ID"
+            class="hidden sm:block border px-3 py-1 w-60 font-semibold text-lg rounded-xl">
+        </div>
 
-  </div>
-  <div class="flex w-1/2 justify-end items-center px-3 sm:px-5 md:px-10">
-
-    <!-- Trigger button -->
-    <img src=" {% static 'images/icons8-search-50.png' %} " class="search block sm:hidden w-6 h-6 mx-6">
-
-
-    <!-- Modal container -->
-    <div class="fixed top-0 z-10 inset-x-0 overflow-y-auto hidden" id="myModal">
-    <div class="flex items-end justify-center pt-14 px-4 text-center sm:block sm:p-0">
-      <!-- Background overlay -->
-      <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-        <div class="absolute inset-0" id="modalOverlay"></div>
       </div>
+      <div class="flex w-1/2 justify-end items-center px-3 sm:px-5 md:px-10">
 
-      <!-- Modal content -->
-      <div class="bg-gray-50 overflow-hidden shadow-2xl w-full">
+        <!-- Trigger button -->
+        <img src=" {% static 'images/icons8-search-50.png' %} " class="search block sm:hidden w-6 h-6 mx-6">
+
+
+        <!-- Modal container -->
+        <div class="fixed top-0 z-10 inset-x-0 overflow-y-auto hidden" id="myModal">
+          <div class="flex items-end justify-center pt-14 px-4 text-center sm:block sm:p-0">
+            <!-- Background overlay -->
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+              <div class="absolute inset-0" id="modalOverlay"></div>
+            </div>
+
+            <!-- Modal content -->
+            <div class="bg-gray-50 overflow-hidden shadow-2xl w-full">
               <div class="flex justify-between items-center px-4">
-                <input type="text" placeholder="Patient's name/ ID" class="w-48 sm:w-96 border px-3 py-1 font-semibold text-lg rounded-xl">
+                <input type="text" placeholder="Patient's name/ ID"
+                  class="w-48 sm:w-96 border px-3 py-1 font-semibold text-lg rounded-xl">
                 <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                   <img src="{% static 'images/icons8-close-50.png' %}" alt="" class="cb w-6 h-6">
                 </div>
               </div>
-      </div>
-    </div>
-    </div>
-    <!-- User Profile -->
-      
-    <div x-data="{ open: false }" class="inline-block text-left">
-      <!-- Trigger button -->
-      <div @click="open = !open" class="flex items-center">
-        <img src="{{request.user.profilemodel.profile_picture.url}}" alt="" class="rounded-full w-10 h-10 mr-2">
-        <h1 class="hidden md:block font-semibold text-lg">{{request.user.full_name}} </h1>
-        <img  src="{% static 'images/profilearrow.png' %}" alt="" class="mx-1 w-3 h-3">
-      </div>
-      <!-- Dropdown content -->
-      <div x-show="open" @click.away="open = false" class="absolute right-[5%] text-black pt-2">
-
-        <div class="bg-white border border-black rounded-lg w-48 px-2">
-          
-          <div class="flex justify-center text-center">
-            <div class="font-semibold">
-              <h1 class="text-sm mt-1">{{request.user.full_name}}</h1>
-              <!-- <p class="text-xs mb-2"></p> -->
             </div>
           </div>
-
-          <hr>
-
-          <ul class="">
-            <div class="flex hover:bg-gray-200 py-1">
-              <img src="{% static 'images/icons8-test-account-48.png' %}" alt="" class="w-5 h-5 mx-2">
-              <li><a href="{% url 'user_profile' request.user.profile_id %}" class="block text-sm">My Profile</a></li>
-            </div>
-            <hr>
-            <hr>
-            <div class="flex hover:bg-gray-200 py-1">
-              <img src="{% static 'images/icons8-help-50.png' %}" alt="" class="w-5 h-5 mx-2">
-              <li><a href="trial.html" class="block text-sm">Help</a></li>
-            </div>
-            <hr>
-            <div class="flex hover:bg-gray-200 py-1">
-              <img src="{% static 'images/icons8-logout-50.png' %}" alt="" class="w-4 h-4 mx-2">
-              <li><a href="{% url 'user_logout' %}" class="block text-sm">Logout</a></li>
-            </div>
-          </ul>
         </div>
+        <!-- User Profile -->
+
+        <div x-data="{ open: false }" class="inline-block text-left">
+          <!-- Trigger button -->
+          <div @click="open = !open" class="flex items-center">
+            <img src="{{request.user.profilemodel.profile_picture.url}}" alt="" class="rounded-full w-10 h-10 mr-2">
+            <h1 class="hidden md:block font-semibold text-lg">{{request.user.full_name}} </h1>
+            <img src="{% static 'images/profilearrow.png' %}" alt="" class="mx-1 w-3 h-3">
+          </div>
+          <!-- Dropdown content -->
+          <div x-show="open" @click.away="open = false" class="absolute right-[5%] text-black pt-2">
+
+            <div class="bg-white border border-black rounded-lg w-48 px-2">
+
+              <div class="flex justify-center text-center">
+                <div class="font-semibold">
+                  <h1 class="text-sm mt-1">{{request.user.full_name}}</h1>
+                  <!-- <p class="text-xs mb-2"></p> -->
+                </div>
+              </div>
+
+              <hr>
+
+              <ul class="">
+                <div class="flex hover:bg-gray-200 py-1">
+                  <img src="{% static 'images/icons8-test-account-48.png' %}" alt="" class="w-5 h-5 mx-2">
+                  <li><a href="{% url 'user_profile' request.user.profile_id %}" class="block text-sm">My Profile</a>
+                  </li>
+                </div>
+                <hr>
+                <hr>
+                <div class="flex hover:bg-gray-200 py-1">
+                  <img src="{% static 'images/icons8-help-50.png' %}" alt="" class="w-5 h-5 mx-2">
+                  <li><a href="trial.html" class="block text-sm">Help</a></li>
+                </div>
+                <hr>
+                <div class="flex hover:bg-gray-200 py-1">
+                  <img src="{% static 'images/icons8-logout-50.png' %}" alt="" class="w-4 h-4 mx-2">
+                  <li><a href="{% url 'user_logout' %}" class="block text-sm">Logout</a></li>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>        
-    
-  </div>
-</nav>
-<!-- End nav -->
+    </nav>
+    <!-- End nav -->
 
     <!-- LEFT SIDE -->
 
@@ -110,47 +115,48 @@
     <!-- Toggle Sidebar -->
     <div class="sidebar transition-all duration-200 space-y-10 fixed w-1/5 h-[100vh] hidden md:block bg-slate-900">
 
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl mt-10 px-4 items-center "> 
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl mt-10 px-4 items-center ">
         <a href="{% url 'dashboard' %}" class="flex items-center">
-        <img src="{% static 'images/home.png' %}" class="w-10 h-10" alt="" > 
-        <p class="text-white  font-bold ml-4 transition-all duration-200" id="side_text">Home</p>
-        </a>           
-      </div>
-
-      {% if request.user.is_staff  %}
-        
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 "> 
-        <a href="{% url 'patient_list' %}" class="flex items-center">
-          <img src="{% static 'images/patient_list.png' %}" alt="" class="w-10 h-10 "> 
-          <p class="text-white font-bold ml-4 transition-all duration-200"id="side_text" >Patients</p> 
-        </a>  
-      </div>
-      {% endif %}
-
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
-        <a href="{% url 'session_dashboard' request.user.profile_id %}" class="flex items-center">
-          <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-10 h-10"> 
-          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Sessions</p>   
+          <img src="{% static 'images/home.png' %}" class="w-10 h-10" alt="">
+          <p class="text-white  font-bold ml-4 transition-all duration-200" id="side_text">Home</p>
         </a>
       </div>
 
-      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center"> 
+      {% if request.user.is_staff %}
+
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 ">
+        <a href="{% url 'patient_list' %}" class="flex items-center">
+          <img src="{% static 'images/patient_list.png' %}" alt="" class="w-10 h-10 ">
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Patients</p>
+        </a>
+      </div>
+      {% endif %}
+
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center">
+        <a href="{% url 'session_dashboard' request.user.profile_id %}" class="flex items-center">
+          <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-10 h-10">
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Sessions</p>
+        </a>
+      </div>
+
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center">
         <a href="{% url 'chats' request.user.profile_id %}" class="flex items-center">
-          <img src="{% static 'images/chats.png' %}" class="w-10 h-10" alt="" > 
-          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text" >Chats</p> 
-        </a>  
+          <img src="{% static 'images/chats.png' %}" class="w-10 h-10" alt="">
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Chats</p>
+        </a>
       </div>
     </div>
     <!-- end Sidebar -->
 
     <!-- bottom bar -->
-    <div class="fixed flex justify-between items-center px-4 md:hidden bottom-0 w-full h-[50px] z-[999] bg-slate-900 py-8 text-white bg-opacity-90">
+    <div
+      class="fixed flex justify-between items-center px-4 md:hidden bottom-0 w-full h-[50px] z-[999] bg-slate-900 py-8 text-white bg-opacity-90">
       <a href="{% url 'dashboard' %}">
-        <img src="{% static 'images/home.png' %}" class="w-8 h-8" alt="" >
+        <img src="{% static 'images/home.png' %}" class="w-8 h-8" alt="">
         <p class="text-[12px] font-bold">Home</p>
       </a>
       {% if request.user.is_staff %}
-        
+
       <a href="{% url 'patient_list' %}">
         <img src="{% static 'images/patient_list.png' %}" alt="" class="w-8 h-8 ">
         <p class="text-[12px] font-bold">Patient</p>
@@ -161,20 +167,20 @@
         <p class="text-[12px] font-bold">Sessions</p>
       </a>
       <a href="{% url 'chats' request.user.profile_id %}">
-        <img src="{% static 'images/chats.png' %}" class="w-8 h-8" alt="" >
+        <img src="{% static 'images/chats.png' %}" class="w-8 h-8" alt="">
         <p class="text-[12px] font-bold">Chats</p>
       </a>
       <a href="#">
-        <img src="{% static 'images/settings.png' %}" class="w-8 h-8" alt="" >
+        <img src="{% static 'images/settings.png' %}" class="w-8 h-8" alt="">
         <p class="text-[12px] font-bold">Settings</p>
-      </a> 
-      
+      </a>
+
     </div>
     <!-- End bottom bar -->
-    
+
     <!-- END LEFT SIDE -->
     {% block content %}
-      
+
     {% endblock content %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{% static 'js/chart.js' %}"></script>
@@ -183,5 +189,63 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
     <script src="{% static 'js/script.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
+      <!-- start modal -->
+ <!-- Modal -->
+<div id="cancelModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="sm:flex sm:items-start">
+          <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+            <img src="{% static 'images/icons8-wrong-50.png' %}" alt="" class="w-6 h-6">
+          </div>
+          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Cancel Appointment</h3>
+            <div class="mt-2">
+              <p class="text-sm text-gray-500">Are you sure you want to cancel this appointment? This action cannot be undone.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <button id="confirmCancelBtn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">Yes</button>
+        <button id="cancelBtn" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const cancelBtn = document.getElementById('cancelBtn');
+    const confirmCancelBtn = document.getElementById('confirmCancelBtn');
+    const cancelModal = document.getElementById('cancelModal');
+    const wrongImages = document.querySelectorAll('.cancel-appointment');
+
+    wrongImages.forEach(image => {
+      image.addEventListener('click', function() {
+        const appointmentId = this.dataset.appointmentId;
+        confirmCancelBtn.setAttribute('data-appointment-id', appointmentId);
+        cancelModal.classList.remove('hidden');
+      });
+    });
+
+    cancelBtn.addEventListener('click', function() {
+      cancelModal.classList.add('hidden');
+    });
+
+    confirmCancelBtn.addEventListener('click', function() {
+      const appointmentId = this.dataset.appointmentId;
+      window.location.href = `/sessions/cancel_appointment/${appointmentId}/`;
+    });
+  });
+</script>
+
+ <!-- end modal -->
 </body>
+
 </html>

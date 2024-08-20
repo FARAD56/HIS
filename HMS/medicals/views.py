@@ -24,11 +24,33 @@ def patient_attendance(request,profile_id):
 
 @login_required
 def medication(request,profile_id):
-    return render(request,'medicals/medication.html')
+    patient = get_object_or_404(CustomUser, profile_id=profile_id)
+    medications = Prescription.objects.filter(patient=patient)
+    context = {
+        'medications': medications,
+        'patient': patient
+    }
+    return render(request,'medicals/medication.html',context)
 
 
 class AddDiagnosis(View):
     template_name = 'medicals/patient_attendance_details.html'
+
+    def get(self,request,profile_id):
+        patient = get_object_or_404(CustomUser, profile_id=profile_id)
+        bookings = get_object_or_404(BookPatient,patient_id=patient.profile_id) 
+
+        diagnosis_list = Diagnosis.objects.filter(patient=patient)
+        print("list is: " ,diagnosis_list)
+
+        context = {
+            'diagnosis_list': diagnosis_list,
+            'patient': patient,
+            'bookings':bookings
+        }
+        return render(request, self.template_name, context)
+    
+    
     def post(self,request,profile_id):
         patient = get_object_or_404(CustomUser, profile_id=profile_id)
 
@@ -46,16 +68,23 @@ class AddDiagnosis(View):
         else:
             messages.error = (request,'Failed to add diagnosis')
 
-            
-        return redirect('patient_attendance',profile_id)
+      
+        return redirect('add_diagnosis', profile_id=profile_id)
+
     
 
 class AddPrescription(View):
-    template_name = 'medicals/patient_attendance_details.html'
+    template_name = 'medicals/add_prescription.html'
 
-    def post(self,request,profile_id):
-        patient = get_object_or_404(CustomUser, profile_id=profile_id)
-        patient_diagnosis = get_object_or_404(Diagnosis,patient=patient)
+    def get(self,request,id):
+        diagnosis = get_object_or_404(Diagnosis,id=id)
+        context = {
+            'diagnosis': diagnosis
+        }
+        return render(request,self.template_name,context)
+
+    def post(self,request,id):
+        diagnosis = get_object_or_404(Diagnosis,id=id)
         medicine = request.POST.get('medicine')
         dose = request.POST.get('dose')
         duration = request.POST.get('duration')
@@ -64,9 +93,9 @@ class AddPrescription(View):
         frequency = request.POST.get('frequency')
         instructions = request.POST.get('instructions')
         prescription_obj = Prescription.objects.create(
-            patient=patient,
+            patient=diagnosis.patient,
             doctor = request.user,
-            diagnosis = patient_diagnosis,
+            diagnosis = diagnosis,
             medicine = medicine,
             dose=dose,
             duration=duration,
@@ -80,23 +109,31 @@ class AddPrescription(View):
         else:
             messages.error = (request,'Failed to add Prescription')
 
-        return redirect('patient_attendance',profile_id)
+        return redirect('patient_attendance',diagnosis.patient.profile_id)
     
 
 class AddInvestigation(View):
-    template_name = 'medicals/patient_attendance_details.html'
-    def post(self,request,profile_id):
-        patient = get_object_or_404(CustomUser, profile_id=profile_id)
+    template_name = 'medicals/add_investigation.html'
+    def get(self,request,id):
+        diagnosis = get_object_or_404(Diagnosis,id=id)
+        context = {
+            'diagnosis': diagnosis
+        }
+        return render(request,self.template_name,context)
+    
+    def post(self,request,id):
+        diagnosis = get_object_or_404(Diagnosis,id=id)
         referral_facility = request.POST.get('referral_facility')
         investigation = request.POST.get('investigation')
         unit = request.POST.get('unit')
         reason = request.POST.get('unit')
 
         invetigation_obj = Investigation.objects.create(
-            patient=patient,
+            patient=diagnosis.patient,
             doctor = request.user,
             referral_facility=referral_facility,
             investigation=investigation,
+            diagnosis = diagnosis,
             unit=unit,
             reason = reason
         )
@@ -106,11 +143,11 @@ class AddInvestigation(View):
             messages.error = (request,'Failed to add Invesstigation')
 
 
-        return redirect('patient_attendance',profile_id)
+        return redirect('patient_attendance',diagnosis.patient.profile_id)
     
 
-class MedicalRecordView(View):
-    template_name = 'medicals/medical_records.html'
+class MedicalRecordsView(View):
+    template_name = 'medicals/medical_records_list.html'
     
     def get(self, request, profile_id):
         patient = get_object_or_404(CustomUser, profile_id=profile_id)
@@ -122,7 +159,22 @@ class MedicalRecordView(View):
         }
         return render(request, self.template_name, context)
     
+
+class SingleRecordView(View):
+    template_name = 'medicals/single_record.html'
     
+    def get(self, request, id):
+        diagnosis = get_object_or_404(Diagnosis,id=id)
+        bookings = get_object_or_404(BookPatient,patient_id=diagnosis.patient.profile_id) 
+        medication = Prescription.objects.filter(diagnosis=diagnosis)
+        labs = Investigation.objects.filter(diagnosis=diagnosis)
+        context = {
+            'diagnosis': diagnosis,
+            'medication': medication,
+            'labs':labs,
+            'bookings':bookings,
+        }
+        return render(request, self.template_name, context)
     
 
     

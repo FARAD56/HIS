@@ -2,10 +2,11 @@
 {% load static %} 
 {% block title %} Sessions {%endblock title %} 
 {% block content %}
+
 <!-- RIGHT SIDE -->
 <div
   class="main_body transition-all duration-500 md:w-4/5 w-full sm:ml-auto min-h-screen bg-slate-400"
->
+> 
   <!-- Header -->
   <div class="bg-slate-400 h-auto sm:min-h-screen pb-10 sm:pb-0">
     <div class="py-4 ml-10">
@@ -70,15 +71,14 @@
 
             <div class="hidden xs:block">
               <h1 class="uppercase font-bold">Comments</h1>
-              <a href="#" class="underline text-blue-400 font-bold"
-                >{{item.comments}}</a
-              >
+                {{item.comments}}
+              
             </div>
 
             <div>
               <h1 class="uppercase font-bold text-center">Actions</h1>
               <div class="flex space-x-2 items-center">
-                <a href="#">
+                <a href="{{ item.google_meet_link }}">
                   <button
                     class="rounded bg-blue-700 px-1 sm:px-4 py-1 text-xxs sm:text-xs uppercase text-white"
                   >
@@ -90,7 +90,8 @@
                   <img
                     src="{% static 'images/icons8-wrong-50.png' %}"
                     alt=""
-                    class="w-5 xs:w-6 h-5 xs:h-6"
+                    class="w-5 xs:w-6 h-5 xs:h-6 cancel-appointment"
+                    data-appointment-id="{{ item.id }}"
                   />
                 </a>
               </div>
@@ -114,6 +115,7 @@
     <!-- End Patient list -->
   </div>
   <!-- End Header -->
+   
 </div>
 <!-- END RIGHT SIDE -->
 

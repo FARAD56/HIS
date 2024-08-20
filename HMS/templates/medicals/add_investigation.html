@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Investigation 
+{% endblock title %}
+
+{% block content %}
+
+    <!-- RIGHT SIDE -->
+    <div class="main_body transition-all duration-500 pb-8 md:w-4/5 w-full sm:ml-auto min-h-screen bg-slate-400">
+      {% if messages %}
+          {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} border px-4 py-3 rounded relative" role="alert">
+                  <span class="block sm:inline">{{ message }}</span>
+              </div>
+          {% endfor %}
+        {% endif %}
+        <div class="py-4 ml-10">
+          <h1 class="font-bold text-md sm:text-xl text-slate-900">Add Investigation</h1>
+          <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="patient_dashboard.html">Home</a> | <span><a href="single_medical_record.html">Medical Record</a></span> | <span><a href="diagnosis.html">Acute Seizures</a></span></h2>
+        </div>
+
+        <div class="text-xs sm:text-sm mb-16 md:mb-4 mt-4 mx-2 sm:mx-8 h-full pb-4 bg-white shadow-lg rounded-lg">
+
+          <!-- Form Title -->
+          <div class="bg-slate-700 w-full py-2 px-8 rounded-t-lg">
+            <h1 class="text-white font-bold text-lg">{{diagnosis.type}} {{diagnosis.diagnosis}}</h1>
+          </div>
+          <!-- End Form Title -->
+
+          <!-- Investigation -->
+        <form method="POST" action="{% url 'add_investigation' diagnosis.id %}">
+          {% csrf_token %}
+          <div class="px-4 sm:px-8 my-8">
+          
+            <div class="bg-slate-700 flex items-center justify-between w-full py-2 px-2 sm:px-4 lg:px-8 rounded-t-lg">
+              <h1 class="text-white font-bold text-[16px]">Investigation</h1>
+              <img src="{% static 'images/icons8-add-48.png' %}" alt="" class="w-8 h-8">
+            </div>
+  
+            <div class="w-full py-2 px-1 sm:px-4 lg:px-8 shadow-lg bg-slate-200">
+  
+              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
+  
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="referral_facility" class="text-slate-900 font-bold">Referral Facility : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select name="referral_facility" id="referral_facility" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="">Select One </option>
+                      <option value="Korle Bu Main hospital">Korle Bu Main hospital</option>
+                      <option value="Legon Hospital ">Legon Hospital</option>
+                      <option value="UG Medical center">UG Medical center</option>
+                      <option value="Accra Medical center">Accra Medical center</option>
+                      <option value="Noguchie Health center">Noguchie Health center</option>
+                    </select>          
+                  </div>
+                </div>
+  
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm lg:text-md flex items-center">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="unit" class="text-slate-900 font-bold">Unit : </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select name="unit" id="unit" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] border-black">
+                      <option value="">Select One </option>
+                      <option value="Pathology">Pathology</option>
+                      <option value="Cardiology">Cardiology</option>
+                      <option value="Cardithoracy">Cardithoracy</option>
+                      <option value="Gynaecology">Gynaecology</option>
+                      <option value="Pediatric">Pediatric</option>
+                      <option value="Opthometry">Opthometry</option>
+                    </select>          
+                  </div>
+                </div>
+  
+              </div>
+  
+              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 my-4 justify-between">
+  
+                <div class="w-full sm:w-1/2 text-xxs md:text-sm flex items-center mr-0 lg:mr-4">
+                  <div class="w-[40%] sm:w-[30%]">
+                    <label for="investigation" class="text-slate-900 font-bold">Investigation: </label>
+                  </div>
+                  <div class="w-[60%] sm:w-[70%]">
+                    <select name="investigation" id="investigation" class="md:mx-4 border bg-slate-200 rounded-lg p-2 w-[90%] sm:[w-80%] border-black">
+                      <option value="">Select One </option>
+                      <option value="Blood tests">Blood tests  </option>
+                      <option value="Blood tests">Urinalysis   </option>
+                      <option value="Biopsy">Biopsy       </option>
+                      <option value="Amniocentesis">Amniocentesis</option>
+                      <option value="Thyroid function tests">Thyroid function tests</option>
+                    </select>          
+                  </div>
+                </div>
+              </div>
+              <div class="mt-8 mb-4">
+                <h1 class="font-bold uppercase">Reason</h1>
+                <input name="reason" id="reason" type="text" class="my-2 bg-slate-200 p-2 border border-black w-[90%] sm:w-[80%] rounded-lg" placeholder="Add Instructions">
+              </div>
+              <div class="flex justify-center">
+                <button type="submit" class="bg-blue-700 text-white font-bold my-4 py-2 px-4 rounded-lg">Add</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- End Investigation -->
+
+
+        </div>
+          
+    </div>
+    <!-- END RIGHT SIDE -->
+  {% endblock content %}

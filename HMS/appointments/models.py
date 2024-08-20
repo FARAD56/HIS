@@ -1,8 +1,9 @@
 from django.utils import timezone
 from django.db import models
 from users.models import CustomUser
-# Create your models here.
-#not migrated
+from django.core.exceptions import ValidationError
+
+# Create your models here
 class BookPatient(models.Model):
     class Triage(models.TextChoices):
         SLELECT = "SELECT"
@@ -49,6 +50,7 @@ class Appointment(models.Model):
     patient = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='appointments')
     availability = models.ForeignKey(Availability, on_delete=models.CASCADE)
     comments = models.TextField(blank=True, null=True)
+    google_meet_link = models.URLField(max_length=200, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

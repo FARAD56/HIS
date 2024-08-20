@@ -5,6 +5,7 @@ from .forms import BookPatientForm,AppointmentForm
 from users.models import CustomUser
 from django.db.models import Q
 from .models import Availability,Appointment
+
 # Create your views here.
 from .forms import AvailabilityForm
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -74,14 +75,15 @@ def appointment_dashboard(request):
     context = {'doctors':doctors}
     return render(request,'appointments/appointment_dashboard.html',context)
 
-#to book an appoitnment with a doctor
+#function to book an appoitnment with a doctor
+
 @login_required
-def book_appointment(request,profile_id):
+def book_appointment(request, profile_id):
     doctor = get_object_or_404(CustomUser, profile_id=profile_id, is_staff=True)
     availabilities = Availability.objects.filter(doctor_id=profile_id)
-    
+
     if request.method == 'POST':
-        form = AppointmentForm(request.POST)
+        form = AppointmentForm(request.POST,doctor=doctor)
         if form.is_valid():
             try:
                 availability = availabilities.get(doctor_id=profile_id)
@@ -89,27 +91,48 @@ def book_appointment(request,profile_id):
                 appointment.availability = availability
                 appointment.patient = request.user
                 appointment.doctor = doctor
-                appointment.save()
-
                 # Create Google Calendar event
                 if 'credentials' not in request.session:
                     return redirect('google_calendar_init')
-
 
                 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'  # Disable HTTPS requirement for local development
                 credentials = Credentials(**request.session['credentials'])
                 service = build('calendar', 'v3', credentials=credentials)
 
-                # Get the current date
+                # Mapping days to weekday integers
+                day_mapping = {
+                    'MONDAY': 0,
+                    'TUESDAY': 1,
+                    'WEDNESDAY': 2,
+                    'THURSDAY': 3,
+                    'FRIDAY': 4,
+                    'SATURDAY': 5,
+                    'SUNDAY': 6,
+                }
+
+                # Get the current date and time
                 today = datetime.date.today()
+                now = datetime.datetime.now()
+
                 # Find the next occurrence of the availability day
-                days_ahead = (Availability.Day[availability.day.upper()].value - today.weekday()) % 7
+                availability_day = day_mapping[availability.day.upper()]
+
+                # Combine the current date with the availability time to check if it has passed
+                appointment_time_today = datetime.datetime.combine(today, availability.time)
+
+                # Check if the time has already passed today
+                if availability_day == today.weekday() and now > appointment_time_today:
+                    days_ahead = 7  # Schedule for the next week
+                else:
+                    days_ahead = (availability_day - today.weekday()) % 7
+
+                # Calculate the appointment date
                 appointment_date = today + datetime.timedelta(days=days_ahead)
 
                 # Set the start and end time for the event
                 start_time = datetime.datetime.combine(appointment_date, availability.time)
                 end_time = start_time + datetime.timedelta(hours=2)
-                
+
                 # Ensure times are in UTC
                 start_time_utc = pytz.utc.localize(start_time)
                 end_time_utc = pytz.utc.localize(end_time)
@@ -145,6 +168,9 @@ def book_appointment(request,profile_id):
                 ).execute()
 
                 print(f"Created Google Meet link: {event['hangoutLink']}")
+                appointment.google_meet_link = event['hangoutLink']
+                appointment.save()
+             
                 print(f"Appointment saved: {appointment}")
                 return redirect('session_dashboard', profile_id=profile_id)
             except Availability.DoesNotExist:
@@ -154,16 +180,31 @@ def book_appointment(request,profile_id):
             print(f"Form errors: {form.errors}")
     else:
         form = AppointmentForm()
-    
+
     context = {
         'doctor': doctor,
         'availabilities': availabilities,
         'form': form,
     }
     return render(request, 'appointments/book_appointment.html', context)
-         
 
-#to view appointments after it has been booked
+
+#function to cancel an appointment
+@login_required
+def cancel_appointment(request, appointment_id):
+    appointment = get_object_or_404(Appointment, id=appointment_id)
+
+    # Ensure that the user is either the patient or the doctor of the appointment
+    if request.user != appointment.patient and request.user != appointment.doctor:
+        return redirect('session_dashboard', profile_id=request.user.profile_id)
+
+    # Delete the appointment
+    appointment.delete()
+    
+    return redirect('session_dashboard', profile_id=request.user.profile_id)
+        
+
+#function to view appointments after it has been booked
 @login_required
 def session_dashboard(request,profile_id):
     user = get_object_or_404(CustomUser, profile_id=profile_id)

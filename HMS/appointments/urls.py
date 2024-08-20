@@ -11,6 +11,8 @@ urlpatterns = [
     path('oauth2callback/', views.google_calendar_callback, name='google_calendar_callback'),
 
     path('book-appointment/<int:profile_id>/',  views.book_appointment, name='book_appointment'),
+    path('cancel_appointment/<int:appointment_id>/', views.cancel_appointment, name='cancel_appointment'),
+
     path('book-patient/',  views.book_patient, name='book_patient'),
     path('availability/<int:profile_id>/',  views.doctor_availability, name='availability'),
 ]

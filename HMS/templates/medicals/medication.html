@@ -2,357 +2,97 @@
 {% load static %}
 
 {% block title %}
-  Medication
+Medication
 {% endblock title %}
 
 {% block content %}
-  
+
 <!-- RIGHT SIDE -->
-<div class=" main_body transition-all duration-500 md:w-4/5 w-full ml-auto h-auto bg-slate-200">
-  
+<div class="main_body transition-all duration-500 md:w-4/5 w-full ml-auto h-auto bg-slate-200">
+
   <!-- Header -->
-  <div class="bg-slate-400 h-auto sm:h-60 pb-10 sm:pb-0">
+  <div class="bg-slate-400 h-auto sm:min-h-screen pb-10 sm:pb-0">
 
     <div class="py-4 ml-10">
-      <h1 class="font-bold text-md sm:text-xl text-slate-900">Diagnosis</h1>
-      <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="patient_list.html">Home</a> | <span><a href="#">Al-Waasiu</a></span></h2>
+      <h1 class="font-bold text-md sm:text-xl text-slate-900">Medication</h1>
+      <h2 class=" font-bold text-sm sm:text-lg text-slate-900"><a href="{% url 'dashboard' %}">Home</a> | <span><a
+            href="{% url 'patient_details' patient.profile_id %}">{{patient.first_name}} </a></span> | <span><a href="{% url 'medication' patient.profile_id %}">Medication</a></span></h2>
     </div>
 
-    <div class="sm:flex space-y-10 sm:space-y-0 px-1 sm:px-4 md:px-8">
+    <!-- Header Profile -->
+    <div class="h-[20%] bg-gray-100 mb-8 flex justify-center mx-4 sm:mx-8 md:mx-10 lg:mx-16  rounded-lg">
+      <div class="flex text-sm sm:text-lg p-5 text-slate-900 font-bold">
+        <div class="flex justify-center">
+          <img src="{{patient.profilemodel.profile_picture.url}}" alt="" class="rounded-[100%] w-[80px] h-[80px] ">
+        </div>
+        <div class=" text-gray-800 mx-3 flex justify-between items-center">
+          <div class="text-xs xs:text-sm sm:text-[16px]">
+            <h1>Name : {{patient.full_name}} </h1>
+            <h1>ID : {{patient.profile_id}}</h1>
+            <h1>Last Visited : 21/02/2023</h1>
+          </div>
+        </div>
 
-      <div class="space-y-1 mx-auto text-center block w-3/5 sm:w-1/4 rounded-lg bg-white p-4 sm:mx-6 items-center">
-
-        <h5
-          class="text-lg font-bold leading-tight text-neutral-800">
-          All
-        </h5>
-
-        <h1 class="text-xl">
-          13
-        </h1>
-
-        <p class="text-base font-semibold text-neutral-600">
-          Last Updated
-        </p>
-
-        <p class="text-base font-medium text-neutral-600">
-          A min ago
-        </p>
       </div>
-
-      <div class="space-y-1 mx-auto text-center block w-3/5 sm:w-1/4 rounded-lg bg-white p-4 sm:mx-6 items-center opacity-70">
-
-        <h5
-          class=" text-lg font-bold leading-tight text-neutral-800">
-          Completed
-        </h5>
-
-        <h1 class=" text-xl">
-          6
-        </h1>
-
-        <p class=" text-base font-semibold text-neutral-600">
-          Last Updated
-        </p>
-
-        <p class=" text-base font-medium text-neutral-600">
-          A min ago
-        </p>
-      </div>
-
-      <div class=" space-y-1 mx-auto text-center block w-3/5 sm:w-1/4 rounded-lg bg-white p-4 sm:mx-6 items-center opacity-70">
-
-        <h5
-          class=" text-lg font-bold leading-tight text-neutral-800">
-          Uncompleted
-        </h5>
-
-        <h1 class=" text-xl">
-          7
-        </h1>
-
-        <p class=" font-semibold text-neutral-600">
-          Last Updated
-        </p>
-
-        <p class="  text-neutral-600">
-          A min ago
-        </p>
-      </div>
-
     </div>
-  </div> 
-  <!-- End Header -->
+    <!-- End Header Profile -->
 
-  <!-- Patient list -->
-  <div class="bg-gray-200 mx-4 sm:mx-8 md:mx-10 lg:mx-16 pb-10">
-    <div class="my-6">
-      <button class="rounded bg-slate-400 px-4 py-1 uppercase">
-        Filter
-      </button>
+    <!-- Patient list -->
+    <div class="bg-slate-400 mx-4 sm:mx-8 md:mx-10 lg:mx-16 pb-10">
+
+      <a href="#">
+        <button class="text-xs sm:text-sm md:text-base rounded bg-slate-900 px-4 py-1 uppercase text-white">
+          Current Medication
+        </button>
+      </a>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 my-4 gap-4">
+        {% for item in medications  %}
+        <div class=" rounded-lg">
+          <div class="flex justify-between items-center p-2 rounded-t-lg bg-slate-700 text-white">
+            <h1 class="text-center font-bold">{{item.medicine}}</h1>
+            <!-- <h1 class="text-sm font-semibold">2 Days left</h1> -->
+          </div>
+          <div class="px-2 py-1 bg-white rounded-b-lg">
+            <div class="flex items-center">
+              <img class="h-5 w-5" src="{% static 'images/icons8-time-40.png' %}" alt="">
+              <h1 class="font-semibold mx-4">{{item.duration}}</h1>
+            </div>
+            <div class="flex items-center my-2">
+              <img class="h-5 w-5 rounded-lg" src="{% static 'images/icons8-pill-48 (3).png' %}" alt="">
+              <h1 class="font-semibold mx-4">{{item.quantity}} pills </h1>
+            </div>
+            <div class="flex items-center my-2">
+              <img class="h-5 w-5 rounded-lg" src="{% static 'images/icons8-frequency-64.png' %}" alt="">
+              <h1 class="font-semibold mx-4">{{item.frequency}}</h1>
+            </div>
+            <div class="flex items-center my-2">
+              <img class="h-5 w-5 rounded-lg" src="{% static 'images/icons8-instruction-64.png' %}" alt="">
+              <h1 class="font-semibold mx-4">{{item.instructions}}</h1>
+            </div>
+
+            <div class="flex justify-evenly my-4 px-8">
+              <!-- <a href="">
+                <button class="bg-red-600 text-white text-sm px-2 py-1 rounded-lg">
+                  Drop
+                </button>
+              </a> -->
+              <a href="">
+                <button class="bg-blue-600 text-white text-sm px-2 py-1 rounded-lg">
+                  View Record
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
     </div>
-
-    <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-      <div>
-        <h1 class="uppercase font-bold">id 89276</h1>
-        <p >12 Mins ago</p>
-      </div>
-
-      <div class="hidden xxs:block">
-        <h1 class="uppercase font-bold">patient</h1>
-        <p>Abubakari Al-Waasiu</p>
-      </div>
-
-      <div class="hidden xs:block">
-        <h1 class="uppercase font-bold">doctor</h1>
-        <p>Farad Wells</p>
-      </div>
-
-      <div>
-        <h1 class="uppercase font-bold">status</h1>
-        <p class="text-yellow-500 font-bold">pending</p>
-      </div>
-
-      <div>
-        <a href="patient.html">
-          <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-            view
-          </button>
-        </a>
-        
-      </div>
-
-    </div>
-    
-    <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-      <div>
-        <h1 class="uppercase font-bold">id 89276</h1>
-        <p >12 Mins ago</p>
-      </div>
-
-      <div class="hidden xxs:block">
-        <h1 class="uppercase font-bold">patient</h1>
-        <p>Abubakari Al-Waasiu</p>
-      </div>
-
-      <div class="hidden xs:block">
-        <h1 class="uppercase font-bold">doctor</h1>
-        <p>Farad Wells</p>
-      </div>
-
-      <div>
-        <h1 class="uppercase font-bold">status</h1>
-        <p class="text-yellow-500 font-bold">pending</p>
-      </div>
-
-      <div>
-        <a href="patient.html">
-          <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-            view
-          </button>
-        </a>
-        
-      </div>
-
-    </div>
-
-    <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-      <div>
-        <h1 class="uppercase font-bold">id 89276</h1>
-        <p >12 Mins ago</p>
-      </div>
-
-      <div class="hidden xxs:block">
-        <h1 class="uppercase font-bold">patient</h1>
-        <p>Abubakari Al-Waasiu</p>
-      </div>
-
-      <div class="hidden xs:block">
-        <h1 class="uppercase font-bold">doctor</h1>
-        <p>Farad Wells</p>
-      </div>
-
-      <div>
-        <h1 class="uppercase font-bold">status</h1>
-        <p class="text-yellow-500 font-bold">pending</p>
-      </div>
-
-      <div>
-        <a href="patient.html">
-          <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-            view
-          </button>
-        </a>
-        
-      </div>
-
-    </div>
-
-    <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-      <div>
-        <h1 class="uppercase font-bold">id 89276</h1>
-        <p >12 Mins ago</p>
-      </div>
-
-      <div class="hidden xxs:block">
-        <h1 class="uppercase font-bold">patient</h1>
-        <p>Abubakari Al-Waasiu</p>
-      </div>
-
-      <div class="hidden xs:block">
-        <h1 class="uppercase font-bold">doctor</h1>
-        <p>Farad Wells</p>
-      </div>
-
-      <div>
-        <h1 class="uppercase font-bold">status</h1>
-        <p class="text-yellow-500 font-bold">pending</p>
-      </div>
-
-      <div>
-        <a href="patient.html">
-          <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-            view
-          </button>
-        </a>
-        
-      </div>
-
-    </div>
-
-    <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-      <div>
-        <h1 class="uppercase font-bold">id 89276</h1>
-        <p >12 Mins ago</p>
-      </div>
-
-      <div class="hidden xxs:block">
-        <h1 class="uppercase font-bold">patient</h1>
-        <p>Abubakari Al-Waasiu</p>
-      </div>
-
-      <div class="hidden xs:block">
-        <h1 class="uppercase font-bold">doctor</h1>
-        <p>Farad Wells</p>
-      </div>
-
-      <div>
-        <h1 class="uppercase font-bold">status</h1>
-        <p class="text-yellow-500 font-bold">pending</p>
-      </div>
-
-      <div>
-        <a href="patient.html">
-          <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-            view
-          </button>
-        </a>
-        
-      </div>
-
-    </div>
-
-    <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-      <div>
-        <h1 class="uppercase font-bold">id 89276</h1>
-        <p >12 Mins ago</p>
-      </div>
-
-      <div class="hidden xxs:block">
-        <h1 class="uppercase font-bold">patient</h1>
-        <p>Abubakari Al-Waasiu</p>
-      </div>
-
-      <div class="hidden xs:block">
-        <h1 class="uppercase font-bold">doctor</h1>
-        <p>Farad Wells</p>
-      </div>
-
-      <div>
-        <h1 class="uppercase font-bold">status</h1>
-        <p class="text-yellow-500 font-bold">pending</p>
-      </div>
-
-      <div>
-        <a href="patient.html">
-          <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-            view
-          </button>
-        </a>
-        
-      </div>
-
-    </div>
-
-    <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-      <div>
-        <h1 class="uppercase font-bold">id 89276</h1>
-        <p >12 Mins ago</p>
-      </div>
-
-      <div class="hidden xxs:block">
-        <h1 class="uppercase font-bold">patient</h1>
-        <p>Abubakari Al-Waasiu</p>
-      </div>
-
-      <div class="hidden xs:block">
-        <h1 class="uppercase font-bold">doctor</h1>
-        <p>Farad Wells</p>
-      </div>
-
-      <div>
-        <h1 class="uppercase font-bold">status</h1>
-        <p class="text-yellow-500 font-bold">pending</p>
-      </div>
-
-      <div>
-        <a href="patient.html">
-          <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-            view
-          </button>
-        </a>
-        
-      </div>
-
-    </div>
-
-    <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
-      <div>
-        <h1 class="uppercase font-bold">id 89276</h1>
-        <p >12 Mins ago</p>
-      </div>
-
-      <div class="hidden xxs:block">
-        <h1 class="uppercase font-bold">patient</h1>
-        <p>Abubakari Al-Waasiu</p>
-      </div>
-
-      <div class="hidden xs:block">
-        <h1 class="uppercase font-bold">doctor</h1>
-        <p>Farad Wells</p>
-      </div>
-
-      <div>
-        <h1 class="uppercase font-bold">status</h1>
-        <p class="text-yellow-500 font-bold">pending</p>
-      </div>
-
-      <div>
-        <a href="patient.html">
-          <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-            view
-          </button>
-        </a>
-        
-      </div>
-
-    </div>
-
-    
+    <!-- End Patient list -->
   </div>
-  <!-- End Patient list -->
+  <!-- End Header -->
 
 </div>
 <!-- END RIGHT SIDE -->
 {% endblock content %}
-    

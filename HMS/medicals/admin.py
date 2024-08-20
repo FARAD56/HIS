@@ -3,16 +3,16 @@ from .models import Diagnosis, Prescription, Investigation
 
 # Custom admin class for Diagnosis
 class DiagnosisAdmin(admin.ModelAdmin):
-    list_display = ('patient', 'doctor','type','diagnosis')  
+    list_display = ('id','patient', 'doctor','type','diagnosis')  
     search_fields = ('patient', 'type')
 
 class PrescriptionAdmin(admin.ModelAdmin):
-    list_display = ('patient', 'doctor','medicine','diagnosis')  
+    list_display = ('id','patient', 'doctor','medicine','diagnosis','date_created')  
     search_fields = ('doctor', 'medicine') 
 
 # Custom admin class for Investigation
 class InvestigationAdmin(admin.ModelAdmin):
-    list_display = ('patient', 'doctor','investigation') 
+    list_display = ('id','patient', 'doctor','investigation') 
     search_fields = ('patient', 'investigation') 
 
 # Register your models here.
