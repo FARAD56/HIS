@@ -26,18 +26,8 @@
           <p class="text-xl sm:text-2xl md:text-3xl font-bold">HIS</p>
         </div>
 
-        <div class="flex w-1/2">
-          <img src="{% static 'images/menu_squared.png' %}" alt="" class=" mr-2 toggle_btn h-10 w-10 hidden md:block">
-          <input type="text" placeholder="Patient's name/ ID"
-            class="hidden sm:block border px-3 py-1 w-60 font-semibold text-lg rounded-xl">
-        </div>
-
       </div>
       <div class="flex w-1/2 justify-end items-center px-3 sm:px-5 md:px-10">
-
-        <!-- Trigger button -->
-        <img src=" {% static 'images/icons8-search-50.png' %} " class="search block sm:hidden w-6 h-6 mx-6">
-
 
         <!-- Modal container -->
         <div class="fixed top-0 z-10 inset-x-0 overflow-y-auto hidden" id="myModal">
@@ -106,6 +96,7 @@
 
       </div>
     </nav>
+    
     <!-- End nav -->
 
     <!-- LEFT SIDE -->
@@ -146,6 +137,21 @@
           <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Sessions</p>
         </a>
       </div>
+      {% if not request.user.is_staff %}
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center">
+        <a href="{% url 'medication' request.user.profile_id %}" class="flex items-center">
+          <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-10 h-10">
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Medications</p>
+        </a>
+      </div>
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center">
+        <a href="{% url 'get_medical_record' request.user.profile_id %}" class="flex items-center">
+          <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-10 h-10">
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Medical Records</p>
+        </a>
+      </div>
+        
+      {% endif %}
 
     </div>
     <!-- end Sidebar -->

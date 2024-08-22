@@ -13,10 +13,14 @@ from django.utils import timezone
 
 
 @login_required
-def dashboard_view(request,profile_id):
+def dashboard_view(request, profile_id):
     patient = get_object_or_404(CustomUser, profile_id=profile_id)
+    
+    # Get all doctors who have diagnosed this patient
+    diagnosed_doctors = CustomUser.objects.filter(doctor_diagnosis__patient=patient).distinct()
+
     medications = Prescription.objects.filter(patient=patient)
-    doctors = CustomUser.objects.filter(is_staff=True,is_superuser=False)
+    
     # Filter appointments based on availability date and time
     now = timezone.now()
     current_day = now.strftime('%A').upper()  # Converts to full uppercase weekday name
@@ -27,12 +31,13 @@ def dashboard_view(request,profile_id):
     ).order_by('availability__day', 'availability__time')
 
     context = {
-        'doctors':doctors,
-        'medications':medications,
-        'patient':patient,
-        'appointments':appointments,
+        'diagnosed_doctors': diagnosed_doctors,  # Use the filtered doctors
+        'medications': medications,
+        'patient': patient,
+        'appointments': appointments,
     }
-    return render(request,'patients/dashboard.html',context)
+    return render(request, 'patients/dashboard.html', context)
+
 
 @login_required
 @staff_member_required

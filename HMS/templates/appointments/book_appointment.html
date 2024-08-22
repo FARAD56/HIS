@@ -12,12 +12,13 @@
     <div class="py-4 ml-10">
       <h1 class="font-bold text-md sm:text-xl text-slate-900">Bookings</h1>
       <h2 class="font-bold text-sm sm:text-lg text-slate-900">
-        <a href="{% url 'dashboard' %}">Home</a> |
-        <span
-          ><a href="{% url 'book_appointment' doctor.profile_id %}"
-            >Doctor Availability</a
-          ></span
-        >
+        {% if request.user.is_staff %}
+        <a href="{% url 'doctor_dashboard' request.user.profile_id %}">Home</a>
+        {% else %}
+        <a href="{% url 'dashboard' request.user.profile_id %}">Home</a>
+        {% endif %}
+         | <span><a href="{% url 'book_appointment' doctor.profile_id %}"
+            >Doctor Availability</a></span>
       </h2>
     </div>
 

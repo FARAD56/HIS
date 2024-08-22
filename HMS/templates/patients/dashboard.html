@@ -92,7 +92,7 @@ Dashboard
 
         <div class="bg-white w-[96%] sm:w-[48%] px-2 sm:px-4 py-1 md:py-2 rounded-xl">
           <div class="flex justify-between text-sm xs:text-base lg:text-lg font-bold mb-4">
-            <h1>Recommendations</h1>
+            <h1>Reminders</h1>
             <h1 class="text-gray-600">...</h1>
           </div>
 
@@ -223,14 +223,14 @@ Dashboard
 
       <div class="shadow-xl rounded-lg p-2 my-4">
         <div class="flex justify-between text-sm xs:text-base lg:text-lg font-bold mb-2">
-          <h1>Doctors</h1>
+          <h1>Doctors You Visisted</h1>
           <a href="{% url 'appointment_dashboard' %}" class="flex underline underline-offset-1 items-center">
             <h1 class=" text-blue-600  text-[10px]">see all</h1>
             <img src="{% static 'images/icons8-curved-arrow-48.png' %}" alt="" class="w-3 h-3">
           </a>
         </div>
         <div class="grid grid-cols-4 text-center my-2 font-bold">
-          {% for doctor in doctors %}
+          {% for doctor in diagnosed_doctors %}
           <div class="flex flex-col items-center">
             <img src="{{doctor.profilemodel.profile_picture.url}}" alt="" class="rounded-full w-10 h-10">
             <h1 class="text-[7px] xs:text-[9px] font-bold"> {{doctor.full_name}} </h1>

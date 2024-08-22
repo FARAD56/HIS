@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block title %}
-  Medical Record
+Medical Record
 {% endblock title %}
 
 {% block content %}
-  
+
 <!-- RIGHT SIDE -->
 <div class="main_body transition-all duration-500 pb-8 md:w-4/5 w-full sm:ml-auto min-h-screen bg-slate-400">
 
@@ -18,7 +18,8 @@
       {% else %}
       <a href="{% url 'dashboard' request.user.profile_id %}">Home</a>
       {% endif %}
-       | <span><a href="{% url 'get_medical_record' diagnosis.patient.profile_id %}">Medical Records</a></span></h2>
+      | <span><a href="{% url 'get_medical_record' diagnosis.patient.profile_id %}">Medical Records</a></span>
+    </h2>
   </div>
 
   <div class="text-xs sm:text-sm mb-16 md:mb-4 mt-4 mx-2 sm:mx-8 h-full pb-4 bg-white shadow-lg rounded-lg">
@@ -33,53 +34,55 @@
       <h1 class="text-2xl font-bold">{{diagnosis.type}} {{diagnosis.diagnosis}}</h1>
     </div>
 
-              <!-- Temperature and blood pressure -->
-              <div class="flex flex-col justify-between lg:flex-row space-y-4 lg:space-y-0 lg:space-x-6 my-4 px-4 sm:px-8">
+    <!-- Temperature and blood pressure -->
+    <div class="flex flex-col justify-between lg:flex-row space-y-4 lg:space-y-0 lg:space-x-6 my-4 px-4 sm:px-8">
 
-                <div class="flex text-sm font-bold space-x-2">
-                    <h1>Temperature : </h1>
-                    <h1> {{bookings.temperature}} degrees</h1>
-                </div>
-    
-                <div class=" flex text-sm font-bold space-x-2">
-                  <h1>Blood Pressure : </h1>
-                  <h1> {{bookings.blood_pressure}} mmHg</h1>
-                </div>
-                <!-- Triage -->
-                <div class=" flex text-sm font-bold space-x-2">
-                  <h1>Triage : </h1>
-                  {% if bookings.triage == 'CRITICAL' %} 
-                  <h1 class="bg-red-700 text-transparent"> aaaaaa</h1>
-                  {% elif bookings.triage == 'SEVERE' %}
-                  <h1 class="bg-yellow-600 text-transparent"> aaaaaa</h1>
-                  {% else  %}
-                  <h1 class="bg-green-700 text-transparent"> aaaaaa</h1>
-                  {% endif %}
-                </div>
-                <!-- end triage -->
-                
-              </div>
-              <!-- End Temperature and blood pressure -->
-      
-              <!-- comment -->
-              <div class="px-4 sm:px-8 my-4">
-                <h1 class="font-bold">Comments</h1>
-                <p> {{bookings.comments}} </p>
-              </div>
-              <!-- End comment -->
+      <div class="flex text-sm font-bold space-x-2">
+        <h1>Temperature : </h1>
+        <h1> {{bookings.temperature}} degrees</h1>
+      </div>
 
+      <div class=" flex text-sm font-bold space-x-2">
+        <h1>Blood Pressure : </h1>
+        <h1> {{bookings.blood_pressure}} mmHg</h1>
+      </div>
+      <!-- Triage -->
+      <div class=" flex text-sm font-bold space-x-2">
+        <h1>Triage : </h1>
+        {% if bookings.triage == 'CRITICAL' %}
+        <h1 class="bg-red-700 text-transparent"> aaaaaa</h1>
+        {% elif bookings.triage == 'SEVERE' %}
+        <h1 class="bg-yellow-600 text-transparent"> aaaaaa</h1>
+        {% else %}
+        <h1 class="bg-green-700 text-transparent"> aaaaaa</h1>
+        {% endif %}
+      </div>
+      <!-- end triage -->
+
+    </div>
+    <!-- End Temperature and blood pressure -->
+
+    <!-- comment -->
+    <div class="px-4 sm:px-8 my-4">
+      <h1 class="font-bold">Comments</h1>
+      <p> {{bookings.comments}} </p>
+    </div>
+    <!-- End comment -->
+
+    <!-- Prescriptions -->
     <div class="bg-white p-2 sm:px-4 lg:px-8 pb-4">
       <div class="my-6 flex justify-between">
-          <button class="rounded bg-slate-900 text-xs sm:text-sm md:text-md text-white px-4 py-1 uppercase">
-            PRESCRIPTIONS
-          </button>
+        <button class="rounded bg-slate-900 text-xs sm:text-sm md:text-md text-white px-4 py-1 uppercase">
+          PRESCRIPTIONS
+        </button>
       </div>
       {% for presrciption in medication %}
-  
-      <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-gray-200 shadow-lg rounded-lg">
+
+      <div
+        class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-gray-200 shadow-lg rounded-lg">
         <div>
           <h1 class="uppercase font-bold">Date</h1>
-          <p >{{presrciption.date_created}}</p>
+          <p>{{presrciption.date_created}}</p>
         </div>
 
         <div class="hidden xxs:block">
@@ -97,82 +100,79 @@
           <p>{{presrciption.duration}}</p>
         </div>
 
-        <div>
-          <a href="add_prescription.html">
-            <!-- <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
-              EDIT
-            </button> -->
-          </a>
-          
+        <div class="hidden xs:block">
+          <h1 class="uppercase font-bold">Instructions</h1>
+          <p>{{presrciption.instructions}}</p>
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
+      <!-- End Prescriptions -->
     </div>
-
-
+    <!-- Investigations -->
     <div class="bg-white p-2 sm:px-4 lg:px-8 pb-4">
       <div class="my-6 flex justify-between">
-          <button class="rounded bg-slate-900 text-xs sm:text-sm md:text-md text-white px-4 py-1 uppercase">
-            INVESTIGATIONS
-          </button>
+        <button class="rounded bg-slate-900 text-xs sm:text-sm md:text-md text-white px-4 py-1 uppercase">
+          INVESTIGATIONS
+        </button>
       </div>
-      {% for lab in labs  %}
-      
+      {% for lab in labs %}
+
       <div class="hover:shadow-2xl text-[11px] sm:text-sm my-4 px-4 py-[10px] sm:px-6 bg-gray-200 shadow-lg rounded-lg">
 
-          <div class="flex items-center justify-between my-2">
-              <div>
-                  <h1 class="uppercase font-bold">Date</h1>
-                  <p >{{lab.date}}</p>
-                </div>
-      
-                <div class="hidden xxs:block">
-                  <h1 class="uppercase font-bold">Facility</h1>
-                  <p>{{lab.referral_facility}}</p>
-                </div>
-      
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">Unit</h1>
-                  <p>{{lab.unit}}</p>
-                </div>
-      
-                <div class="hidden xs:block">
-                  <h1 class="uppercase font-bold">Type</h1>
-                  <p>{{lab.investigation}}</p>
-                </div>
-                <!-- <div>
-                  <a href="add_Investigation.html">
-                    <button class="rounded bg-green-700 px-4 py-1 text-sm uppercase text-white">
-                      Returned
-                    </button>
-                  </a> 
-                </div> -->
+        <div class="flex items-center justify-between my-2">
+          <div>
+            <h1 class="uppercase font-bold">Date</h1>
+            <p>{{lab.date}}</p>
           </div>
 
-          <div class="flex space-x-4 py-4">
-            <h1 class="font-bold">Reason : </h1>
-            <h1> {{lab.reason}} </h1>
+          <div class="hidden xxs:block">
+            <h1 class="uppercase font-bold">Facility</h1>
+            <p>{{lab.referral_facility}}</p>
           </div>
 
-          <!-- <div class="my-4">
-            <div class="flex">
-              <h1 class="font-bold ">Status: </h1>
-              <h1 class="text-green-600 mx-4 font-bold">Returned</h1>
-              <img src="{% static 'images/icons8-correct-50.png' %}" alt="" class=" w-4 h-4">
-              <img src="{% static 'images/icons8-wrong-50.png' %}" alt="" class="hidden w-4 h-4">
-            </div>
-            <div class="flex items-center space-x-4">
-              <img src="{% static 'images/pdf.png' %}" alt="" class="w-6 h-6 my-2 rounded-lg">
-              <a href="#" class="underline underline-offset-2 text-blue-600 font-semibold">Lab.pdf</a>
-            </div>
-          </div> -->
+          <div class="hidden xs:block">
+            <h1 class="uppercase font-bold">Unit</h1>
+            <p>{{lab.unit}}</p>
+          </div>
+
+          <div class="hidden xs:block">
+            <h1 class="uppercase font-bold">Type</h1>
+            <p>{{lab.investigation}}</p>
+          </div>
+          <!-- <div>
+                    <a href="add_Investigation.html">
+                      <button class="rounded bg-green-700 px-4 py-1 text-sm uppercase text-white">
+                        Returned
+                      </button>
+                    </a> 
+                  </div> -->
+        </div>
+
+        <div class="flex space-x-4 py-4">
+          <h1 class="font-bold">Reason : </h1>
+          <h1> {{lab.reason}} </h1>
+        </div>
+
+        <!-- <div class="my-4">
+              <div class="flex">
+                <h1 class="font-bold ">Status: </h1>
+                <h1 class="text-green-600 mx-4 font-bold">Returned</h1>
+                <img src="{% static 'images/icons8-correct-50.png' %}" alt="" class=" w-4 h-4">
+                <img src="{% static 'images/icons8-wrong-50.png' %}" alt="" class="hidden w-4 h-4">
+              </div>
+              <div class="flex items-center space-x-4">
+                <img src="{% static 'images/pdf.png' %}" alt="" class="w-6 h-6 my-2 rounded-lg">
+                <a href="#" class="underline underline-offset-2 text-blue-600 font-semibold">Lab.pdf</a>
+              </div>
+            </div> -->
 
       </div>
       {% endfor %}
     </div>
-  </div>    
+    <!-- End Investigations -->
+
   </div>
 </div>
-  <!-- End RIGHT SIDE -->
-  
+<!-- End RIGHT SIDE -->
+
 {% endblock content %}
