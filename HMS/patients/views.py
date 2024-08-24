@@ -45,14 +45,22 @@ def dashboard_view(request, profile_id):
 @login_required
 @staff_member_required
 def patient_list(request):
-    # Filtering non-staff patients
-    patients = CustomUser.objects.filter(is_staff=False)
-    
-    
-    # Filtering ProfileModel based on triage and non-staff users
-    critical_patients = ProfileModel.objects.filter(user__in=patients, triage='CRITICAL')
-    severe_patients = ProfileModel.objects.filter(user__in=patients, triage='SEVERE')
-    normal_patients = ProfileModel.objects.filter(user__in=patients, triage='NORMAL')
+    # Get the current date (only date, not time)
+    today = timezone.now().date()
+
+    # Filter bookings made today
+    booked_patients_today = BookPatient.objects.filter(date_created__date=today)
+
+    # Extract patient IDs from the bookings
+    patient_ids = booked_patients_today.values_list('patient_id', flat=True)
+
+    # Retrieve CustomUser objects for these patient IDs
+    patients = CustomUser.objects.filter(id__in=patient_ids)
+
+    # Retrieve patients based on patient IDs and their triage levels
+    critical_patients = ProfileModel.objects.filter(user__in=CustomUser.objects.filter(id__in=patients), triage='CRITICAL')
+    severe_patients = ProfileModel.objects.filter(user__in=CustomUser.objects.filter(id__in=patients), triage='SEVERE')
+    normal_patients = ProfileModel.objects.filter(user__in=CustomUser.objects.filter(id__in=patients), triage='NORMAL')
 
     context = {
         'patients': patients,
