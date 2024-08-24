@@ -73,15 +73,6 @@ def patient_details(request, profile_id):
         }
     return render(request, 'patients/patient.html',context)
 
-
-class TodoListView(ListView):
-    model = Todo
-    template_name = 'todos/todo_list.html'
-    context_object_name = 'todos'
-
-    def get_queryset(self):
-        return Todo.objects.filter(user=self.request.user).order_by('deadline')
-
 class TodoCreateView(CreateView):
     form_class = TodoForm
     template_name = 'users/add_activity.html'
