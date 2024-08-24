@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  {% if form.instance.pk %}Edit Activity{% else %}Add Activity{% endif %}
+{% endblock title %}
+
+{% block content %}
+   <!-- RIGHT SIDE -->
+   <div class="main_body transition-all duration-500 pb-8 md:w-4/5 w-full sm:ml-auto min-h-screen bg-slate-400">
+
+    <div class="py-4 ml-10">
+      <h1 class="font-bold text-md sm:text-xl text-slate-900">{% if form.instance.pk %}Edit Activity{% else %}Add Activity{% endif %}</h1>
+      <h2 class="font-bold text-sm sm:text-lg text-slate-900">
+        {% if request.user.is_staff %}
+          <a href="{% url 'doctor_dashboard' request.user.profile_id %}">Home</a>
+        {% else %}
+          <a href="{% url 'dashboard' request.user.profile_id %}">Home</a>
+        {% endif %}
+        | <span><a href="{% url 'add_activity' %}">Add Activity</a></span>
+      </h2>
+    </div>
+
+    <div class="text-xs sm:text-sm mb-16 md:mb-4 mt-4 mx-2 sm:mx-8 h-full pb-4 bg-slate-200 shadow-lg rounded-lg">
+
+      <div class="bg-slate-700 flex items-center justify-between w-full py-2 px-2 sm:px-4 lg:px-8 rounded-t-lg">
+        <h1 class="text-white font-bold text-[16px]">{% if form.instance.pk %}Edit Activity{% else %}Add Activity{% endif %}</h1>
+      </div>
+      <!-- Begin form -->
+        <form action="{% if form.instance.pk %}{% url 'edit_activity' form.instance.pk %}{% else %}{% url 'add_activity' %}{% endif %}" method="post">
+          {% csrf_token %}
+          <div class="w-full py-2 px-1 sm:px-4 lg:px-8">
+            <div class="mt-8 mb-4">
+              <h1 class="font-bold uppercase">Activity</h1>
+              {{ form.task }} 
+            </div>
+  
+            <div class="mt-8 mb-4">
+              <h1 class="font-bold uppercase">Deadline</h1>
+              {{ form.deadline }}
+            </div>
+            <div class="flex justify-center">
+                <button type="submit" class="bg-blue-700 text-white font-bold my-4 py-2 px-4 rounded-lg">{% if form.instance.pk %}Save changes{% else %}Add{% endif %}</button>
+            </div>
+          </div>
+        </form>
+      <!-- End Form -->
+    </div>
+    </div>
+</div>
+<!-- END RIGHT SIDE -->
+ 
+{% endblock content %}

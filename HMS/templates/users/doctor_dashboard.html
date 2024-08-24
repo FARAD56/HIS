@@ -70,34 +70,55 @@
 
           <div class="tab-content w-[91%] m-4 hidden bg-white rounded-3xl">
             <h1 class="bg-slate-700 text-white font-bold px-4 py-2 rounded-t-3xl shadow-sm my-4">
-              Patient Checkup
+              My Activities
             </h1>
 
-            <div class="px-4 pb-4">
-              <h1 class="bg-blue-400 p-2 rounded-2xl shadow-sm my-4">
-                Patient Checkup
-              </h1>
-
-              <h1 class="bg-yellow-300 p-2 rounded-2xl shadow-sm my-4">
-                Surgery
-              </h1>
-
-              <h1 class="bg-blue-400 p-2 rounded-2xl shadow-sm my-4">
-                Patient Checkup
-              </h1>
-
-              <h1 class="bg-blue-400 p-2 rounded-2xl shadow-sm my-4">
-                Patient Checkup
-              </h1>
-
-              <h1 class="bg-blue-400 p-2 rounded-2xl shadow-sm my-4">
-                Patient Checkup
-              </h1>
-
-              <div class=" flex justify-center">
-                <button class="bg-blue-700 px-2 py-1 text-white font-semibold rounded-lg">Add activity</button>
+            <!-- Todo -->
+        <div class="px-4 pb-4">
+          {% for todo in user_todos %}
+          <div class="bg-slate-700 p-2 sm:px-4 md:p-2 lg:px-4 rounded-2xl shadow-sm my-4">
+            <div>
+              <div class="flex justify-between space-x-4 items-center">
+                <h1 class="text-xs sm:text-sm md:text-base text-white font-bold w-[70%]">{{ todo.task }}</h1>
+                <div class="flex space-x-2 w-[18%] justify-end items-center">
+                  <!-- Complete Form -->
+                  <form method="POST" action="{% url 'complete_activity' todo.pk %}" class="complete-form">
+                    {% csrf_token %}
+                    <button type="submit" class="complete-btn">
+                        <img
+                            src="{% if todo.is_completed %}{% static 'images/icons8-correct-50.png' %}{% else %}{% static 'images/icons8-complete-50.png' %}{% endif %}"
+                            alt="Complete" class="w-5 h-5 sm:w-6 sm:h-6">
+                    </button>
+                </form>
+                  <a href="{% url 'edit_activity' todo.pk %}">
+                    <img src="{% static 'images/icons8-edit-50.png' %}" alt="Edit" class="w-5 h-5 sm:w-6 sm:h-6">
+                  </a>
+                  <a href="#" data-url="{% url 'delete_activity' todo.pk %}" class="openModalBtn">
+                    <img src="{% static 'images/icons8-delete-48(1).png' %}" alt="Delete" class="w-5 h-5 sm:w-6 sm:h-6">
+                  </a>
+                </div>
+              </div>
+              <div class="flex space-x-2 my-4">
+                <img src="{% static 'images/icons8-deadline-50-green.png' %}" alt="Deadline"
+                  class="w-5 h-5 sm:w-6 sm:h-6">
+                <h1 class="text-xs sm:text-sm md:text-base text-white font-bold">
+                  {{ todo.get_deadline_label }},
+                </h1>
+                <h1 class="text-xs sm:text-sm md:text-base text-white font-bold">
+                  {{ todo.deadline|date:"P" }}
+                </h1>
               </div>
             </div>
+          </div>
+          {% endfor %}
+
+          <div class=" flex justify-center">
+            <a href="{% url 'add_activity' %}">
+              <button class="bg-blue-700 px-2 py-1 text-white font-semibold rounded-lg">Add activity</button>
+            </a>
+          </div>
+        </div>
+        <!-- End todo -->
 
           </div>
 

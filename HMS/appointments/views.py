@@ -229,7 +229,7 @@ def book_patient(request):
         if book_form.is_valid():
             triage = book_form.cleaned_data.get('triage')
             patient_id = book_form.cleaned_data.get('patient_id')
-            patient = CustomUser.objects.get(profile_id=patient_id)
+            patient = get_object_or_404(CustomUser, profile_id=patient_id)
             patient.profilemodel.triage = triage
             patient.profilemodel.save()
             book_form.save()

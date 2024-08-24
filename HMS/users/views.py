@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from appointments.forms import AvailabilityForm
 from django.utils import timezone
 from appointments.models import BookPatient
+from patients.models import Todo
 
 
 def register(request):
@@ -119,11 +120,14 @@ def doctor_dashboard(request,profile_id):
     # Get all patients diagnosed by the doctor, ensuring no duplicates
     patients_diagnosed = CustomUser.objects.filter(patient_diagnosis__doctor=doctor).distinct()
 
-    
+    user_todos = Todo.objects.filter(user=request.user).order_by('deadline')
+
 
     context = {
         'doctor':doctor,
         'appointments':appointments,
         'patients_diagnosed':patients_diagnosed,
+        'user_todos':user_todos,
+
     }
     return render(request,'users/doctor_dashboard.html',context)
