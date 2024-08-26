@@ -201,12 +201,14 @@ Dashboard
           </a>
         </div>
 
-        {% for item in appointments %}
+        {% for item in future_appointments %}
         <div class="flex w-[96%] shadow-lg mt-5 mb-2 px-4 py-2 rounded-lg">
-          <img src="{% static 'images/profile.jpg' %}" alt="" class="rounded-full w-10 h-10">
+          <img src="{{item.doctor.profilemodel.profile_picture.url}}" alt="" class="rounded-full w-10 h-10">
           <div class="mx-2">
-            <h1 class="font-bold text-[9px] xs:text-xs">{{item.patient.full_name}}</h1>
+            <h1 class="font-bold text-[9px] xs:text-xs">{{item.doctor.full_name}}</h1>
             <h1 class="text-[9px] xs:text-xs font-bold">{{item.availability.time}}</h1>
+            <h1 class="text-[9px] xs:text-xs font-bold">{{item.availability.day}}</h1>
+
           </div>
         </div>
         {% endfor %}

@@ -24,14 +24,13 @@ def dashboard_view(request, profile_id):
 
     medications = Prescription.objects.filter(patient=patient)
     
-    # Filter appointments based on availability date and time
+    # Get the current date and time
     now = timezone.now()
-    current_day = now.strftime('%A').upper()  # Converts to full uppercase weekday name
-    current_time = now.time()
-    appointments = patient.appointments.filter(
-        availability__day__gte=current_day,
-        availability__time__gte=current_time
-    ).order_by('availability__day', 'availability__time')
+    
+    
+    # Future appointments (including today)
+    future_appointments = patient.appointments.all().order_by('-availability__day', 'availability__time')
+
     
     # Delete expired todos
     expired_todos = Todo.objects.filter(user=request.user, deadline__lt=now)
@@ -44,7 +43,7 @@ def dashboard_view(request, profile_id):
         'diagnosed_doctors': diagnosed_doctors,
         'medications': medications,
         'patient': patient,
-        'appointments': appointments,
+        'future_appointments': future_appointments,
         'user_todos': user_todos,
     }
     return render(request, 'patients/dashboard.html', context)

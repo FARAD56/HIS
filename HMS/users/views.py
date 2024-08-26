@@ -8,6 +8,8 @@ from appointments.forms import AvailabilityForm
 from django.utils import timezone
 from appointments.models import BookPatient
 from patients.models import Todo
+from django.contrib.admin.views.decorators import staff_member_required
+
 
 
 def register(request):
@@ -102,19 +104,15 @@ def chats(request,profile_id):
     return render(request,'chats/chats.html')
 
 
+
 @login_required
+@staff_member_required
 def doctor_dashboard(request,profile_id):
     doctor = get_object_or_404(CustomUser, profile_id=profile_id)
-    # Get the current day and time
-    now = timezone.now()
-    current_day = now.strftime('%A').upper()  # Converts to full uppercase weekday name
-    current_time = now.time()
-
-    # Filter appointments based on availability date and time
-    appointments = doctor.doctor_appointments.filter(
-        availability__day__gte=current_day,
-        availability__time__gte=current_time
-    ).order_by('availability__day', 'availability__time')
+    
+    
+    # Get all appointments for the doctor
+    future_appointments = doctor.doctor_appointments.all().order_by('-availability__day', 'availability__time')
 
     # Get all patients diagnosed by the doctor, ensuring no duplicates
     patients_diagnosed = CustomUser.objects.filter(patient_diagnosis__doctor=doctor).distinct()
@@ -124,7 +122,7 @@ def doctor_dashboard(request,profile_id):
 
     context = {
         'doctor':doctor,
-        'appointments':appointments,
+        'future_appointments':future_appointments,
         'patients_diagnosed':patients_diagnosed,
         'user_todos':user_todos,
 
