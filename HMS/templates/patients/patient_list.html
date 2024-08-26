@@ -102,13 +102,13 @@
           {% for normal_patient in normal_patients  %}
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">{{normal_patient.user.profile_id}}</h1>
-              <p>{{normal_patient.user.date_created|date:"F j, Y, g:i a"}}</p>
+              <h1 class="uppercase font-bold">{{normal_patient.profile_id}}</h1>
+              <p>{{normal_patient.date_created|date:"F j, Y, g:i a"}}</p>
             </div>
 
             <div class="hidden xs:block">
               <h1 class="uppercase font-bold">Patient</h1>
-              <p>{{normal_patient.user.full_name}}</p>
+              <p>{{normal_patient.full_name}}</p>
             </div>
 
             <div class="items-center">
@@ -117,7 +117,7 @@
             </div>
 
             <div>
-              <a href="{% url 'patient_details' normal_patient.user.profile_id %}">
+              <a href="{% url 'patient_details' normal_patient.profile_id %}">
                 <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
             </div>
@@ -132,13 +132,13 @@
         <div class="bg-gray-200">
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">{{severe_patient.user.profile_id}}</h1>
-              <p>{{severe_patient.user.date_created|date:"F j, Y, g:i a"}}</p>
+              <h1 class="uppercase font-bold">{{severe_patient.profile_id}}</h1>
+              <p>{{severe_patient.date_created|date:"F j, Y, g:i a"}}</p>
             </div>
 
             <div class="hidden xs:block">
               <h1 class="uppercase font-bold">Patient</h1>
-              <p>{{severe_patient.user.full_name}}</p>
+              <p>{{severe_patient.full_name}}</p>
             </div>
 
             <div class="items-center">
@@ -147,7 +147,7 @@
             </div>
 
             <div>
-              <a href="{% url 'patient_details' severe_patient.user.profile_id %}">
+              <a href="{% url 'patient_details' severe_patient.profile_id %}">
                 <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
             </div>
@@ -162,13 +162,13 @@
         <div class="bg-gray-200">
           <div class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
             <div>
-              <h1 class="uppercase font-bold">{{critical_patient.user.profile_id}}</h1>
-              <p>{{critical_patient.user.date_created|date:"F j, Y, g:i a"}}</p>
+              <h1 class="uppercase font-bold">{{critical_patient.profile_id}}</h1>
+              <p>{{critical_patient.date_created|date:"F j, Y, g:i a"}}</p>
             </div>
 
             <div class="hidden xs:block">
               <h1 class="uppercase font-bold">Patient</h1>
-              <p>{{critical_patient.user.full_name}}</p>
+              <p>{{critical_patient.full_name}}</p>
             </div>
 
             <div class="items-center">
@@ -177,7 +177,7 @@
             </div>
 
             <div>
-              <a href="{% url 'patient_details' critical_patient.user.profile_id %}">
+              <a href="{% url 'patient_details' critical_patient.profile_id %}">
                 <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">view</button>
               </a>
             </div>

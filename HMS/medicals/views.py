@@ -11,16 +11,15 @@ from django.contrib import messages
 # Create your views here.
 
 @login_required
-def patient_attendance(request,profile_id):
+def patient_attendance(request, profile_id):
     patient = get_object_or_404(CustomUser, profile_id=profile_id)
-    bookings = get_object_or_404(BookPatient,patient_id = profile_id)
-    diagnosis_list = Diagnosis.objects.filter(patient=patient)
+    bookings = get_object_or_404(BookPatient, patient_id=profile_id)
+    diagnosis_list = Diagnosis.objects.filter(patient=patient).order_by('-created_at')
 
     context = {
         'patient': patient,
-        'bookings':bookings,
+        'bookings': bookings,
         'diagnosis_list': diagnosis_list,
-
     }
 
     return render(request, 'medicals/patient_attendance_details.html', context)
@@ -44,8 +43,7 @@ class AddDiagnosis(View):
         patient = get_object_or_404(CustomUser, profile_id=profile_id)
         bookings = get_object_or_404(BookPatient,patient_id=patient.profile_id) 
 
-        diagnosis_list = Diagnosis.objects.filter(patient=patient)
-        print("list is: " ,diagnosis_list)
+        diagnosis_list = Diagnosis.objects.filter(patient=patient).order_by('-created_at')
 
         context = {
             'diagnosis_list': diagnosis_list,

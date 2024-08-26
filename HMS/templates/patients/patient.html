@@ -49,24 +49,24 @@
           <div class="flex items-center justify-between my-2">
             <div>
               <h1 class="uppercase font-bold text-center">Date</h1>
-              <p class="text-center">{{bookings.date_created}}</p>
+              <p class="text-center">{{booking.date_created}}</p>
             </div>
   
             <div class="hidden xxs:block">
               <h1 class="uppercase font-bold text-center">Temperature</h1>
-              <p class="text-center">{{bookings.temperature}} degrees</p>
+              <p class="text-center">{{booking.temperature}} degrees</p>
             </div>
   
             <div class="hidden xs:block">
               <h1 class="uppercase font-bold text-center">Blood Pressure</h1>
-              <p class="text-center">{{bookings.blood_pressure}} bpm</p>
+              <p class="text-center">{{booking.blood_pressure}} bpm</p>
             </div>
 
             <div class="items-center">
               <h1 class="uppercase font-bold text-center">Triage</h1>
-              {% if bookings.triage == 'CRITICAL' %} 
+              {% if booking.triage == 'CRITICAL' %} 
                 <block class="bg-red-700 text-transparent">aaaaaaa</block>
-              {% elif bookings.triage == 'SEVERE' %}
+              {% elif booking.triage == 'SEVERE' %}
                 <block class="bg-yellow-500 text-transparent">aaaaaaa</block>
               {% else  %}
                 <block class="bg-green-700 text-transparent">aaaaaaa</block>
@@ -83,7 +83,7 @@
 
           <div class="mt-4">
             <h1 class="uppercase font-bold mb-2">Comments</h1>
-            <p>{{bookings.comments}}</p>
+            <p>{{booking.comments}}</p>
           </div>
 
         </div>

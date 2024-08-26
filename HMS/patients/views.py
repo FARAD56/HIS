@@ -11,6 +11,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, V
 from django.urls import reverse_lazy
 from .models import Todo
 from .forms import TodoForm
+from django.db.models import Case, When
+
 
 # Create your views here.
 @login_required
@@ -48,20 +50,42 @@ def patient_list(request):
     # Get the current date (only date, not time)
     today = timezone.now().date()
 
-    # Filter bookings made today
-    booked_patients_today = BookPatient.objects.filter(date_created__date=today)
+    # Get all unique patient IDs
+    all_patient_ids = BookPatient.objects.values_list('patient_id', flat=True).distinct()
 
-    # Extract patient IDs from the bookings
-    patient_ids = booked_patients_today.values_list('patient_id', flat=True)
+    # Prepare a list to hold patients and their most recent bookings
+    patient_bookings = []
 
-    # Retrieve CustomUser objects for these patient IDs
-    patients = CustomUser.objects.filter(id__in=patient_ids)
+    for patient_id in all_patient_ids:
+        # Get today's booking if available
+        try:
+            booking = BookPatient.objects.filter(patient_id=patient_id, date_created__date=today).latest('date_created')
+        except BookPatient.DoesNotExist:
+            # If no booking is found for today, get the most recent booking
+            booking = BookPatient.objects.filter(patient_id=patient_id).latest('date_created')
+        
+        # Append the booking along with the corresponding patient ID to the list
+        patient_bookings.append((booking.patient_id, booking))
 
-    # Retrieve patients based on patient IDs and their triage levels
-    critical_patients = ProfileModel.objects.filter(user__in=CustomUser.objects.filter(id__in=patients), triage='CRITICAL')
-    severe_patients = ProfileModel.objects.filter(user__in=CustomUser.objects.filter(id__in=patients), triage='SEVERE')
-    normal_patients = ProfileModel.objects.filter(user__in=CustomUser.objects.filter(id__in=patients), triage='NORMAL')
+    # Sort the list by the booking date (most recent first)
+    patient_bookings.sort(key=lambda x: x[1].date_created, reverse=True)
 
+    # Extract sorted patient IDs
+    sorted_patient_ids = [item[0] for item in patient_bookings]
+
+    # Retrieve CustomUser objects for the sorted patient IDs, maintaining the order
+    patients = CustomUser.objects.filter(profile_id__in=sorted_patient_ids).order_by(
+        Case(
+            *[When(profile_id=profile_id, then=pos) for pos, profile_id in enumerate(sorted_patient_ids)]
+        )
+    )
+
+    # Filter patients based on their triage levels
+    critical_patients = patients.filter(profilemodel__triage='CRITICAL')
+    severe_patients = patients.filter(profilemodel__triage='SEVERE')
+    normal_patients = patients.filter(profilemodel__triage='NORMAL')
+
+    # Prepare the context to include patient bookings
     context = {
         'patients': patients,
         'critical_patients': critical_patients,
@@ -71,15 +95,29 @@ def patient_list(request):
     return render(request, 'patients/patient_list.html', context)
 
 
+
+
+
 @login_required
 def patient_details(request, profile_id):
+    # Get the patient object or return a 404 if not found
     patient = get_object_or_404(CustomUser, profile_id=profile_id)
-    bookings = get_object_or_404(BookPatient,patient_id=profile_id) 
+
+    # Get today's date
+    today = timezone.now().date()
+
+    # Try to get today's booking for the patient
+    try:
+        booking = BookPatient.objects.filter(patient_id=profile_id, date_created__date=today).latest('date_created')
+    except BookPatient.DoesNotExist:
+        # If no booking is found for today, get the most recent booking
+        booking = BookPatient.objects.filter(patient_id=profile_id).latest('date_created')
+
     context = {
         'patient': patient,
-        'bookings':bookings
-        }
-    return render(request, 'patients/patient.html',context)
+        'booking': booking
+    }
+    return render(request, 'patients/patient.html', context)
 
 class TodoCreateView(CreateView):
     form_class = TodoForm

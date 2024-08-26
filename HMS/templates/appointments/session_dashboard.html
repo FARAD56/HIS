@@ -59,11 +59,18 @@
           <div
             class="flex text-[10px] sm:text-sm h-16 items-center justify-between bg-white"
           >
+            {% if request.user.is_staff  %}
+            <div>
+              <h1 class="uppercase font-bold">Patient</h1>
+              <p class="">{{item.patient.full_name}}</p>
+            </div>  
+            
+            {% else %}
             <div>
               <h1 class="uppercase font-bold">Doctor</h1>
               <p class="">{{item.doctor.full_name}}</p>
             </div>
-
+            {% endif %}
             <div class="">
               <h1 class="uppercase font-bold">Time</h1>
               <p class="">{{item.availability.time}}</p>
@@ -104,16 +111,6 @@
           </div>
         </div>
         {% endfor %}
-      </div>
-
-      <div>
-        <div class="my-6">
-          <button
-            class="rounded text-xs sm:text-sm md:text-md bg-slate-900 text-white px-4 py-1 uppercase"
-          >
-            COMPLETED
-          </button>
-        </div>
       </div>
     </div>
 

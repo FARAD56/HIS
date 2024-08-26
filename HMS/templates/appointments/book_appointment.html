@@ -83,6 +83,8 @@
             {% for field in form %}
               {{field}}
             {% endfor %}
+            <!-- Hidden input field to submit availability ID -->
+            <input type="hidden" name="availability_id" value="{{ item.id }}">
             <div class="flex-end justify-end">
               <button
                 type="submit"

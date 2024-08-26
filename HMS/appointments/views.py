@@ -86,7 +86,8 @@ def book_appointment(request, profile_id):
         form = AppointmentForm(request.POST,doctor=doctor)
         if form.is_valid():
             try:
-                availability = availabilities.get(doctor_id=profile_id)
+                availability_id = request.POST.get('availability_id')
+                availability = get_object_or_404(Availability, id=availability_id)
                 appointment = form.save(commit=False)
                 appointment.availability = availability
                 appointment.patient = request.user

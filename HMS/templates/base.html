@@ -140,13 +140,13 @@
       {% if not request.user.is_staff %}
       <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center">
         <a href="{% url 'medication' request.user.profile_id %}" class="flex items-center">
-          <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-10 h-10">
+          <img src="{% static 'images/medication.png' %}" alt="" class="w-10 h-10">
           <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Medications</p>
         </a>
       </div>
       <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center">
         <a href="{% url 'get_medical_record' request.user.profile_id %}" class="flex items-center">
-          <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-10 h-10">
+          <img src="{% static 'images/medical_records.png' %}" alt="" class="w-10 h-10">
           <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Medical Records</p>
         </a>
       </div>
@@ -181,14 +181,21 @@
         <img src="{% static 'images/icons8-appointment-48.png' %}" alt="" class="w-8 h-8">
         <p class="text-[12px] font-bold">Sessions</p>
       </a>
-      <!-- <a href="{% url 'chats' request.user.profile_id %}">
-        <img src="{% static 'images/chats.png' %}" class="w-8 h-8" alt="">
-        <p class="text-[12px] font-bold">Chats</p>
-      </a> -->
-      <a href="{% url 'user_profile' request.user.profile_id %}">
-        <img src="{% static 'images/settings.png' %}" class="w-8 h-8" alt="">
-        <p class="text-[12px] font-bold">Settings</p>
-      </a>
+      {% if not request.user.is_staff %}
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center">
+        <a href="{% url 'medication' request.user.profile_id %}" class="flex items-center">
+          <img src="{% static 'images/medication.png' %}" alt="" class="w-10 h-10">
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Medications</p>
+        </a>
+      </div>
+      <div class="flex bg-slate-400 mx-[6%] rounded-xl px-4 items-center">
+        <a href="{% url 'get_medical_record' request.user.profile_id %}" class="flex items-center">
+          <img src="{% static 'images/medical_records.png' %}" alt="" class="w-10 h-10">
+          <p class="text-white font-bold ml-4 transition-all duration-200" id="side_text">Medical Records</p>
+        </a>
+      </div>
+        
+      {% endif %}
 
     </div>
     <!-- End bottom bar -->

@@ -102,7 +102,6 @@ def chats(request,profile_id):
     return render(request,'chats/chats.html')
 
 
-
 @login_required
 def doctor_dashboard(request,profile_id):
     doctor = get_object_or_404(CustomUser, profile_id=profile_id)
