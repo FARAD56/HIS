@@ -14,7 +14,7 @@ from .forms import TodoForm
 from django.db.models import Case, When
 
 
-# Create your views here.
+
 @login_required
 def dashboard_view(request, profile_id):
     patient = get_object_or_404(CustomUser, profile_id=profile_id)
@@ -32,16 +32,23 @@ def dashboard_view(request, profile_id):
         availability__day__gte=current_day,
         availability__time__gte=current_time
     ).order_by('availability__day', 'availability__time')
+    
+    # Delete expired todos
+    expired_todos = Todo.objects.filter(user=request.user, deadline__lt=now)
+    expired_todos.delete()
+    
+    # Retrieve remaining todos
     user_todos = Todo.objects.filter(user=request.user).order_by('deadline')
 
     context = {
-        'diagnosed_doctors': diagnosed_doctors,  # Use the filtered doctors
+        'diagnosed_doctors': diagnosed_doctors,
         'medications': medications,
         'patient': patient,
         'appointments': appointments,
-        'user_todos':user_todos,
+        'user_todos': user_todos,
     }
     return render(request, 'patients/dashboard.html', context)
+
 
 
 @login_required

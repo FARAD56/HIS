@@ -5,13 +5,17 @@ from .forms import BookPatientForm,AppointmentForm
 from users.models import CustomUser
 from django.db.models import Q
 from .models import Availability,Appointment
+from django.utils import timezone
+
+from datetime import datetime, date,timedelta
+
+
 
 # Create your views here.
 from .forms import AvailabilityForm
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
-import datetime
 import pytz
 from django.shortcuts import redirect
 from django.conf import settings
@@ -112,14 +116,14 @@ def book_appointment(request, profile_id):
                 }
 
                 # Get the current date and time
-                today = datetime.date.today()
-                now = datetime.datetime.now()
+                today = date.today()
+                now = datetime.now()
 
                 # Find the next occurrence of the availability day
                 availability_day = day_mapping[availability.day.upper()]
 
                 # Combine the current date with the availability time to check if it has passed
-                appointment_time_today = datetime.datetime.combine(today, availability.time)
+                appointment_time_today = datetime.combine(today, availability.time)
 
                 # Check if the time has already passed today
                 if availability_day == today.weekday() and now > appointment_time_today:
@@ -128,11 +132,11 @@ def book_appointment(request, profile_id):
                     days_ahead = (availability_day - today.weekday()) % 7
 
                 # Calculate the appointment date
-                appointment_date = today + datetime.timedelta(days=days_ahead)
+                appointment_date = today + timedelta(days=days_ahead)
 
                 # Set the start and end time for the event
-                start_time = datetime.datetime.combine(appointment_date, availability.time)
-                end_time = start_time + datetime.timedelta(hours=2)
+                start_time = datetime.combine(appointment_date, availability.time)
+                end_time = start_time + timedelta(hours=2)
 
                 # Ensure times are in UTC
                 start_time_utc = pytz.utc.localize(start_time)
@@ -206,20 +210,56 @@ def cancel_appointment(request, appointment_id):
         
 
 #function to view appointments after it has been booked
+
 @login_required
-def session_dashboard(request,profile_id):
+def session_dashboard(request, profile_id):
     user = get_object_or_404(CustomUser, profile_id=profile_id)
 
-    #if user is staff
+    if user.is_staff:
+        appointments = Appointment.objects.filter(doctor=user)
+    else:
+        appointments = Appointment.objects.filter(patient=user)
+
+    now = timezone.now()
+
+    # Helper function to get the next date for a given day of the week
+    def get_next_date(day_str):
+        days = {
+            'MONDAY': 0,
+            'TUESDAY': 1,
+            'WEDNESDAY': 2,
+            'THURSDAY': 3,
+            'FRIDAY': 4,
+            'SATURDAY': 5,
+            'SUNDAY': 6,
+        }
+        today = now.date()
+        target_day = days[day_str.upper()]
+        days_ahead = target_day - today.weekday()
+        if days_ahead <= 0:  # Target day has passed this week
+            days_ahead += 7
+        return today + timedelta(days=days_ahead)
+
+    # Loop through the appointments and delete the ones where the availability date and time have passed
+    for appointment in appointments:
+        # Calculate the next occurrence of the availability day
+        appointment_date = get_next_date(appointment.availability.day)
+        appointment_date_time = timezone.make_aware(
+            datetime.combine(appointment_date, appointment.availability.time),
+            timezone.get_current_timezone()
+        )
+        if appointment_date_time < now:
+            appointment.delete()
+
     if user.is_staff:
         appointments = Appointment.objects.filter(doctor=user)
     else:
         appointments = Appointment.objects.filter(patient=user)
 
     context = {
-        'appointments':appointments
+        'appointments': appointments
     }
-    return render(request,'appointments/session_dashboard.html',context)
+    return render(request, 'appointments/session_dashboard.html', context)
 
 
 @login_required
