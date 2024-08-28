@@ -7,12 +7,23 @@ from appointments.models import BookPatient
 from django.views.generic import View
 from .models import Diagnosis, Prescription, Investigation
 from django.contrib import messages
+from django.utils import timezone
+
 
 # Create your views here.
 @login_required
 def patient_attendance(request, profile_id):
     patient = get_object_or_404(CustomUser, profile_id=profile_id)
-    bookings = get_object_or_404(BookPatient, patient_id=profile_id)
+    # Get today's date
+    today = timezone.now().date()
+
+    # Try to get today's booking for the patient
+    try:
+        bookings = BookPatient.objects.filter(patient_id=profile_id, date_created__date=today).latest('date_created')
+    except BookPatient.DoesNotExist:
+        # If no booking is found for today, get the most recent booking
+        bookings = BookPatient.objects.filter(patient_id=profile_id).latest('date_created')
+
     diagnosis_list = Diagnosis.objects.filter(patient=patient).order_by('-date_created')
 
     context = {
@@ -40,7 +51,15 @@ class AddDiagnosis(View):
 
     def get(self,request,profile_id):
         patient = get_object_or_404(CustomUser, profile_id=profile_id)
-        bookings = get_object_or_404(BookPatient,patient_id=patient.profile_id) 
+        # Get today's date
+        today = timezone.now().date()
+
+        # Try to get today's booking for the patient
+        try:
+            bookings = BookPatient.objects.filter(patient_id=profile_id, date_created__date=today).latest('date_created')
+        except BookPatient.DoesNotExist:
+            # If no booking is found for today, get the most recent booking
+            bookings = BookPatient.objects.filter(patient_id=profile_id).latest('date_created') 
 
         diagnosis_list = Diagnosis.objects.filter(patient=patient).order_by('-date_created')
 
@@ -166,7 +185,17 @@ class SingleRecordView(View):
     
     def get(self, request, id):
         diagnosis = get_object_or_404(Diagnosis,id=id)
-        bookings = get_object_or_404(BookPatient,patient_id=diagnosis.patient.profile_id) 
+
+        # Get today's date
+        today = timezone.now().date()
+
+        # Try to get today's booking for the patient
+        try:
+            bookings = BookPatient.objects.filter(patient_id=diagnosis.patient.profile_id, date_created__date=today).latest('date_created')
+        except BookPatient.DoesNotExist:
+            # If no booking is found for today, get the most recent booking
+            bookings = BookPatient.objects.filter(patient_id=diagnosis.patient.profile_id).latest('date_created')
+
         medication = Prescription.objects.filter(diagnosis=diagnosis)
         labs = Investigation.objects.filter(diagnosis=diagnosis)
         context = {
