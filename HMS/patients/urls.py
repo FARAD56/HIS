@@ -9,4 +9,5 @@ urlpatterns = [
     path('edit-activity/<int:id>/',  views.TodoUpdateView.as_view(), name='edit_activity'),
     path('delete-activity/<int:id>/',  views.TodoDeleteView.as_view(), name='delete_activity'),
     path('complete_activity/<int:id>/',  views.TodoCompleteView.as_view(), name='complete_activity'),
+    path('chart/',  views.get_chart_data, name='chart_data'),
 ]

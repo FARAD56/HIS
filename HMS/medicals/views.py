@@ -9,12 +9,11 @@ from .models import Diagnosis, Prescription, Investigation
 from django.contrib import messages
 
 # Create your views here.
-
 @login_required
 def patient_attendance(request, profile_id):
     patient = get_object_or_404(CustomUser, profile_id=profile_id)
     bookings = get_object_or_404(BookPatient, patient_id=profile_id)
-    diagnosis_list = Diagnosis.objects.filter(patient=patient).order_by('-created_at')
+    diagnosis_list = Diagnosis.objects.filter(patient=patient).order_by('-date_created')
 
     context = {
         'patient': patient,
@@ -43,7 +42,7 @@ class AddDiagnosis(View):
         patient = get_object_or_404(CustomUser, profile_id=profile_id)
         bookings = get_object_or_404(BookPatient,patient_id=patient.profile_id) 
 
-        diagnosis_list = Diagnosis.objects.filter(patient=patient).order_by('-created_at')
+        diagnosis_list = Diagnosis.objects.filter(patient=patient).order_by('-date_created')
 
         context = {
             'diagnosis_list': diagnosis_list,

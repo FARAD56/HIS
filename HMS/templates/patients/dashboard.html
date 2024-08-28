@@ -58,18 +58,15 @@ Dashboard
         <div class="tab col-span-3 bg-red-400 p-2">Vitals</div>
         <div class="tab col-span-5 bg-blue-400 p-2 rounded-e-lg">Reminders</div>
       </div>
-
+      <!-- Diagnosis Chart -->
       <div class="tab-content w-[91%] m-4 ">
         <canvas id="diagnosisChart" class="bg-white  w-full h-full rounded-xl"></canvas>
       </div>
-
+      <!-- Vitals chart -->
       <div class="tab-content w-[91%] m-4 hidden">
         <canvas id="vitalsChart" class="bg-white w-full rounded-xl"></canvas>
       </div>
 
-      <!-- <div class="tab-content w-[91%] m-4 hidden">
-        <canvas id="" class="bg-white w-full rounded-xl"></canvas>
-      </div> -->
       <!-- Todo list -->
       <div class="tab-content w-[91%] m-4 hidden bg-white rounded-3xl">
         <h1 class="bg-slate-700 text-white font-bold px-4 py-2 rounded-t-3xl shadow-sm my-4">
@@ -274,5 +271,5 @@ Dashboard
 </script>
 
 <!-- Modal end -->
-
+<script src="{% static 'js/chart.js' %}"></script>
 {% endblock content %}

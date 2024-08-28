@@ -36,7 +36,7 @@
               <div>
                 <img src="{% static 'images/icons8-heart-beat-64.png' %}" alt="" class="w-7 h-7">
                 <div class="my-1">
-                  <h5 class="xxs:text-[10px] xs:text-xs lg:text-sm font-bold">Patient</h5>
+                  <h5 class="xxs:text-[10px] xs:text-xs lg:text-sm font-bold">Statistics</h5>
                   <h5 class="text-[6px] xs:text-[8px] font-bold">Patient gender statistics</h5>
                 </div>
               </div>
@@ -65,7 +65,7 @@
           </div>
 
           <div class="tab-content w-[91%] m-4 hidden">
-            <canvas id="vitalsChart" class="bg-white w-full rounded-xl"></canvas>
+            <canvas id="genderAgeChart" class="bg-white w-full rounded-xl"></canvas>
           </div>
 
           <div class="tab-content w-[91%] m-4 hidden bg-white rounded-3xl">
@@ -264,6 +264,7 @@
 
     </div>
     <!-- END RIGHT SIDE -->
+    <script src="{% static 'js/chart_copy.js' %}"></script>    
+  {% endblock content %}
 
-    {% endblock content %}
 

@@ -5,13 +5,17 @@ from users.models import CustomUser
 from users.models import ProfileModel
 from appointments.models import BookPatient
 from django.db.models import Q
-from medicals.models import Prescription
+from medicals.models import Prescription,Diagnosis
 from django.utils import timezone
+
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View
 from django.urls import reverse_lazy
 from .models import Todo
 from .forms import TodoForm
-from django.db.models import Case, When
+from django.db.models import Case, When, Count
+from datetime import timedelta
+from django.utils.timezone import now
+from django.http import JsonResponse
 
 
 
@@ -47,7 +51,6 @@ def dashboard_view(request, profile_id):
         'user_todos': user_todos,
     }
     return render(request, 'patients/dashboard.html', context)
-
 
 
 @login_required
@@ -99,8 +102,6 @@ def patient_list(request):
         'normal_patients': normal_patients,
     }
     return render(request, 'patients/patient_list.html', context)
-
-
 
 
 
@@ -183,3 +184,43 @@ class TodoCompleteView(View):
             return redirect('doctor_dashboard',todo.user.profile_id)
         else:
             return redirect('dashboard',todo.user.profile_id)
+
+def get_chart_data(request):
+    # Count the diagnosis of diseases
+    disease_counts = Diagnosis.objects.values('diagnosis').annotate(count=Count('diagnosis'))
+
+    # Create labels and data for the diagnosis chart
+    labels = []
+    data = []
+    for disease_count in disease_counts:
+        labels.append(disease_count['diagnosis'])
+        data.append(disease_count['count'])
+
+    diagnosis_data = {
+        'labels': labels,
+        'data': data
+    }
+
+    # Get the last 6 days of patient bookings including today
+    six_days_ago = now().date() - timedelta(days=5)
+    vitals = BookPatient.objects.filter(patient_id=request.user.profile_id, date_created__date__gte=six_days_ago).order_by('date_created')
+
+    # Prepare vitals data for the chart
+    vitals_data = {
+        'labels': [],
+        'temperature': [],
+        'systole': [],
+        'diastole': []
+    }
+
+    for booking in vitals:
+        vitals_data['labels'].append(booking.date_created.strftime('%Y-%m-%d'))
+        vitals_data['temperature'].append(booking.temperature)  # Replace with the actual field for temperature
+        
+        # Extract systole and diastole from blood pressure
+        blood_pressure = booking.blood_pressure  # Replace with the actual field name
+        systole, diastole = map(int, blood_pressure.split('/'))
+        vitals_data['systole'].append(systole)
+        vitals_data['diastole'].append(diastole)
+
+    return JsonResponse({'diagnosis': diagnosis_data, 'vitals': vitals_data})

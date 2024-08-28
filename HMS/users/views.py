@@ -5,11 +5,14 @@ from django.contrib.auth import authenticate,logout,login
 from .models import CustomUser,ProfileModel
 from django.contrib.auth.decorators import login_required
 from appointments.forms import AvailabilityForm
-from django.utils import timezone
 from appointments.models import BookPatient
 from patients.models import Todo
 from django.contrib.admin.views.decorators import staff_member_required
-
+from django.http import JsonResponse
+from datetime import datetime, timedelta
+from django.utils.timezone import now
+from medicals.models import Diagnosis
+from django.db.models import Count
 
 
 def register(request):
@@ -99,13 +102,6 @@ def user_profile(request,profile_id):
 
 
 @login_required
-def chats(request,profile_id):
-    
-    return render(request,'chats/chats.html')
-
-
-
-@login_required
 @staff_member_required
 def doctor_dashboard(request,profile_id):
     doctor = get_object_or_404(CustomUser, profile_id=profile_id)
@@ -128,3 +124,47 @@ def doctor_dashboard(request,profile_id):
 
     }
     return render(request,'users/doctor_dashboard.html',context)
+
+def get_chart_data(request):
+    # Count the diagnosis of diseases
+    disease_counts = Diagnosis.objects.values('diagnosis').annotate(count=Count('diagnosis'))
+
+    # Create labels and data for the diagnosis chart
+    labels = []
+    data = []
+    for disease_count in disease_counts:
+        labels.append(disease_count['diagnosis'])
+        data.append(disease_count['count'])
+
+    diagnosis_data = {
+        'labels': labels,
+        'data': data
+    }
+
+   # Count men and women
+    men_count = CustomUser.objects.filter(sex='Male').count()
+    women_count = CustomUser.objects.filter(sex='Female').count()
+
+    # Calculate current date for age calculation
+    today = datetime.today()
+
+    # Count children (e.g., age < 18)
+    children_count = CustomUser.objects.filter(
+        dob__isnull=False,
+        dob__lte=today.replace(year=today.year - 18)
+    ).count()
+
+    # Prepare the gender and age group data in the same format
+    gender_age_labels = ['Men', 'Women', 'Children']
+    gender_age_data = [men_count, women_count, children_count]
+
+    gender_age_chart_data = {
+        'labels': gender_age_labels,
+        'data': gender_age_data
+    }
+
+    # Return all the data as a JSON response
+    return JsonResponse({
+        'diagnosis': diagnosis_data,
+        'gender_age': gender_age_chart_data
+    })

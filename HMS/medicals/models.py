@@ -12,6 +12,7 @@ class Diagnosis(models.Model):
         Seizures = "Seizures"
         Diabetes = "Diabetes"
         Hypertension = "Hypertension"
+        Malaria = "Malaria"
         Depression = "Depression"
         Pneumonia = "Pneumonia"
         Arthritis = "Arthritis"
