@@ -6,11 +6,9 @@ from users.models import CustomUser
 from django.db.models import Q
 from .models import Availability,Appointment
 from django.utils import timezone
-
+from django.views.generic import  UpdateView, DeleteView
 from datetime import datetime, date,timedelta
-
-
-
+from django.urls import reverse_lazy
 # Create your views here.
 from .forms import AvailabilityForm
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -300,7 +298,36 @@ def doctor_availability(request, profile_id):
     # Pass the form to the template
     context = {
         'availability_form': availability_form,
-        # Include other context variables needed for rendering the user_profile template
     }
 
     return render(request, 'users/user_profile.html', context)
+
+class AvailabilityUpdateView(UpdateView):
+    model = Availability
+    form_class = AvailabilityForm
+    pk_url_kwarg = 'id'  # Specify the lookup field
+    template_name = 'users/user_profile.html'
+
+    def get_initial(self):
+        # Get the current todo object
+        availability = self.get_object()
+        # Return the initial data for the form
+        return {
+            'doctor_id': availability.doctor_id,
+            'day': availability.day,
+            'time': availability.time,
+            'type': availability.type,
+        }
+    
+    def get_success_url(self):
+        profile_id = self.request.user.profile_id
+        return reverse_lazy('user_profile', kwargs={'profile_id': profile_id})
+    
+class AvailabilityDeleteView(DeleteView):
+    model = Availability
+    #modal to confirm delete
+    pk_url_kwarg = 'id'  # Specify the lookup field
+    # template_name = 'users/add_activity.html'
+    def get_success_url(self):
+        profile_id = self.request.user.profile_id
+        return reverse_lazy('user_profile', kwargs={'profile_id': profile_id})

@@ -41,7 +41,6 @@
           </div>
         </div>
       </div>
-
       <div class="sm:w-3/5">
         <div class="mx-2 my-4 pt-4 pb-12 px-2 md:p-4 bg-white items-center ">
 
@@ -174,6 +173,8 @@
 
             <div x-show="openTab === 4" class="mt-4">
               <div class="space-y-2">
+                <h1 class="text-white font-bold text-[16px]">{% if availability_form.instance.pk %}Edit Availability{% else %}Add Availability{% endif %}</h1>
+
                 <form method="POST" action="{% url 'availability' user.profile_id %}">
                   {% csrf_token %}
                   {% for field in availability_form  %}                      
@@ -185,8 +186,9 @@
                   {% endfor %}
                   <div class="flex items-center justify-center px-4 sm:px-8">
                       <button type="submit" class=" text-base bg-blue-600 px-8 py-3 my-4 rounded-lg text-white font-semibold">
-                        Save
+                        {% if availability_form.instance.pk %}Save changes{% else %}Add availability{% endif %}
                       </button>
+
                   </div>
                 </form>
 
@@ -198,10 +200,91 @@
         </div>
       </div>
     </div>
+    {% if request.user.is_staff %}
+    <div class="sm:w-3/5 bg-gray-200 rounded-lg">
 
+      <div class="flex justify-between bg-slate-700 text-white font-bold px-4 py-2 rounded-t-lg shadow-sm">
+        <h1>Your Availabilities</h1>
+      </div>
+
+      <div class="p-2">
+        {% for item in availabilities %}                
+        <div
+          class="flex w-auto text-xs sm:text-sm my-4 h-16 px-6 items-center justify-between bg-white shadow-lg rounded-lg">
+          <div>
+            <p>{{item.date_created}}</p>
+          </div>
+
+          <div class="hidden xs:block">
+            <h1 class="uppercase font-bold">Day</h1>
+            <p>{{item.day}}S</p>
+          </div>
+          <div class="items-center">
+            <h1 class="uppercase font-bold">Time</h1>
+            <p>{{item.time}}</p>
+          </div>
+
+          <div class="items-center">
+            <h1 class="uppercase font-bold">Type</h1>
+            <p>{{item.type}}</p>
+          </div>
+          <div>
+            <a href="{% url 'availability_edit' item.pk %}">
+              <button class="rounded bg-blue-700 px-4 py-1 text-sm uppercase text-white">
+                Edit
+              </button>
+            </a>
+            <a data-url="{% url 'delete_availability' item.pk %}" class="openModalBtn">
+              <button class="rounded bg-red-700 px-4 py-1 text-sm uppercase text-white">
+                Delete
+              </button>
+            </a>
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
   </div> 
   <!-- End Header -->
 
 </div>
 <!-- END RIGHT SIDE -->
+ <!-- Modal Structure -->
+<div id="deleteModal" class="fixed inset-0 items-center justify-center bg-black bg-opacity-50 hidden">
+  <div class="bg-white rounded-lg shadow-lg p-8">
+    <h2 class="text-xl font-semibold mb-4">Confirm Deletion</h2>
+    <p class="mb-6">Are you sure you want to delete this Availability?</p>
+    <div class="flex justify-end space-x-4">
+      <button id="cancelBtn" class="bg-gray-300 text-gray-700 px-4 py-2 rounded">Cancel</button>
+      <form method="POST" id="delete-form">
+        {% csrf_token %}
+        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var modal = document.getElementById('deleteModal');
+    var deleteButtons = document.querySelectorAll('.openModalBtn');
+    var cancelButton = document.getElementById('cancelBtn');
+    var deleteForm = document.getElementById('delete-form');
+
+    deleteButtons.forEach(function (button) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default anchor behavior
+        var action = this.getAttribute('data-url');
+        deleteForm.setAttribute('action', action);
+        modal.classList.remove('hidden');
+      });
+    });
+
+    cancelButton.addEventListener('click', function () {
+      modal.classList.add('hidden');
+    });
+  });
+</script>
 {% endblock content %}

@@ -15,4 +15,7 @@ urlpatterns = [
 
     path('book-patient/',  views.book_patient, name='book_patient'),
     path('availability/<int:profile_id>/',  views.doctor_availability, name='availability'),
+    path('availability-edit/<int:id>/',  views.AvailabilityUpdateView.as_view(), name='availability_edit'),
+    path('delete-availability/<int:id>/',  views.AvailabilityDeleteView.as_view(), name='delete_availability'),
+
 ]

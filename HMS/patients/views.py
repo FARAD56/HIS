@@ -187,7 +187,9 @@ class TodoCompleteView(View):
 
 def get_chart_data(request):
     # Count the diagnosis of diseases
-    disease_counts = Diagnosis.objects.values('diagnosis').annotate(count=Count('diagnosis'))
+    user = request.user
+    # Count the diagnosis of diseases related to the user
+    disease_counts = Diagnosis.objects.filter(patient=user).values('diagnosis').annotate(count=Count('diagnosis'))
 
     # Create labels and data for the diagnosis chart
     labels = []

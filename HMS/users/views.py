@@ -5,12 +5,11 @@ from django.contrib.auth import authenticate,logout,login
 from .models import CustomUser,ProfileModel
 from django.contrib.auth.decorators import login_required
 from appointments.forms import AvailabilityForm
-from appointments.models import BookPatient
+from appointments.models import Availability
 from patients.models import Todo
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import JsonResponse
-from datetime import datetime, timedelta
-from django.utils.timezone import now
+from datetime import datetime
 from medicals.models import Diagnosis
 from django.db.models import Count
 
@@ -65,6 +64,8 @@ def user_logout(request):
 def user_profile(request,profile_id):
     user = get_object_or_404(CustomUser, profile_id=profile_id)
     
+    availabilities = Availability.objects.filter(doctor_id=profile_id) if user.is_staff else None
+
     # Ensure the user has a ProfileModel
     profile, created = ProfileModel.objects.get_or_create(user=user)
     
@@ -96,11 +97,13 @@ def user_profile(request,profile_id):
         'p_form':p_form,
         'patient': user,
         'availability_form':availability_form,
+        'availabilities':availabilities,
     }
 
     return render(request, 'users/user_profile.html', context)
 
 
+        
 @login_required
 @staff_member_required
 def doctor_dashboard(request,profile_id):

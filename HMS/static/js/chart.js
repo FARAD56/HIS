@@ -43,57 +43,81 @@ document.addEventListener("DOMContentLoaded", function () {
       // Vitals chart data
       const vitalsData = data.vitals;
       const vitalsChartCtx = document.getElementById('vitalsChart').getContext('2d');
-      new Chart(vitalsChartCtx, {
-          type: 'line',
-          data: {
-              labels: vitalsData.labels,
-              datasets: [
-                  {
-                      label: 'Temperature',
-                      data: vitalsData.temperature,
-                      borderColor: 'green',
-                      backgroundColor: 'green',
-                      tension: 0.4
-                  },
-                  {
-                      label: 'Systole',
-                      data: vitalsData.systole,
-                      borderColor: 'blue',
-                      backgroundColor: 'blue',
-                      tension: 0.4
-                  },
-                  {
-                      label: 'Diastole',
-                      data: vitalsData.diastole,
-                      borderColor: 'deepskyblue',
-                      backgroundColor: 'deepskyblue',
-                      tension: 0.4
-                  }
-              ]
-          },
-          options: {
-              scales: {
-                  y: {
-                      beginAtZero: true,
-                      ticks: {
-                          font: { size: 12 }
-                      }
-                  },
-                  x: {
-                      ticks: {
-                          font: { size: 12 }
-                      }
-                  }
-              },
-              plugins: {
-                  legend: {
-                      labels: {
-                          font: { size: 12 }
-                      }
-                  }
-              }
-          }
-      });
+new Chart(vitalsChartCtx, {
+    type: 'line',
+    data: {
+        labels: vitalsData.labels,
+        datasets: [
+            {
+                label: 'Temperature',
+                data: vitalsData.temperature,
+                borderColor: 'green',
+                backgroundColor: 'green',
+                tension: 0.4,
+                yAxisID: 'yTemp'  // Link to custom y-axis
+            },
+            {
+                label: 'Systole',
+                data: vitalsData.systole,
+                borderColor: 'blue',
+                backgroundColor: 'blue',
+                tension: 0.4,
+                yAxisID: 'yBP'  // Link to custom y-axis
+            },
+            {
+                label: 'Diastole',
+                data: vitalsData.diastole,
+                borderColor: 'deepskyblue',
+                backgroundColor: 'deepskyblue',
+                tension: 0.4,
+                yAxisID: 'yBP'  // Link to custom y-axis
+            }
+        ]
+    },
+    options: {
+        scales: {
+            yTemp: {
+                type: 'linear',
+                position: 'left',
+                min: 36.5,
+                max: 37.5,
+                ticks: {
+                    font: { size: 12 }
+                },
+                title: {
+                    display: true,
+                    text: 'Temperature (°C)'
+                }
+            },
+            yBP: {
+                type: 'linear',
+                position: 'right',
+                min: 50,
+                max: 140,
+                ticks: {
+                    font: { size: 12 }
+                },
+                title: {
+                    display: true,
+                    text: 'Blood Pressure (mmHg)'
+                }
+            },
+            x: {
+                ticks: {
+                    font: { size: 12 }
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    font: { size: 12 }
+                }
+            }
+        }
+    }
+});
+
   })
   .catch(error => console.error('Error fetching chart data:', error));
 });
