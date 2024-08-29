@@ -92,7 +92,6 @@ class AddDiagnosis(View):
         return redirect('add_diagnosis', profile_id=profile_id)
 
     
-
 class AddPrescription(View):
     template_name = 'medicals/add_prescription.html'
 
