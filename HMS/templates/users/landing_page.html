@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIS</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-primary {
+            background-color: #3BBE82; /* Green */
+        }
+        .bg-secondary {
+            background-color: #00A3E0; /* Blue */
+        }
+        .hover-bg {
+            background-color: #2B9B6D; /* Lighter Green */
+        }
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            width: 90%; /* Set carousel width to 90% for responsiveness */
+            max-width: 600px; /* Optional: limit maximum width */
+            height: auto; /* Allow height to adjust based on content */
+            margin: 0 auto; /* Center the carousel */
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%; /* Ensure inner carousel takes full height */
+        }
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            display: flex; /* Center images vertically */
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-primary text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center justify-center space-x-2">
+                <img src="{% static 'images/nav_logo.png' %}" alt="" class="w-10 h-10">
+                <h1 class="text-2xl font-bold">HIS</h1>
+            </div>
+            <div class="md:hidden">
+                <button id="toggle-button" class="focus:outline-none">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 5h14a1 1 0 110 2H3a1 1 0 110-2zM3 10h14a1 1 0 110 2H3a1 1 0 110-2zM3 15h14a1 1 0 110 2H3a1 1 0 110-2z" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="{% url 'landing_page' %}" class="hover:underline font-semibold transition duration-200">Home</a></li>
+                <li><a href="https://drive.google.com/file/d/1ZBiB5c5jD6Oq8MVGO-qHakjmNXCCxJy1/view?usp=drive_link" class="hover:underline font-semibold transition duration-200">Manual</a></li>
+                <li><a href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeNDmnk7aWsf--iyh9qGVXIUw2P6FtppAuchzRvNt8BXJuazg/formResponse?pli=1" class="hover:underline font-semibold transition duration-200">Feedback</a></li>
+                <li><a href="https://hissoftware.pythonanywhere.com/login/" class="hover:underline font-semibold transition duration-200">Login</a></li>
+                <li><a href="https://hissoftware.pythonanywhere.com/register/" class="hover:underline font-semibold transition duration-200">Signup</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden"></div>
+    <aside id="sidebar-menu" class="fixed left-0 top-0 w-64 h-full bg-white shadow-md transform -translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col">
+        <div class="p-4 flex-grow">
+            <h2 class="text-xl font-bold">Menu</h2>
+            <ul class="mt-4 space-y-2">
+                <li><a href="{% url 'landing_page' %}" class="block py-2 px-4 rounded hover:bg-hover-bg hover:text-green-700 font-bold transition duration-200">Home</a></li>
+                <li><a href="https://drive.google.com/file/d/1ZBiB5c5jD6Oq8MVGO-qHakjmNXCCxJy1/view?usp=drive_link" class="block py-2 px-4 rounded hover:bg-hover-bg hover:text-green-700 font-bold transition duration-200">Manual</a></li>
+                <li><a href="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeNDmnk7aWsf--iyh9qGVXIUw2P6FtppAuchzRvNt8BXJuazg/formResponse?pli=1" class="block py-2 px-4 rounded hover:bg-hover-bg hover:text-green-700 font-bold transition duration-200">Feedback</a></li>
+                <li><a href="https://hissoftware.pythonanywhere.com/login/" class="block py-2 px-4 rounded hover:bg-hover-bg hover:text-green-700 font-bold transition duration-200">Login</a></li>
+                <li><a href="https://hissoftware.pythonanywhere.com/register/" class="block py-2 px-4 rounded hover:bg-hover-bg hover:text-green-700  text-g font-bold transition duration-200">Signup</a></li>
+            </ul>
+        </div>
+        <button id="close-button" class="m-4 p-2 bg-primary text-white rounded">Close</button>
+    </aside>
+
+    <!-- Hero section -->
+    <section class="h-screen bg-secondary text-center">
+        <div class="py-14">
+            <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold text-white my-6">INTEGRATED HEALTHCARE MANAGEMENT SYSTEM</h1>
+            <p class="mt-2 text-lg md:text-xl lg:text-2xl font-semibold text-white">Enhancing Management, Medication And Data Visualization</p>
+        </div>
+        <div class="carousel">
+            <div class="carousel-inner" id="carousel-inner">
+                <div class="carousel-item">
+                    <img src="{% static 'images/icons8-charts-100.png' %}" class="w-30 h-30 md:w-40 md:h-40 mx-auto mb-4">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/icons8-medication-100.png' %}" class="w-30 h-30 md:w-40 md:h-40 mx-auto mb-4">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/icons8-management-100.png' %}" class="w-30 h-30 md:w-40 md:h-40 mx-auto mb-4">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/icons8-diagnosis-100.png' %}" class="w-30 h-30 md:w-40 md:h-40 mx-auto mb-4">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/icons8-medical-records-100.png' %}" class="w-30 h-30 md:w-40 md:h-40 mx-auto mb-4">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/icons8-reminder-128.png' %}" class="w-30 h-30 md:w-40 md:h-40 mx-auto mb-4">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/icons8-appointment-100.png' %}" class="w-30 h-30 md:w-40 md:h-40 mx-auto mb-4">
+                </div>
+            </div>
+            <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 text-white bg-black rounded-full p-2">❮</button>
+            <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 text-white bg-black rounded-full p-2">❯</button>
+        </div>
+    </section>
+
+    <script>
+        const toggleButton = document.getElementById('toggle-button');
+        const sidebarMenu = document.getElementById('sidebar-menu');
+        const sidebarOverlay = document.getElementById('sidebar');
+        const carouselInner = document.getElementById('carousel-inner');
+        const items = carouselInner.children;
+        let currentIndex = 0;
+
+        toggleButton.addEventListener('click', () => {
+            sidebarMenu.classList.toggle('-translate-x-full');
+            sidebarOverlay.classList.toggle('hidden');
+        });
+
+        document.getElementById('close-button').addEventListener('click', () => {
+            sidebarMenu.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebarMenu.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : items.length - 1;
+            updateCarousel();
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+
+        function updateCarousel() {
+            const offset = -currentIndex * 100;
+            carouselInner.style.transform = `translateX(${offset}%)`;
+        }
+
+        // Autoplay functionality
+        setInterval(() => {
+            currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        }, 3000); // Change slide every 3 seconds
+
+        // Automatically close sidebar on larger screens
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) { // Tailwind's md breakpoint
+                sidebarMenu.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            }
+        });
+    </script>
+
+</body>
+</html>

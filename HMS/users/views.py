@@ -14,6 +14,9 @@ from medicals.models import Diagnosis
 from django.db.models import Count
 
 
+def landing_page(request):
+    return render(request,'users/landing_page.html')
+
 def register(request):
     if request.method == "POST":
         form = CustomSignUpForm(request.POST)
